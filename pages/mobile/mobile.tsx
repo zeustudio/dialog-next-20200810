@@ -5,10 +5,11 @@ const Mobile = () => {
   const [viewRect, setViewRect] = React.useState([0, 0]);
   React.useEffect(() => {
     setViewRect([window.innerWidth, window.innerHeight]);
+    window.addEventListener("resize", () =>
+      setViewRect([window.innerWidth, window.innerHeight])
+    );
   }, []);
-  window.addEventListener("resize", () =>
-    setViewRect([window.innerWidth, window.innerHeight])
-  );
+
   return (
     <Wrapper style={{ width: `${viewRect[0]}px`, height: `${viewRect[1]}px` }}>
       <WorkPage author={"fumin"} />
