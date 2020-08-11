@@ -23,6 +23,8 @@ import ThumbnailImage from "../../images/works/Shinogu/shinogu_small.png";
 import OGPImage from "../../images/works/Shinogu/shinogu_ogp.png";
 interface overview {
   img: string;
+  TitleJP: string;
+  TitleEN: string;
   CaptionJP: string;
   CaptionEN: string;
   CreditJP: string;
@@ -46,6 +48,8 @@ interface workdata {
 
 const overview: overview = {
   img: ThumbnailImage,
+  TitleJP: "流点",
+  TitleEN: "Ruten",
   CaptionJP: `水の動きに見入ってしまった経験はありますか？雄大にしぶきを上げ流れ落ちる滝も、繊細に静かに滴り落ちる水滴も、思わず鑑賞し続けたくなる魅力があります。そしてこの魅力は、水の持つ「不定形さ」によってもたらされるのではないかと考えました。この作品では、小さな塊となった色水が、ひとつひとつ、流路に沿って滑らかに進みます。それは規則的でありながらどこか不安定さを感じさせる、不思議に満ちた動きです。しなやかな水が生み出す優美さを是非ご覧ください。`,
   CaptionEN: `There is some indescribable aesthetic inflow of water, ranging from breathtaking, giant waterfall to a single, tiny waterdrop. We thought what makes it such beautiful is the amorphous nature of liquid water. In this prototype, a tiny droplet of colored water travels through the channel smoothly, and calmly. It is well-regulated motion yet looks unstable in some respects. Please enjoy the elegance created by the sophisticated flow of the water.`,
   CreditJP: `制作：山本 凌\n ディレクション：山中俊治\n 協力：木下晴之、三澤 徹`,

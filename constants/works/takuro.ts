@@ -17,6 +17,8 @@ import OGPImage from "../../images/works/Takuro/takuro_ogp.png";
 import ThumbnailImage from "../../images/works/Takuro/takuro_small.png";
 interface overview {
   img: string;
+  TitleJP: string;
+  TitleEN: string;
   CaptionJP: string;
   CaptionEN: string;
   CreditJP: string;
@@ -40,6 +42,8 @@ interface workdata {
 
 const overview: overview = {
   img: ThumbnailImage,
+  TitleJP: "",
+  TitleEN: "Rami S",
   CaptionJP: `『Rami』は3Dプリンティングならではの立体構造となめらかな曲面を持つ、陸上競技用下腿義足です。機能的で美しいスポーツ用義足を、多くの人に届けるシステムを作るために研究開発しています。最初のマイルストーンとして、パラ短距離・走り幅跳び選手である高桑早生さんのための義足『Rami』を開発。そしてプロジェクトの次の段階としてユーザー数の増加と競技種目の拡大を目指し、走り高跳び選手のための義足『Rami S』を開発しました。`,
   CaptionEN: `"Rami" is a 3D printed below-knee prosthesis designed for track-and-field, which has 3D-print exclusive, smooth and curvaceous geometry. Our goal in this project is to design a system to deliver beautiful and properly engineered sport-purposed prosthesis to more people in need. As a first milestone, we designed a prosthesis for Saki Takakuwa: former Japanese national player for Rio and London Paralympics. And by using design scheme achieved by it, we were able to develop a prosthesis "Rami S" for high jump. It is one small leap for the mass-customization of beautiful prosthesis.`,
   CreditJP: `制作：山中俊治、阪本 真、杉本拓郎\n 協力：公益財団法人鉄道弘済会義肢装具サポートセンター、鈴木 徹、\n 株式会社今仙技術研究所、ミズノ株式会社`,

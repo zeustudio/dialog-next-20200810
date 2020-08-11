@@ -14,6 +14,8 @@ import ThumbnailImage from "../../images/works/Hazuki/hazuki_small.png";
 
 interface overview {
   img: string;
+  TitleJP: string;
+  TitleEN: string;
   CaptionJP: string;
   CaptionEN: string;
   CreditJP: string;
@@ -37,6 +39,9 @@ interface workdata {
 
 const overview: overview = {
   img: ThumbnailImage,
+  TitleJP: "",
+  TitleEN:
+    "Reduce Unconscious Gender Bias through Workshop with Co-Speculative Design",
   CaptionJP: `無意識のバイアスに気づくことは、簡単ではありません。生まれ育った環境や文化を通して、積み重なる学習によって根付いたものです。性別へのバイアスによって様々な可能性が阻まれている現状に対し、Co-Speculative Desginと言う理論を取り入れ、固定概念を覆し、内省を促すワークショップを設計しました。ワークショップ内では、起こりうる未来を想定しながらペルソナを作る過程でバイアスが露呈される仕掛けを用意し、参加者同士が対話することでバイアスに対する新たな問題への気づきを促しました。`,
   CaptionEN: `It is quite difficult to realize our unconscious bias. It develops in our subconsciousness, while we live through our own culture and environment. We designed a workshop to discover and self-examine our inner gender bias, by introducing co-speculative design theory. In this workshop, we designed to expose an individual's bias while each participant build persona simulating close future of themselves. And by each participant's conversation, we were able to make them perceive some new problems about bias.`,
   CreditJP: `制作：三好葉月\n ディレクション：山中俊治`,

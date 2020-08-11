@@ -24,6 +24,8 @@ import ThumbnailImage from "../../images/works/Fu-min/fu-min_small.png";
 
 interface overview {
   img: string;
+  TitleJP: string;
+  TitleEN: string;
   CaptionJP: string;
   CaptionEN: string;
   CreditJP: string;
@@ -47,6 +49,8 @@ interface workdata {
 
 const overview: overview = {
   img: ThumbnailImage,
+  TitleJP: "ヴァイオリン用\n顎・肩当て",
+  TitleEN: "Chin & Shoulder Rest",
   CaptionJP: `ヴァイオリンを弾くときには一般的に顎当てと肩当てが使われますが、長時間演奏していると首元にあざができ、痛みを生じることがあります。また顎当て・肩当ては、身体と楽器が唯一つながる部分であり、身体から出る曲への想いを楽器に十分に伝えることが求められます。この作品では、演奏時の痛みを減らすとともに心地よく演奏できることを目指しました。演奏者の身体を3Dスキャンし身体にフィットした形状を作成、そして曲げ木の弾性を利用することで顎・肩当ての美しい一体構造を実現しました。`,
   CaptionEN: `This project is motivated by realizing the soft, flexible expression of an object’s property without involving elastic or damping material. The movement of the structure created by a series of Yajirobei(Japanese traditional balance toy), consistently expresses soft-looking animation regardless of the mechanical property of its component. Please enjoy the mysterious, both soft and rigid behavior of our prototype.`,
   CreditJP: `制作：髙田ふみ\n ディレクション：安次富 隆、山中俊治`,

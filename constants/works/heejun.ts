@@ -16,6 +16,8 @@ import ThumbnailImage from "../../images/works/Heejun/heejun_small.png";
 
 interface overview {
   img: string;
+  TitleJP: string;
+  TitleEN: string;
   CaptionJP: string;
   CaptionEN: string;
   CreditJP: string;
@@ -39,6 +41,8 @@ interface workdata {
 
 const overview: overview = {
   img: ThumbnailImage,
+  TitleJP: "チタンの家具",
+  TitleEN: "Titanium Furniture",
   CaptionJP: `チタンは、軽くて、強くて、錆びない、とても優れた金属です。意外かもしれませんが資源も豊富で、工場の配管など、産業分野では広く利用されています。日用品であまり目にしないのは、精練・加工が難しく、コストが掛かってしまうから。もしチタンをアルミのように安く使えるようになれば、世界中の日用品の多くはチタン製になるかもしれません。この作品では、配管用のチタンパイプの端材を材料に、グラフェンの転移機構を参考にしたアルゴリズムと3Dプリンタによるジョイント設計によって、美しく、作りやすいチタン製品を実現しました。`,
   CaptionEN: `This is the project to design aesthetic furniture using titanium. Titanium is a strong, lightweight and non-corrosive material, and it is often considered to be expensive. However, unlike rare earth, titanium ore is not rare on our planet. What makes this material very expensive is actually its cost of processing. Our approach is to design with cheap titanium pipe, which is the leftover from the manufacturing process of titanium heat exchanger. By using the algorithmic design method and 3D printed joints, we achieved low-cost, yet sophisticated design.`,
   CreditJP: `制作：イ ヒジュン\n ディレクション：山中俊治\n 協力：東京大学 生産技術研究所 岡部研究室`,

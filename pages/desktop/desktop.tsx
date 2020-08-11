@@ -1,4 +1,11 @@
+import styled from "@emotion/styled";
 const Desktop = () => {
-  return <div>desktop!</div>;
+  return <Wrapper>desktop!</Wrapper>;
 };
+
+const Wrapper = styled.div`
+  @media screen and (max-width: 1280px) {
+    display: none;
+  }
+`;
 export default Desktop;
