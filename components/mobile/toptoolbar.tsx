@@ -15,7 +15,7 @@ const TopToolBar: React.FC<Props> = ({ author }) => {
   React.useEffect(() => {
     const thumbArrayBuffer = [];
     for (var i = 0; i < 2 * n - 1; i++) {
-      const newIndex = i - n + index + 1;
+      let newIndex = i - n + index + 1;
       if (newIndex < 0 || newIndex > n - 1) {
         thumbArrayBuffer.push("");
       } else {
@@ -44,10 +44,15 @@ const TopToolBar: React.FC<Props> = ({ author }) => {
 const Wrapper = styled.div`
   background-color: #282729;
   width: 100%;
+  height: 40px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   grid-row: 1/2;
+  z-index: 3;
 `;
 
 const Thumb = styled.img`

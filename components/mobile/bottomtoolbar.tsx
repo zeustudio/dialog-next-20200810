@@ -15,7 +15,10 @@ const BottomToolBar = () => {
 const Wrapper = styled.div`
   background-color: #282729;
   width: 100%;
-  grid-row: 3/4;
+  height: 40px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;

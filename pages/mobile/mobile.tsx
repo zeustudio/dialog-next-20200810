@@ -4,12 +4,14 @@ import WorkPage from "../../components/mobile/workpage";
 const Mobile = () => {
   return (
     <Wrapper>
-      <WorkPage author={"fumin"} />
+      <WorkPage author={"oga"} />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
   @media screen and (min-width: 1280px) {
     display: none;
   }
