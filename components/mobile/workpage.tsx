@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import globalCSS from "../../styles/global";
 import { Global } from "@emotion/core";
 
-import TopToolBar from "./toptoolbar";
+import TopToolBarAnimated from "./toptoolbar-animated";
 import BottomToolBar from "./bottomtoolbar";
 
 import Overview from "./overview";
@@ -28,7 +28,7 @@ const WorkPage: React.FC<Props> = ({ author }) => {
   return (
     <Wrapper>
       <Global styles={globalCSS} />
-      <TopToolBar author={author} />
+      <TopToolBarAnimated author={author} />
       <ContentsWrapper>
         <Overview author={author} />
         {contents.map((content) => {

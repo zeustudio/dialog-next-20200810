@@ -55,8 +55,8 @@ const Wrapper = styled.div`
 const Thumb = styled.img`
   width: 100%;
   margin-top: 40px;
-  @media screen and (min-width: 375px) {
-    width: 375px;
+  @media screen and (min-width: 376px) {
+    width: 60%;
   }
 `;
 

@@ -22,13 +22,16 @@ const Content: React.FC<Props> = ({ content }) => {
 
   return (
     <Wrapper>
-      <ImgWrapper2>
-        <ImgWrapper id={globalID}>
-          {content.img.map((img, index) => {
-            return <Img key={uuid()} className={`${index}`} src={img} />;
-          })}
-        </ImgWrapper>
-      </ImgWrapper2>
+      <ImgWrapper3>
+        <ImgWrapper2>
+          <ImgWrapper id={globalID}>
+            {content.img.map((img, index) => {
+              return <Img key={uuid()} className={`${index}`} src={img} />;
+            })}
+          </ImgWrapper>
+        </ImgWrapper2>
+      </ImgWrapper3>
+
       <CaptionWrapper>
         <TitleJP>{content.TitleJP}</TitleJP>
         <TitleEN>-{content.TitleEN}-</TitleEN>
@@ -50,8 +53,9 @@ const Wrapper = styled.div`
   }
 `;
 const Img = styled.img`
-  width: 100%;
   scroll-snap-align: start;
+  width: 100%;
+  flex-shrink: 0;
 `;
 const ImgWrapper = styled.div`
   position: absolute;
@@ -66,10 +70,12 @@ const ImgWrapper = styled.div`
 const ImgWrapper2 = styled.div`
   position: relative;
   width: 100%;
-  padding-bottom: 66.66%;
-  margin-bottom: 40px;
+  padding-bottom: ${(100 * 2) / 3}%;
+`;
+const ImgWrapper3 = styled.div`
+  width: 100%;
   @media screen and (min-width: 500px) {
-    width: 500px;
+    width: 80%;
   }
 `;
 const CaptionWrapper = styled.div`
