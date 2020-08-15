@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-const uuid = require("react-uuid");
+import Carousel from "./carousel";
 interface content {
   img: string[];
   video: string[];
@@ -14,24 +14,21 @@ interface Props {
 }
 
 const Content: React.FC<Props> = ({ content }) => {
-  const [globalID, setGlobalID] = React.useState("");
+  const [width, setWidth] = React.useState(0);
 
   React.useEffect(() => {
-    setGlobalID(uuid());
+    if (window.innerWidth > 500) {
+      setWidth(window.innerWidth * 0.8);
+    } else {
+      setWidth(window.innerWidth);
+    }
   }, []);
 
   return (
     <Wrapper>
-      <ImgWrapper3>
-        <ImgWrapper2>
-          <ImgWrapper id={globalID}>
-            {content.img.map((img, index) => {
-              return <Img key={uuid()} className={`${index}`} src={img} />;
-            })}
-          </ImgWrapper>
-        </ImgWrapper2>
-      </ImgWrapper3>
-
+      <ImgWrapper>
+        <Carousel imgs={content.img} width={width} height={(width * 2) / 3} />
+      </ImgWrapper>
       <CaptionWrapper>
         <TitleJP>{content.TitleJP}</TitleJP>
         <TitleEN>-{content.TitleEN}-</TitleEN>
@@ -52,32 +49,10 @@ const Wrapper = styled.div`
     justify-content: space-evenly;
   }
 `;
-const Img = styled.img`
-  scroll-snap-align: start;
-  width: 100%;
-  flex-shrink: 0;
-`;
 const ImgWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  display: flex;
-`;
-const ImgWrapper2 = styled.div`
-  position: relative;
   width: 100%;
-  padding-bottom: ${(100 * 2) / 3}%;
 `;
-const ImgWrapper3 = styled.div`
-  width: 100%;
-  @media screen and (min-width: 500px) {
-    width: 80%;
-  }
-`;
+
 const CaptionWrapper = styled.div`
   font-size: 2rem;
   word-wrap: break-word;
@@ -109,3 +84,30 @@ const MessageJP = styled.div`
   font-weight: bold;
 `;
 export default Content;
+
+/*<ImgWrapper id={globalID}>
+            {content.img.map((img, index) => {
+              return <Img key={uuid()} className={`${index}`} src={img} />;
+            })}
+          </ImgWrapper>
+          
+          const ImgWrapper2 = styled.div`
+  position: relative;
+  width: 100%;
+  padding-bottom: ${(100 * 2) / 3}%;
+`;
+const ImgWrapper3 = styled.div`
+  width: 100%;
+  @media screen and (min-width: 500px) {
+    width: 80%;
+  }const ImgWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  display: flex;
+`;
+`;*/

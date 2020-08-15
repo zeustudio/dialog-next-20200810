@@ -6,6 +6,7 @@ import { useDrag } from "react-use-gesture";
 import Thumb from "./toptoolbarThumb";
 const keyArray: string[] = Array.from(WorkData.keys());
 const n: number = keyArray.length;
+
 const clamp = (x: number, a: number, b: number) => {
   if (x < a) {
     return a;
@@ -19,12 +20,12 @@ const clamp = (x: number, a: number, b: number) => {
 interface Props {
   author: string;
 }
-
 const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
-  const [thumbIndex, setThumbIndex] = React.useState(0);
+  const [thumbIndex, setThumbIndex] = React.useState(keyArray.indexOf(author));
   const [carouselPos, setCarouselPos] = React.useState(0);
+  const [width, setWidth] = React.useState(0);
   const [props, set] = useSpring(() => ({
-    left: `0px`,
+    transform: `translate3d(0px,0px,0px)`,
   }));
 
   const [deltaWidth, setDeltaWidth] = React.useState(1);
@@ -34,22 +35,23 @@ const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
     }
   });
   React.useEffect(() => {
-    setDeltaWidth(window.innerWidth / (2 * n - 1));
-    setThumbIndex(keyArray.indexOf(author));
-    set({
-      left: `${(keyArray.indexOf(author) * window.innerWidth) / (2 * n - 1)}px`,
-    });
+    const a = 16;
+    const b = 32;
+    const c = (window.innerWidth / 2 - (n - 1) * a - b / 2) / n;
+    setWidth(window.innerWidth / 2 + c + b / 2);
+    setDeltaWidth(a + c);
+    setCarouselPos((n - 1 - keyArray.indexOf(author)) * (a + c));
   }, []);
   React.useEffect(() => {
     setThumbIndex(clamp(Math.round(carouselPos / deltaWidth), 0, n - 1));
   }, [carouselPos]);
   React.useEffect(() => {
-    set({ left: `${thumbIndex * deltaWidth}px` });
+    set({ transform: `translate3d(${thumbIndex * deltaWidth}px,0px,0px)` });
   }, [thumbIndex]);
 
   return (
     <Wrapper>
-      <Wrapper2 {...bind()} style={{ ...props, width: `${deltaWidth * n}px` }}>
+      <Wrapper2 {...bind()} style={{ ...props, width: `${width}px` }}>
         {keyArray.map((key, index) => {
           return (
             <Thumb
@@ -79,7 +81,8 @@ const Wrapper2 = animated(styled.div`
   height: 40px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  overflow: hidden;
 `);
 
 export default TopToolBarAnimated;
