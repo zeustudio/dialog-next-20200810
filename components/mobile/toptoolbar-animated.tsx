@@ -22,33 +22,15 @@ interface Props {
 
 const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
   const [thumbIndex, setThumbIndex] = React.useState(0);
+  const [carouselPos, setCarouselPos] = React.useState(0);
   const [props, set] = useSpring(() => ({
     left: `0px`,
   }));
 
-  const [deltaWidth, setDeltaWidth] = React.useState(0);
-  const bind = useDrag(({ down, movement: [x] }) => {
-    const curIndex = thumbIndex;
-    let deltaIndex = Math.round(x / deltaWidth);
-    let realx = x - deltaIndex * deltaWidth;
-    console.log(realx);
+  const [deltaWidth, setDeltaWidth] = React.useState(1);
+  const bind = useDrag(({ down, delta: [dx] }) => {
     if (down) {
-      set({
-        left: `${curIndex * deltaWidth + x}px`,
-      });
-    } else {
-      setThumbIndex(
-        clamp(Math.round((curIndex * deltaWidth + x) / deltaWidth), 0, n - 1)
-      );
-      set({
-        left: `${
-          clamp(
-            Math.round((curIndex * deltaWidth + x) / deltaWidth),
-            0,
-            n - 1
-          ) * deltaWidth
-        }px`,
-      });
+      setCarouselPos(carouselPos + dx);
     }
   });
   React.useEffect(() => {
@@ -58,6 +40,13 @@ const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
       left: `${(keyArray.indexOf(author) * window.innerWidth) / (2 * n - 1)}px`,
     });
   }, []);
+  React.useEffect(() => {
+    setThumbIndex(clamp(Math.round(carouselPos / deltaWidth), 0, n - 1));
+  }, [carouselPos]);
+  React.useEffect(() => {
+    set({ left: `${thumbIndex * deltaWidth}px` });
+  }, [thumbIndex]);
+
   return (
     <Wrapper>
       <Wrapper2 {...bind()} style={{ ...props, width: `${deltaWidth * n}px` }}>
@@ -92,12 +81,5 @@ const Wrapper2 = animated(styled.div`
   align-items: center;
   justify-content: space-evenly;
 `);
-const ThisThumb = styled.img`
-  height: 32px;
-`;
-const Blank = styled.div`
-  width: 16px;
-  height: 15px;
-`;
 
 export default TopToolBarAnimated;

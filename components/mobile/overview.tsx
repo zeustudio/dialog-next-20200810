@@ -61,26 +61,35 @@ const Thumb = styled.img`
 `;
 
 const CaptionWrapper = styled.div`
-  margin: 15px;
-  font-size: 2rem;
+  margin: 15px 15px 10px 15px;
   word-wrap: break-word;
-  line-height: 2.5rem;
   margin-bottom: ${15 + 40}px;
   overflow: scroll;
   @media screen and (min-width: 600px) {
     width: 600px;
   }
 `;
-const TitleJP = styled.div``;
-const TitleEN = styled.div``;
+const TitleJP = styled.div`
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 4rem;
+  text-align: center;
+`;
+const TitleEN = styled.div`
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 4rem;
+  text-align: center;
+`;
 const CaptionJP = styled.div`
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 1.6rem;
+  line-height: 3.2rem;
+  font-weight: bold;
 `;
 const CreditJP = styled.div`
   font-size: 1rem;
-  line-height: 1.5rem;
-  margin-top: 20px;
+  line-height: 2rem;
+  margin-top: 10px;
   white-space: pre-line;
 `;
 export default Overview;
