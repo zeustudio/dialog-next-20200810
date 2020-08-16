@@ -9,7 +9,7 @@ const globalCSS = css`
   ${dom.css()}
   html {
     width: 100%;
-    font-size: 62.5%;
+    font-size: 10px;
   }
 
   body {

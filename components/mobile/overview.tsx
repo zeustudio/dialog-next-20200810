@@ -12,32 +12,60 @@ interface overview {
 }
 interface Props {
   author: string;
+  isEnglish: boolean;
 }
-const Overview: React.FC<Props> = ({ author }) => {
+const Overview: React.FC<Props> = ({ author, isEnglish }) => {
   const overview: overview = WorkData.get(author).overview;
-  if (overview.TitleJP === "") {
-    return (
-      <Wrapper>
-        <Thumb src={overview.img} />
-        <CaptionWrapper>
-          <TitleEN>{overview.TitleEN}</TitleEN>
-          <CaptionJP>{overview.CaptionJP}</CaptionJP>
-          <CreditJP>{overview.CreditJP}</CreditJP>
-        </CaptionWrapper>
-      </Wrapper>
-    );
+  if (isEnglish === false) {
+    if (overview.TitleJP === "") {
+      return (
+        <Wrapper>
+          <Thumb src={overview.img} />
+          <CaptionWrapper>
+            <TitleEN>{overview.TitleEN}</TitleEN>
+            <CaptionJP>{overview.CaptionJP}</CaptionJP>
+            <CreditJP>{overview.CreditJP}</CreditJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    } else {
+      return (
+        <Wrapper>
+          <Thumb src={overview.img} />
+          <CaptionWrapper>
+            <TitleJP>{overview.TitleJP}</TitleJP>
+            <TitleEN>-{overview.TitleEN}-</TitleEN>
+            <CaptionJP>{overview.CaptionJP}</CaptionJP>
+            <CreditJP>{overview.CreditJP}</CreditJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    }
   } else {
-    return (
-      <Wrapper>
-        <Thumb src={overview.img} />
-        <CaptionWrapper>
-          <TitleJP>{overview.TitleJP}</TitleJP>
-          <TitleEN>-{overview.TitleEN}-</TitleEN>
-          <CaptionJP>{overview.CaptionJP}</CaptionJP>
-          <CreditJP>{overview.CreditJP}</CreditJP>
-        </CaptionWrapper>
-      </Wrapper>
-    );
+    if (overview.TitleJP === "") {
+      return (
+        <Wrapper>
+          <Thumb src={overview.img} />
+          <CaptionWrapper>
+            <TitleEN>{overview.TitleEN}</TitleEN>
+            <CaptionJP>{overview.CaptionEN}</CaptionJP>
+            <CreditJP>{overview.CreditEN}</CreditJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    } else {
+      return (
+        <Wrapper>
+          <Thumb src={overview.img} />
+          <CaptionWrapper>
+            <TitleJP>{overview.TitleJP}</TitleJP>
+            <TitleEN>-{overview.TitleEN}-</TitleEN>
+            <CaptionJP>{overview.CaptionEN}</CaptionJP>
+            <CreditJP>{overview.CreditEN}</CreditJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    }
   }
 };
 
@@ -61,26 +89,36 @@ const Thumb = styled.img`
 `;
 
 const CaptionWrapper = styled.div`
-  margin: 15px;
-  font-size: 2rem;
+  margin: 0px 15px 0px 15px;
   word-wrap: break-word;
-  line-height: 2.5rem;
-  margin-bottom: ${15 + 40}px;
+  margin-bottom: 40px;
   overflow: scroll;
   @media screen and (min-width: 600px) {
     width: 600px;
   }
 `;
-const TitleJP = styled.div``;
-const TitleEN = styled.div``;
+const TitleJP = styled.div`
+  margin-top: 10px;
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 4rem;
+  text-align: center;
+`;
+const TitleEN = styled.div`
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 4rem;
+  text-align: center;
+`;
 const CaptionJP = styled.div`
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 1.6rem;
+  line-height: 3.2rem;
+  font-weight: bold;
 `;
 const CreditJP = styled.div`
   font-size: 1rem;
-  line-height: 1.5rem;
-  margin-top: 20px;
+  line-height: 2rem;
+  margin-top: 10px;
   white-space: pre-line;
 `;
 export default Overview;

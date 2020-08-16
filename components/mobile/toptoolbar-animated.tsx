@@ -6,6 +6,7 @@ import { useDrag } from "react-use-gesture";
 import Thumb from "./toptoolbarThumb";
 const keyArray: string[] = Array.from(WorkData.keys());
 const n: number = keyArray.length;
+
 const clamp = (x: number, a: number, b: number) => {
   if (x < a) {
     return a;
@@ -19,48 +20,42 @@ const clamp = (x: number, a: number, b: number) => {
 interface Props {
   author: string;
 }
-
 const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
-  const [thumbIndex, setThumbIndex] = React.useState(0);
+  const [thumbIndex, setThumbIndex] = React.useState(keyArray.indexOf(author));
+  const [carouselPos, setCarouselPos] = React.useState(
+    ((n - 1 - keyArray.indexOf(author)) * 375) / (2 * n + 1)
+  );
+  const [width, setWidth] = React.useState(375 / 2);
   const [props, set] = useSpring(() => ({
-    left: `0px`,
+    transform: `translate3d(${
+      ((n - 1 - keyArray.indexOf(author)) * 375) / (2 * n + 1)
+    }px,0px,0px)`,
   }));
 
-  const [deltaWidth, setDeltaWidth] = React.useState(0);
-  const bind = useDrag(({ down, movement: [x] }) => {
-    const curIndex = thumbIndex;
-    let deltaIndex = Math.round(x / deltaWidth);
-    let realx = x - deltaIndex * deltaWidth;
-    console.log(realx);
+  const [deltaWidth, setDeltaWidth] = React.useState(375 / (2 * n + 1));
+  const bind = useDrag(({ down, delta: [dx] }) => {
     if (down) {
-      set({
-        left: `${curIndex * deltaWidth + x}px`,
-      });
-    } else {
-      setThumbIndex(
-        clamp(Math.round((curIndex * deltaWidth + x) / deltaWidth), 0, n - 1)
-      );
-      set({
-        left: `${
-          clamp(
-            Math.round((curIndex * deltaWidth + x) / deltaWidth),
-            0,
-            n - 1
-          ) * deltaWidth
-        }px`,
-      });
+      setCarouselPos(carouselPos + dx);
     }
   });
   React.useEffect(() => {
-    setDeltaWidth(window.innerWidth / (2 * n - 1));
-    setThumbIndex(keyArray.indexOf(author));
-    set({
-      left: `${(keyArray.indexOf(author) * window.innerWidth) / (2 * n - 1)}px`,
-    });
+    const a = 16;
+    const b = 32;
+    const c = (window.innerWidth / 2 - (n - 1) * a - b / 2) / n;
+    setWidth(window.innerWidth / 2 + c + b / 2);
+    setDeltaWidth(a + c);
+    setCarouselPos((n - 1 - keyArray.indexOf(author)) * (a + c));
   }, []);
+  React.useEffect(() => {
+    setThumbIndex(clamp(Math.round(carouselPos / deltaWidth), 0, n - 1));
+  }, [carouselPos]);
+  React.useEffect(() => {
+    set({ transform: `translate3d(${thumbIndex * deltaWidth}px,0px,0px)` });
+  }, [thumbIndex]);
+
   return (
     <Wrapper>
-      <Wrapper2 {...bind()} style={{ ...props, width: `${deltaWidth * n}px` }}>
+      <Wrapper2 {...bind()} style={{ ...props, width: `${width}px` }}>
         {keyArray.map((key, index) => {
           return (
             <Thumb
@@ -87,17 +82,12 @@ const Wrapper = styled.div`
 `;
 const Wrapper2 = animated(styled.div`
   position: absolute;
-  height: 40px;
+  height: 36px;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: flex-end;
+  justify-content: space-around;
+  overflow: hidden;
+  padding-bottom: 4px;
 `);
-const ThisThumb = styled.img`
-  height: 32px;
-`;
-const Blank = styled.div`
-  width: 16px;
-  height: 15px;
-`;
 
 export default TopToolBarAnimated;

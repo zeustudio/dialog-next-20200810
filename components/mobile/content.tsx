@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-const uuid = require("react-uuid");
+import Carousel from "./carousel";
 interface content {
   img: string[];
   video: string[];
@@ -11,53 +11,154 @@ interface content {
 }
 interface Props {
   content: content;
+  isEnglish: boolean;
 }
 
-const Content: React.FC<Props> = ({ content }) => {
-  const [globalID, setGlobalID] = React.useState("");
+const Content: React.FC<Props> = ({ content, isEnglish }) => {
+  const [width, setWidth] = React.useState(0);
 
   React.useEffect(() => {
-    setGlobalID(uuid());
+    if (window.innerWidth > 500) {
+      setWidth(window.innerWidth * 0.8);
+    } else {
+      setWidth(window.innerWidth);
+    }
   }, []);
-
-  return (
-    <Wrapper>
-      <ImgWrapper3>
-        <ImgWrapper2>
-          <ImgWrapper id={globalID}>
-            {content.img.map((img, index) => {
-              return <Img key={uuid()} className={`${index}`} src={img} />;
-            })}
+  if (isEnglish === false) {
+    if (content.TitleJP !== "") {
+      return (
+        <Wrapper>
+          <ImgWrapper>
+            <Carousel
+              imgs={content.img}
+              width={width}
+              height={(width * 2) / 3}
+            />
           </ImgWrapper>
-        </ImgWrapper2>
-      </ImgWrapper3>
-
-      <CaptionWrapper>
-        <TitleJP>{content.TitleJP}</TitleJP>
-        <TitleEN>-{content.TitleEN}-</TitleEN>
-        <MessageJP>{content.MessageJP}</MessageJP>
-      </CaptionWrapper>
-    </Wrapper>
-  );
+          <CaptionWrapper>
+            <TitleJP>{content.TitleJP}</TitleJP>
+            <TitleEN>-{content.TitleEN}-</TitleEN>
+            <MessageJP>{content.MessageJP}</MessageJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    } else {
+      return (
+        <Wrapper>
+          <ImgWrapper>
+            <Carousel
+              imgs={content.img}
+              width={width}
+              height={(width * 2) / 3}
+            />
+          </ImgWrapper>
+          <CaptionWrapper>
+            <TitleEN>{content.TitleEN}</TitleEN>
+            <MessageJP>{content.MessageJP}</MessageJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    }
+  } else {
+    if (content.TitleJP !== "") {
+      return (
+        <Wrapper>
+          <ImgWrapper>
+            <Carousel
+              imgs={content.img}
+              width={width}
+              height={(width * 2) / 3}
+            />
+          </ImgWrapper>
+          <CaptionWrapper>
+            <TitleJP>{content.TitleJP}</TitleJP>
+            <TitleEN>-{content.TitleEN}-</TitleEN>
+            <MessageJP>{content.MessageEN}</MessageJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    } else {
+      return (
+        <Wrapper>
+          <ImgWrapper>
+            <Carousel
+              imgs={content.img}
+              width={width}
+              height={(width * 2) / 3}
+            />
+          </ImgWrapper>
+          <CaptionWrapper>
+            <TitleEN>{content.TitleEN}</TitleEN>
+            <MessageJP>{content.MessageEN}</MessageJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    }
+  }
 };
 const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   scroll-snap-align: start;
-  padding-top: 40px;
   @media screen and (min-height: 813px) {
     justify-content: space-evenly;
   }
 `;
-const Img = styled.img`
-  scroll-snap-align: start;
-  width: 100%;
-  flex-shrink: 0;
-`;
 const ImgWrapper = styled.div`
+  margin-top: 40px;
+  align-self: center;
+`;
+
+const CaptionWrapper = styled.div`
+  font-size: 2rem;
+  word-wrap: break-word;
+  line-height: 2.5rem;
+  margin-bottom: 40px;
+  overflow: scroll;
+  margin: 0px 30px 40px 30px;
+  @media screen and (min-width: 600px) {
+    width: 600px;
+  }
+`;
+const TitleJP = styled.div`
+  margin-top: 10px;
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 4rem;
+  text-align: center;
+`;
+const TitleEN = styled.div`
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 4rem;
+  text-align: center;
+`;
+const MessageJP = styled.div`
+  font-size: 1.6rem;
+  line-height: 3.2rem;
+  font-weight: bold;
+`;
+export default Content;
+
+/*<ImgWrapper id={globalID}>
+            {content.img.map((img, index) => {
+              return <Img key={uuid()} className={`${index}`} src={img} />;
+            })}
+          </ImgWrapper>
+          
+          const ImgWrapper2 = styled.div`
+  position: relative;
+  width: 100%;
+  padding-bottom: ${(100 * 2) / 3}%;
+`;
+const ImgWrapper3 = styled.div`
+  width: 100%;
+  @media screen and (min-width: 500px) {
+    width: 80%;
+  }const ImgWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -67,34 +168,4 @@ const ImgWrapper = styled.div`
   scroll-snap-type: x mandatory;
   display: flex;
 `;
-const ImgWrapper2 = styled.div`
-  position: relative;
-  width: 100%;
-  padding-bottom: ${(100 * 2) / 3}%;
-`;
-const ImgWrapper3 = styled.div`
-  width: 100%;
-  @media screen and (min-width: 500px) {
-    width: 80%;
-  }
-`;
-const CaptionWrapper = styled.div`
-  margin: 15px;
-  font-size: 2rem;
-  word-wrap: break-word;
-  line-height: 2.5rem;
-  margin-bottom: ${15 + 40}px;
-  overflow: scroll;
-  @media screen and (min-width: 600px) {
-    width: 600px;
-  }
-`;
-const TitleJP = styled.div``;
-const TitleEN = styled.div`
-  margin-bottom: 30px;
-`;
-const MessageJP = styled.div`
-  font-size: 1rem;
-  line-height: 1.5rem;
-`;
-export default Content;
+`;*/
