@@ -78,11 +78,12 @@ const Wrapper = styled.div`
 `;
 const Wrapper2 = animated(styled.div`
   position: absolute;
-  height: 40px;
+  height: 36px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-around;
   overflow: hidden;
+  padding-bottom: 4px;
 `);
 
 export default TopToolBarAnimated;

@@ -39,33 +39,33 @@ const Content: React.FC<Props> = ({ content }) => {
 };
 const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   scroll-snap-align: start;
-  padding-top: 40px;
   @media screen and (min-height: 813px) {
     justify-content: space-evenly;
   }
 `;
 const ImgWrapper = styled.div`
-  width: 100%;
+  margin-top: 40px;
+  align-self: center;
 `;
 
 const CaptionWrapper = styled.div`
   font-size: 2rem;
   word-wrap: break-word;
   line-height: 2.5rem;
-  margin-bottom: ${15 + 40}px;
-  margin-top: 20px;
+  margin-bottom: 40px;
   overflow: scroll;
-  width: 315px;
+  margin: 0px 30px 40px 30px;
   @media screen and (min-width: 600px) {
     width: 600px;
   }
 `;
 const TitleJP = styled.div`
+  margin-top: 10px;
   font-size: 2.4rem;
   font-weight: bold;
   line-height: 4rem;
@@ -76,7 +76,6 @@ const TitleEN = styled.div`
   font-weight: bold;
   line-height: 4rem;
   text-align: center;
-  margin-bottom: 30px;
 `;
 const MessageJP = styled.div`
   font-size: 1.6rem;

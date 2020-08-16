@@ -4,7 +4,7 @@ import WorkPage from "../../components/mobile/workpage";
 const Mobile = () => {
   return (
     <Wrapper>
-      <WorkPage author={"kana"} />
+      <WorkPage author={"fumin"} />
     </Wrapper>
   );
 };

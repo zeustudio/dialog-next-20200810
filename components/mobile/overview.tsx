@@ -61,15 +61,16 @@ const Thumb = styled.img`
 `;
 
 const CaptionWrapper = styled.div`
-  margin: 15px 15px 10px 15px;
+  margin: 0px 15px 0px 15px;
   word-wrap: break-word;
-  margin-bottom: ${15 + 40}px;
+  margin-bottom: 40px;
   overflow: scroll;
   @media screen and (min-width: 600px) {
     width: 600px;
   }
 `;
 const TitleJP = styled.div`
+  margin-top: 10px;
   font-size: 2.4rem;
   font-weight: bold;
   line-height: 4rem;
