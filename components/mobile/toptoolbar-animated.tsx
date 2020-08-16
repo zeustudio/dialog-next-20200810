@@ -22,13 +22,17 @@ interface Props {
 }
 const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
   const [thumbIndex, setThumbIndex] = React.useState(keyArray.indexOf(author));
-  const [carouselPos, setCarouselPos] = React.useState(0);
-  const [width, setWidth] = React.useState(0);
+  const [carouselPos, setCarouselPos] = React.useState(
+    ((n - 1 - keyArray.indexOf(author)) * 375) / (2 * n + 1)
+  );
+  const [width, setWidth] = React.useState(375 / 2);
   const [props, set] = useSpring(() => ({
-    transform: `translate3d(0px,0px,0px)`,
+    transform: `translate3d(${
+      ((n - 1 - keyArray.indexOf(author)) * 375) / (2 * n + 1)
+    }px,0px,0px)`,
   }));
 
-  const [deltaWidth, setDeltaWidth] = React.useState(1);
+  const [deltaWidth, setDeltaWidth] = React.useState(375 / (2 * n + 1));
   const bind = useDrag(({ down, delta: [dx] }) => {
     if (down) {
       setCarouselPos(carouselPos + dx);

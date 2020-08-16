@@ -11,9 +11,10 @@ interface content {
 }
 interface Props {
   content: content;
+  isEnglish: boolean;
 }
 
-const Content: React.FC<Props> = ({ content }) => {
+const Content: React.FC<Props> = ({ content, isEnglish }) => {
   const [width, setWidth] = React.useState(0);
 
   React.useEffect(() => {
@@ -23,19 +24,77 @@ const Content: React.FC<Props> = ({ content }) => {
       setWidth(window.innerWidth);
     }
   }, []);
-
-  return (
-    <Wrapper>
-      <ImgWrapper>
-        <Carousel imgs={content.img} width={width} height={(width * 2) / 3} />
-      </ImgWrapper>
-      <CaptionWrapper>
-        <TitleJP>{content.TitleJP}</TitleJP>
-        <TitleEN>-{content.TitleEN}-</TitleEN>
-        <MessageJP>{content.MessageJP}</MessageJP>
-      </CaptionWrapper>
-    </Wrapper>
-  );
+  if (isEnglish === false) {
+    if (content.TitleJP !== "") {
+      return (
+        <Wrapper>
+          <ImgWrapper>
+            <Carousel
+              imgs={content.img}
+              width={width}
+              height={(width * 2) / 3}
+            />
+          </ImgWrapper>
+          <CaptionWrapper>
+            <TitleJP>{content.TitleJP}</TitleJP>
+            <TitleEN>-{content.TitleEN}-</TitleEN>
+            <MessageJP>{content.MessageJP}</MessageJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    } else {
+      return (
+        <Wrapper>
+          <ImgWrapper>
+            <Carousel
+              imgs={content.img}
+              width={width}
+              height={(width * 2) / 3}
+            />
+          </ImgWrapper>
+          <CaptionWrapper>
+            <TitleEN>{content.TitleEN}</TitleEN>
+            <MessageJP>{content.MessageJP}</MessageJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    }
+  } else {
+    if (content.TitleJP !== "") {
+      return (
+        <Wrapper>
+          <ImgWrapper>
+            <Carousel
+              imgs={content.img}
+              width={width}
+              height={(width * 2) / 3}
+            />
+          </ImgWrapper>
+          <CaptionWrapper>
+            <TitleJP>{content.TitleJP}</TitleJP>
+            <TitleEN>-{content.TitleEN}-</TitleEN>
+            <MessageJP>{content.MessageEN}</MessageJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    } else {
+      return (
+        <Wrapper>
+          <ImgWrapper>
+            <Carousel
+              imgs={content.img}
+              width={width}
+              height={(width * 2) / 3}
+            />
+          </ImgWrapper>
+          <CaptionWrapper>
+            <TitleEN>{content.TitleEN}</TitleEN>
+            <MessageJP>{content.MessageEN}</MessageJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    }
+  }
 };
 const Wrapper = styled.div`
   width: 100%;

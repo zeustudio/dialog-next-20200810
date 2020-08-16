@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
+import Link from "next/link";
+import WorkData from "../../constants/workdata";
+const keyArray: string[] = Array.from(WorkData.keys());
+const n: number = keyArray.length;
 interface Props {
   img: string;
   thisIndex: number;
@@ -17,13 +21,21 @@ const Thumb: React.FC<Props> = ({
     height: selectTrig ? "32px" : "16px",
   });
   React.useEffect(() => {
-    if (8 - thisIndex === selectedIndex) {
+    if (n - 1 - thisIndex === selectedIndex) {
       setSelectTrig(true);
     } else {
       setSelectTrig(false);
     }
   }, [selectedIndex]);
-  return <Img src={img} style={scale} />;
+  if (n - 1 - thisIndex === selectedIndex) {
+    return (
+      <Link href={`/mobile/works/${keyArray[thisIndex]}`}>
+        <Img src={img} style={scale} />
+      </Link>
+    );
+  } else {
+    return <Img src={img} style={scale} />;
+  }
 };
 
 const Img = animated(

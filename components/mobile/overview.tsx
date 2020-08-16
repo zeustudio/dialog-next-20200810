@@ -12,32 +12,60 @@ interface overview {
 }
 interface Props {
   author: string;
+  isEnglish: boolean;
 }
-const Overview: React.FC<Props> = ({ author }) => {
+const Overview: React.FC<Props> = ({ author, isEnglish }) => {
   const overview: overview = WorkData.get(author).overview;
-  if (overview.TitleJP === "") {
-    return (
-      <Wrapper>
-        <Thumb src={overview.img} />
-        <CaptionWrapper>
-          <TitleEN>{overview.TitleEN}</TitleEN>
-          <CaptionJP>{overview.CaptionJP}</CaptionJP>
-          <CreditJP>{overview.CreditJP}</CreditJP>
-        </CaptionWrapper>
-      </Wrapper>
-    );
+  if (isEnglish === false) {
+    if (overview.TitleJP === "") {
+      return (
+        <Wrapper>
+          <Thumb src={overview.img} />
+          <CaptionWrapper>
+            <TitleEN>{overview.TitleEN}</TitleEN>
+            <CaptionJP>{overview.CaptionJP}</CaptionJP>
+            <CreditJP>{overview.CreditJP}</CreditJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    } else {
+      return (
+        <Wrapper>
+          <Thumb src={overview.img} />
+          <CaptionWrapper>
+            <TitleJP>{overview.TitleJP}</TitleJP>
+            <TitleEN>-{overview.TitleEN}-</TitleEN>
+            <CaptionJP>{overview.CaptionJP}</CaptionJP>
+            <CreditJP>{overview.CreditJP}</CreditJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    }
   } else {
-    return (
-      <Wrapper>
-        <Thumb src={overview.img} />
-        <CaptionWrapper>
-          <TitleJP>{overview.TitleJP}</TitleJP>
-          <TitleEN>-{overview.TitleEN}-</TitleEN>
-          <CaptionJP>{overview.CaptionJP}</CaptionJP>
-          <CreditJP>{overview.CreditJP}</CreditJP>
-        </CaptionWrapper>
-      </Wrapper>
-    );
+    if (overview.TitleJP === "") {
+      return (
+        <Wrapper>
+          <Thumb src={overview.img} />
+          <CaptionWrapper>
+            <TitleEN>{overview.TitleEN}</TitleEN>
+            <CaptionJP>{overview.CaptionEN}</CaptionJP>
+            <CreditJP>{overview.CreditEN}</CreditJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    } else {
+      return (
+        <Wrapper>
+          <Thumb src={overview.img} />
+          <CaptionWrapper>
+            <TitleJP>{overview.TitleJP}</TitleJP>
+            <TitleEN>-{overview.TitleEN}-</TitleEN>
+            <CaptionJP>{overview.CaptionEN}</CaptionJP>
+            <CreditJP>{overview.CreditEN}</CreditJP>
+          </CaptionWrapper>
+        </Wrapper>
+      );
+    }
   }
 };
 

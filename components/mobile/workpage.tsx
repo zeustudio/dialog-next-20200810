@@ -25,17 +25,20 @@ interface content {
 }
 const WorkPage: React.FC<Props> = ({ author }) => {
   const contents: content[] = WorkData.get(author).contents;
+  const [englishTrig, setEnglishTrig] = React.useState(false);
   return (
     <Wrapper>
       <Global styles={globalCSS} />
       <TopToolBarAnimated author={author} />
       <ContentsWrapper>
-        <Overview author={author} />
+        <Overview author={author} isEnglish={englishTrig} />
         {contents.map((content) => {
-          return <Content key={uuid()} content={content} />;
+          return (
+            <Content key={uuid()} content={content} isEnglish={englishTrig} />
+          );
         })}
       </ContentsWrapper>
-      <BottomToolBar />
+      <BottomToolBar englishTrigState={[englishTrig, setEnglishTrig]} />
     </Wrapper>
   );
 };

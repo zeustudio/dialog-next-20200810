@@ -1,11 +1,17 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
+import Link from "next/link";
 import commentSubmit2 from "../../images/commentsubmit2.svg";
 import logo from "../../images/logo_white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
-const BottomToolBar = () => {
+interface Props {
+  englishTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+}
+const BottomToolBar: React.FC<Props> = ({
+  englishTrigState: [englishTrig, setEnglishTrig],
+}) => {
   const [commentOnTrig, setCommentOnTrig] = React.useState(false);
   const toolBarAnimation = useSpring({
     transform: commentOnTrig
@@ -20,14 +26,22 @@ const BottomToolBar = () => {
   return (
     <>
       <Wrapper style={toolBarAnimation}>
-        <Logo src={logo} />
+        <Link href="/mobile/mobile">
+          <Logo src={logo} />
+        </Link>
         <CommentSubmit
           src={commentSubmit2}
           onClick={() => {
             setCommentOnTrig(true);
           }}
         />
-        <JPEN>JP/EN</JPEN>
+        <JPEN
+          onClick={() => {
+            setEnglishTrig(!englishTrig);
+          }}
+        >
+          JP/EN
+        </JPEN>
       </Wrapper>
       <Wrapper2 style={commentAnimation}>
         <Back

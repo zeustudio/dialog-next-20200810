@@ -1,10 +1,19 @@
 import React from "react";
 import styled from "@emotion/styled";
-import WorkPage from "../../components/mobile/workpage";
+import Link from "next/link";
 const Mobile = () => {
   return (
     <Wrapper>
-      <WorkPage author={"fumin"} />
+      <Link href={"/mobile/works/fumin"}>Fumin</Link>
+      <br />
+      <Link href={"/mobile/works/hazuki"}>Hazuki</Link> <br />
+      <Link href={"/mobile/works/heejun"}>Heejun</Link> <br />
+      <Link href={"/mobile/works/kana"}>Kana</Link> <br />
+      <Link href={"/mobile/works/oga"}>Oga</Link> <br />
+      <Link href={"/mobile/works/oto"}>Oto</Link> <br />
+      <Link href={"/mobile/works/shinogu"}>Shinogu</Link> <br />
+      <Link href={"/mobile/works/takuro"}>Takuro</Link> <br />
+      <Link href={"/mobile/works/uena"}>Uena</Link> <br />
     </Wrapper>
   );
 };
