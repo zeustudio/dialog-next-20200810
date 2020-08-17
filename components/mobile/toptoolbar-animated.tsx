@@ -62,7 +62,7 @@ const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
               key={index}
               img={WorkData.get(key).overview.img}
               thisIndex={index}
-              selectedIndexState={[thumbIndex, setThumbIndex]}
+              selectedIndex={thumbIndex}
             />
           );
         })}

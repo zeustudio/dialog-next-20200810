@@ -6,14 +6,38 @@ const Mobile = () => {
     <Wrapper>
       <Link href={"/mobile/works/fumin"}>Fumin</Link>
       <br />
-      <Link href={"/mobile/works/hazuki"}>Hazuki</Link> <br />
-      <Link href={"/mobile/works/heejun"}>Heejun</Link> <br />
-      <Link href={"/mobile/works/kana"}>Kana</Link> <br />
-      <Link href={"/mobile/works/oga"}>Oga</Link> <br />
-      <Link href={"/mobile/works/oto"}>Oto</Link> <br />
-      <Link href={"/mobile/works/shinogu"}>Shinogu</Link> <br />
-      <Link href={"/mobile/works/takuro"}>Takuro</Link> <br />
-      <Link href={"/mobile/works/uena"}>Uena</Link> <br />
+      <Link href={"/mobile/works/hazuki"}>
+        <a>Hazuki</a>
+      </Link>{" "}
+      <br />
+      <Link href={"/mobile/works/heejun"}>
+        <a>Heejun</a>
+      </Link>{" "}
+      <br />
+      <Link href={"/mobile/works/kana"}>
+        <a>Kana</a>
+      </Link>{" "}
+      <br />
+      <Link href={"/mobile/works/oga"}>
+        <a>Oga</a>
+      </Link>{" "}
+      <br />
+      <Link href={"/mobile/works/oto"}>
+        <a>Oto</a>
+      </Link>{" "}
+      <br />
+      <Link href={"/mobile/works/shinogu"}>
+        <a>Shinogu</a>
+      </Link>{" "}
+      <br />
+      <Link href={"/mobile/works/takuro"}>
+        <a>Takuro</a>
+      </Link>{" "}
+      <br />
+      <Link href={"/mobile/works/uena"}>
+        <a>Uena</a>
+      </Link>{" "}
+      <br />
     </Wrapper>
   );
 };

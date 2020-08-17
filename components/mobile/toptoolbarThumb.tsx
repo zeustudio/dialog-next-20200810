@@ -8,14 +8,12 @@ const n: number = keyArray.length;
 interface Props {
   img: string;
   thisIndex: number;
-  selectedIndexState: [number, React.Dispatch<React.SetStateAction<number>>];
+  selectedIndex: number;
 }
-const Thumb: React.FC<Props> = ({
-  img,
-  thisIndex,
-  selectedIndexState: [selectedIndex],
-}) => {
-  const [selectTrig, setSelectTrig] = React.useState(false);
+const Thumb: React.FC<Props> = ({ img, thisIndex, selectedIndex }) => {
+  const [selectTrig, setSelectTrig] = React.useState(
+    thisIndex === selectedIndex
+  );
   const scale = useSpring({
     width: selectTrig ? "32px" : "16px",
     height: selectTrig ? "32px" : "16px",

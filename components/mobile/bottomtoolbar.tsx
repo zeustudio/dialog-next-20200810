@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
 import Link from "next/link";
 import commentSubmit2 from "../../images/commentsubmit2.svg";
+import OtherComments from "./othercomments";
 import logo from "../../images/logo_white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
@@ -56,6 +57,7 @@ const BottomToolBar: React.FC<Props> = ({
         </CommentFormWrapper>
         <CommentSubmit src={commentSubmit2} />
       </Wrapper2>
+      <OtherComments commentOnTrigState={[commentOnTrig, setCommentOnTrig]} />
     </>
   );
 };
@@ -71,6 +73,7 @@ const Wrapper = animated(styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-content: center;
+  z-index: 3;
 `);
 const Wrapper2 = animated(styled.div`
   background-color: #282729;
@@ -82,6 +85,7 @@ const Wrapper2 = animated(styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  z-index: 3;
 `);
 const Logo = styled.img`
   width: 39px;
@@ -94,7 +98,6 @@ const Back = styled.div`
   height: 39px;
   color: white;
   font-size: 3rem;
-  font-weight: 100;
   text-align: center;
   line-height: 39px;
 `;
