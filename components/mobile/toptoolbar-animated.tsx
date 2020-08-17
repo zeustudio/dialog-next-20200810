@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import WorkData from "../../constants/workdata";
-import { useSpring, animated } from "react-spring";
+import { useSpring, useSprings, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
+import Link from "next/link";
 import Thumb from "./toptoolbarThumb";
 const keyArray: string[] = Array.from(WorkData.keys());
 const n: number = keyArray.length;
@@ -31,6 +32,14 @@ const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
       ((n - 1 - keyArray.indexOf(author)) * 375) / (2 * n + 1)
     }px,0px,0px)`,
   }));
+  const thumbAnimation = useSprings(
+    n,
+    keyArray.map((key, index) => ({
+      width: index === n - 1 - thumbIndex ? `32px` : `16px`,
+      height: index === n - 1 - thumbIndex ? `32px` : `16px`,
+      name: key,
+    }))
+  );
 
   const [deltaWidth, setDeltaWidth] = React.useState(375 / (2 * n + 1));
   const bind = useDrag(({ down, delta: [dx] }) => {
@@ -54,16 +63,16 @@ const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
   }, [thumbIndex]);
 
   return (
-    <Wrapper>
-      <Wrapper2 {...bind()} style={{ ...props, width: `${width}px` }}>
-        {keyArray.map((key, index) => {
+    <Wrapper {...bind()}>
+      <Wrapper2 style={{ ...props, width: `${width}px` }}>
+        {thumbAnimation.map((prop, index) => {
           return (
-            <Thumb
-              key={index}
-              img={WorkData.get(key).overview.img}
-              thisIndex={index}
-              selectedIndex={thumbIndex}
-            />
+            <Link href={`/mobile/works/${keyArray[index]}`} key={index}>
+              <Img
+                src={WorkData.get(keyArray[index]).overview.img}
+                style={prop}
+              />
+            </Link>
           );
         })}
       </Wrapper2>
@@ -89,5 +98,6 @@ const Wrapper2 = animated(styled.div`
   overflow: hidden;
   padding-bottom: 4px;
 `);
+const Img = animated(styled.img``);
 
 export default TopToolBarAnimated;

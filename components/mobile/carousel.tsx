@@ -15,9 +15,10 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
   const [displayIndex, setDisplayIndex] = React.useState(0);
   const [autoPlayTrig, setAutoPlayTrig] = React.useState(true);
   const autoPlayTrigRef = React.useRef(autoPlayTrig);
+  const displayIndexRef = React.useRef(displayIndex);
 
-  const [props, set] = useSpring(() => ({
-    transform: `translate3d(0px,0px,0px)`,
+  const [carouselAnimation, setCarouselAnimation] = useSpring(() => ({
+    transform: `translate3d(${-displayIndexRef.current * width}px,0px,0px)`,
   }));
   const bind = useDrag(({ vxvy: [vx], last }) => {
     if (last && vx > v) {
@@ -34,6 +35,9 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
     autoPlayTrigRef.current = autoPlayTrig;
   }, [autoPlayTrig]);
   React.useEffect(() => {
+    displayIndexRef.current = displayIndex;
+  }, [displayIndex]);
+  React.useEffect(() => {
     const interval = setInterval(() => {
       if (autoPlayTrigRef.current === true) {
         setDisplayIndex((displayIndex) =>
@@ -44,14 +48,16 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
     return () => clearInterval(interval);
   }, []);
   React.useEffect(() => {
-    set({ transform: `translate3d(${-displayIndex * width}px,0px,0px)` });
+    setCarouselAnimation({
+      transform: `translate3d(${-displayIndex * width}px,0px,0px)`,
+    });
   }, [displayIndex]);
 
   return (
     <Wrapper style={{ width: `${width}px`, height: `${height}px` }}>
       <ImgWrapper
         {...bind()}
-        style={{ ...props, width: `${width * n}px` }}
+        style={{ ...carouselAnimation, width: `${width * n}px` }}
         onClick={() => {
           setAutoPlayTrig(!autoPlayTrig);
         }}
