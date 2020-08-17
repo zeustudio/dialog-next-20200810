@@ -25,10 +25,12 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
   const bind = useDrag(({ vxvy: [vx], last }) => {
     if (last && vx > v) {
       if (displayIndex > 0) {
+        setAutoPlayTrig(false);
         setDisplayIndex(displayIndex - 1);
       }
     } else if (last && vx < -v) {
       if (displayIndex < n - 1) {
+        setAutoPlayTrig(false);
         setDisplayIndex(displayIndex + 1);
       }
     }
