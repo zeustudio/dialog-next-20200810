@@ -2,7 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
-const uuid = require("react-uuid");
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle as faCircleSolid } from "@fortawesome/free-solid-svg-icons";
+import { faCircle as faCircleRegular } from "@fortawesome/free-regular-svg-icons";
 const v = 0.3;
 interface Props {
   imgs: string[];
@@ -54,23 +56,42 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
   }, [displayIndex]);
 
   return (
-    <Wrapper style={{ width: `${width}px`, height: `${height}px` }}>
-      <ImgWrapper
-        {...bind()}
-        style={{ ...carouselAnimation, width: `${width * n}px` }}
-        onClick={() => {
-          setAutoPlayTrig(!autoPlayTrig);
-        }}
-      >
-        {imgs.map((img) => {
-          if (img.indexOf("https://www.youtube.com/embed/") !== -1) {
-            return <Video key={uuid()} src={img} allow={"fullscreen"} />;
+    <>
+      <Wrapper style={{ width: `${width}px`, height: `${height + 40}px` }}>
+        <ImgWrapper
+          {...bind()}
+          style={{ ...carouselAnimation, width: `${width * n}px` }}
+          onClick={() => {
+            setAutoPlayTrig(!autoPlayTrig);
+          }}
+        >
+          {imgs.map((img, index) => {
+            if (img.indexOf("https://www.youtube.com/embed/") !== -1) {
+              return <Video key={index} src={img} allow={"fullscreen"} />;
+            } else {
+              return <Img key={index} src={img} />;
+            }
+          })}
+        </ImgWrapper>
+      </Wrapper>
+      <DotWrapper>
+        {imgs.map((img, index) => {
+          if (index === displayIndex) {
+            return (
+              <Dot key={index} className={img}>
+                <FontAwesomeIcon icon={faCircleRegular} />
+              </Dot>
+            );
           } else {
-            return <Img key={uuid()} src={img} />;
+            return (
+              <Dot key={index} className={img}>
+                <FontAwesomeIcon icon={faCircleSolid} />
+              </Dot>
+            );
           }
         })}
-      </ImgWrapper>
-    </Wrapper>
+      </DotWrapper>
+    </>
   );
 };
 
@@ -80,6 +101,17 @@ const Wrapper = styled.div`
   align-items: center;
   overflow-x: hidden;
 `;
+const DotWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+`;
+const Dot = animated(styled.div`
+  font-size: 10px;
+  margin: 0 10px 0 10px;
+`);
 
 const Img = styled.img`
   width: 100%;

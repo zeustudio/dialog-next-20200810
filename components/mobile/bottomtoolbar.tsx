@@ -14,6 +14,7 @@ const BottomToolBar: React.FC<Props> = ({
   englishTrigState: [englishTrig, setEnglishTrig],
 }) => {
   const [commentOnTrig, setCommentOnTrig] = React.useState(false);
+  const [expandTrig, setExpandTrig] = React.useState(false);
   const toolBarAnimation = useSpring({
     transform: commentOnTrig
       ? `translate3d(0px,40px,0px)`
@@ -48,6 +49,7 @@ const BottomToolBar: React.FC<Props> = ({
         <Back
           onClick={() => {
             setCommentOnTrig(false);
+            setExpandTrig(false);
           }}
         >
           <FontAwesomeIcon icon={faAngleDoubleDown} />
@@ -57,7 +59,10 @@ const BottomToolBar: React.FC<Props> = ({
         </CommentFormWrapper>
         <CommentSubmit src={commentSubmit2} />
       </Wrapper2>
-      <OtherComments commentOnTrigState={[commentOnTrig, setCommentOnTrig]} />
+      <OtherComments
+        commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
+        expandTrigState={[expandTrig, setExpandTrig]}
+      />
     </>
   );
 };

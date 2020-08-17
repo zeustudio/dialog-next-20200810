@@ -8,6 +8,7 @@ const uuid = require("react-uuid");
 const v = 0.5;
 interface Props {
   commentOnTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  expandTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 const comments = [
   "すごい",
@@ -23,8 +24,8 @@ const comments = [
 ];
 const OtherComments: React.FC<Props> = ({
   commentOnTrigState: [commentOnTrig, setCommentOnTrig],
+  expandTrigState: [expandTrig, setExpandTrig],
 }) => {
-  const [expandTrig, setExpandTrig] = React.useState(false);
   const commentsBoxAnimation = useSpring({
     transform: commentOnTrig
       ? expandTrig
