@@ -4,7 +4,6 @@ import WorkData from "../../constants/workdata";
 import { useSpring, useSprings, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import Link from "next/link";
-import Thumb from "./toptoolbarThumb";
 const keyArray: string[] = Array.from(WorkData.keys());
 const n: number = keyArray.length;
 
