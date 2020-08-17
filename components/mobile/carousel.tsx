@@ -57,10 +57,14 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
 
   return (
     <>
-      <Wrapper style={{ width: `${width}px`, height: `${height + 40}px` }}>
+      <Wrapper style={{ width: `${width}px`, height: `${height}px` }}>
         <ImgWrapper
           {...bind()}
-          style={{ ...carouselAnimation, width: `${width * n}px` }}
+          style={{
+            ...carouselAnimation,
+            width: `${width * n}px`,
+            height: `${height}px`,
+          }}
           onClick={() => {
             setAutoPlayTrig(!autoPlayTrig);
           }}
@@ -97,8 +101,7 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
 
 const Wrapper = styled.div`
   display: flex;
-  height: 100%;
-  align-items: center;
+  align-items: top;
   overflow-x: hidden;
 `;
 const DotWrapper = styled.div`
@@ -115,14 +118,12 @@ const Dot = animated(styled.div`
 
 const Img = styled.img`
   width: 100%;
-  height: 100%;
 `;
 const Video = styled.iframe`
   width: 100%;
   height: 100%;
 `;
 const ImgWrapper = animated(styled.div`
-  height: 100%;
   display: flex;
 `);
 export default Carousel;
