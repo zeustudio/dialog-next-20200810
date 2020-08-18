@@ -147,5 +147,6 @@ const MessageJP = styled.div`
   font-size: 1.6rem;
   line-height: 3.2rem;
   font-weight: bold;
+  text-indent: 1em;
 `;
 export default Content;

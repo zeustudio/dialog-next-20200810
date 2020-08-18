@@ -113,6 +113,7 @@ const CaptionJP = styled.div`
   font-size: 1.2rem;
   line-height: 2.4rem;
   font-weight: bold;
+  text-indent: 1em;
 `;
 const CreditJP = styled.div`
   font-size: 1rem;

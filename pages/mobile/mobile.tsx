@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
+
 import TitleScreen from "../../components/mobile/titlescreen";
 import HowToVideo from "../../components/mobile/howtovideo";
+import Introduction from "../../components/mobile/introduction";
+import Works from "../../components/mobile/works";
+
 import globalCSS from "../../styles/global";
 import { Global } from "@emotion/core";
 
 const Mobile = () => {
   const [width, height] = useWindowSize();
-  React.useEffect(() => {
-    window.scrollTo(0, 1);
-  }, []);
+  const [isEnglish, setIsEnglish] = useState(false);
   return (
     <Wrapper style={{ width: width, height: height }} id="mainPage">
       <Global styles={globalCSS} />
       <TitleScreen width={width} height={height} />
       <HowToVideo width={width} height={height} />
+      <Introduction
+        width={width}
+        height={height}
+        isEnglishState={[isEnglish, setIsEnglish]}
+      />
+      <Works
+        width={width}
+        height={height}
+        isEnglishState={[isEnglish, setIsEnglish]}
+      />
     </Wrapper>
   );
 };

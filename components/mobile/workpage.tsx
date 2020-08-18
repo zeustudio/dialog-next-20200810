@@ -29,7 +29,10 @@ const WorkPage: React.FC<Props> = ({ author }) => {
   return (
     <Wrapper>
       <Global styles={globalCSS} />
-      <TopToolBarAnimated author={author} />
+      <TopToolBarAnimated
+        author={author}
+        englishTrigState={[englishTrig, setEnglishTrig]}
+      />
       <ContentsWrapper>
         <Overview author={author} isEnglish={englishTrig} />
         {contents.map((content) => {
@@ -38,10 +41,7 @@ const WorkPage: React.FC<Props> = ({ author }) => {
           );
         })}
       </ContentsWrapper>
-      <BottomToolBar
-        englishTrigState={[englishTrig, setEnglishTrig]}
-        author={author}
-      />
+      <BottomToolBar author={author} />
     </Wrapper>
   );
 };

@@ -4,6 +4,7 @@ import WorkData from "../../constants/workdata";
 import { useSpring, useSprings, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import Link from "next/link";
+import logo from "../../images/logo_white.png";
 const keyArray: string[] = Array.from(WorkData.keys());
 const n: number = keyArray.length;
 
@@ -19,8 +20,12 @@ const clamp = (x: number, a: number, b: number) => {
 
 interface Props {
   author: string;
+  englishTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
-const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
+const TopToolBarAnimated: React.FC<Props> = ({
+  author,
+  englishTrigState: [englishTrig, setEnglishTrig],
+}) => {
   const [thumbIndex, setThumbIndex] = React.useState(keyArray.indexOf(author));
   const [carouselPos, setCarouselPos] = React.useState(
     ((n - 1 - keyArray.indexOf(author)) * 375) / (2 * n + 1)
@@ -63,6 +68,11 @@ const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
 
   return (
     <Wrapper {...bind()}>
+      <Link href="/mobile/mobile">
+        <LogoWrapper>
+          <Logo src={logo} />
+        </LogoWrapper>
+      </Link>
       <Wrapper2 style={{ ...props, width: `${width}px` }}>
         {thumbAnimation.map((prop, index) => {
           return (
@@ -75,6 +85,13 @@ const TopToolBarAnimated: React.FC<Props> = ({ author }) => {
           );
         })}
       </Wrapper2>
+      <JPEN
+        onClick={() => {
+          setEnglishTrig(!englishTrig);
+        }}
+      >
+        JP/EN
+      </JPEN>
     </Wrapper>
   );
 };
@@ -98,5 +115,28 @@ const Wrapper2 = animated(styled.div`
   padding-bottom: 4px;
 `);
 const Img = animated(styled.img``);
+const Logo = styled.img`
+  margin-left: 20px;
+  width: 40px;
+  height: 40px;
+`;
+const JPEN = styled.div`
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  background: #282729;
+  right: 0px;
+  font-size: 1.6rem;
+  color: white;
+  line-height: 40px;
+  text-align: center;
+`;
+const LogoWrapper = styled.div`
+  position: absolute;
+  background: #282729;
+  width: 60px;
+  height: 40px;
+  z-index: 10;
+`;
 
 export default TopToolBarAnimated;

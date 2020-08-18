@@ -11,14 +11,10 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import WorkData from "../../constants/workdata";
 interface Props {
-  englishTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
   author: string;
 }
 const keyArray: string[] = Array.from(WorkData.keys());
-const BottomToolBar: React.FC<Props> = ({
-  englishTrigState: [englishTrig, setEnglishTrig],
-  author,
-}) => {
+const BottomToolBar: React.FC<Props> = ({ author }) => {
   const [commentOnTrig, setCommentOnTrig] = React.useState(false);
   const [expandTrig, setExpandTrig] = React.useState(false);
   const [previousAuthor, setPreviousAuthor] = React.useState("");
@@ -44,61 +40,11 @@ const BottomToolBar: React.FC<Props> = ({
     }
     console.log(previousAuthor);
   }, []);
-  if (previousAuthor === "") {
-    return (
-      <>
-        <Wrapper style={toolBarAnimation}>
-          <Link href="/mobile/mobile">
-            <Logo src={logo} />
-          </Link>
-          <CommentSubmit
-            src={commentSubmit2}
-            onClick={() => {
-              setCommentOnTrig(true);
-            }}
-          />
-          <JPEN
-            onClick={() => {
-              setEnglishTrig(!englishTrig);
-            }}
-          >
-            JP/EN
-          </JPEN>
-          <Link
-            href={`/mobile/works/${keyArray[keyArray.indexOf(author) + 1]}`}
-          >
-            <NextButton>
-              <RoundImg src={nextAuthor} />
-              <Arrow>
-                <FontAwesomeIcon icon={faChevronRight} />
-              </Arrow>
-            </NextButton>
-          </Link>
-        </Wrapper>
-        <Wrapper2 style={commentAnimation}>
-          <Back
-            onClick={() => {
-              setCommentOnTrig(false);
-              setExpandTrig(false);
-            }}
-          >
-            <FontAwesomeIcon icon={faAngleDoubleDown} />
-          </Back>
-          <CommentFormWrapper>
-            <CommentForm />
-          </CommentFormWrapper>
-          <CommentSubmit src={commentSubmit2} />
-        </Wrapper2>
-        <OtherComments
-          commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
-          expandTrigState={[expandTrig, setExpandTrig]}
-        />
-      </>
-    );
-  } else if (nextAuthor === "") {
-    return (
-      <>
-        <Wrapper style={toolBarAnimation}>
+
+  return (
+    <>
+      <Wrapper style={toolBarAnimation}>
+        {previousAuthor === "" ? null : (
           <Link
             href={`/mobile/works/${keyArray[keyArray.indexOf(author) - 1]}`}
           >
@@ -109,75 +55,15 @@ const BottomToolBar: React.FC<Props> = ({
               <RoundImg src={previousAuthor} />
             </PreviousButton>
           </Link>
+        )}
 
-          <Link href="/mobile/mobile">
-            <Logo src={logo} />
-          </Link>
-          <CommentSubmit
-            src={commentSubmit2}
-            onClick={() => {
-              setCommentOnTrig(true);
-            }}
-          />
-          <JPEN
-            onClick={() => {
-              setEnglishTrig(!englishTrig);
-            }}
-          >
-            JP/EN
-          </JPEN>
-        </Wrapper>
-        <Wrapper2 style={commentAnimation}>
-          <Back
-            onClick={() => {
-              setCommentOnTrig(false);
-              setExpandTrig(false);
-            }}
-          >
-            <FontAwesomeIcon icon={faAngleDoubleDown} />
-          </Back>
-          <CommentFormWrapper>
-            <CommentForm />
-          </CommentFormWrapper>
-          <CommentSubmit src={commentSubmit2} />
-        </Wrapper2>
-        <OtherComments
-          commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
-          expandTrigState={[expandTrig, setExpandTrig]}
+        <CommentSubmit
+          src={commentSubmit2}
+          onClick={() => {
+            setCommentOnTrig(true);
+          }}
         />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Wrapper style={toolBarAnimation}>
-          <Link
-            href={`/mobile/works/${keyArray[keyArray.indexOf(author) - 1]}`}
-          >
-            <PreviousButton>
-              <Arrow>
-                <FontAwesomeIcon icon={faChevronLeft} />
-              </Arrow>
-              <RoundImg src={previousAuthor} />
-            </PreviousButton>
-          </Link>
-
-          <Link href="/mobile/mobile">
-            <Logo src={logo} />
-          </Link>
-          <CommentSubmit
-            src={commentSubmit2}
-            onClick={() => {
-              setCommentOnTrig(true);
-            }}
-          />
-          <JPEN
-            onClick={() => {
-              setEnglishTrig(!englishTrig);
-            }}
-          >
-            JP/EN
-          </JPEN>
+        {nextAuthor === "" ? null : (
           <Link
             href={`/mobile/works/${keyArray[keyArray.indexOf(author) + 1]}`}
           >
@@ -188,28 +74,28 @@ const BottomToolBar: React.FC<Props> = ({
               </Arrow>
             </NextButton>
           </Link>
-        </Wrapper>
-        <Wrapper2 style={commentAnimation}>
-          <Back
-            onClick={() => {
-              setCommentOnTrig(false);
-              setExpandTrig(false);
-            }}
-          >
-            <FontAwesomeIcon icon={faAngleDoubleDown} />
-          </Back>
-          <CommentFormWrapper>
-            <CommentForm />
-          </CommentFormWrapper>
-          <CommentSubmit src={commentSubmit2} />
-        </Wrapper2>
-        <OtherComments
-          commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
-          expandTrigState={[expandTrig, setExpandTrig]}
-        />
-      </>
-    );
-  }
+        )}
+      </Wrapper>
+      <Wrapper2 style={commentAnimation}>
+        <Back
+          onClick={() => {
+            setCommentOnTrig(false);
+            setExpandTrig(false);
+          }}
+        >
+          <FontAwesomeIcon icon={faAngleDoubleDown} />
+        </Back>
+        <CommentFormWrapper>
+          <CommentForm />
+        </CommentFormWrapper>
+        <CommentSubmit src={commentSubmit2} />
+      </Wrapper2>
+      <OtherComments
+        commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
+        expandTrigState={[expandTrig, setExpandTrig]}
+      />
+    </>
+  );
 };
 
 const Wrapper = animated(styled.div`
