@@ -74,15 +74,16 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   scroll-snap-align: start;
-  @media screen and (min-height: 813px) {
-    justify-content: space-evenly;
+  @media screen and (min-height: 700px) {
+    justify-content: center;
   }
 `;
 const Thumb = styled.img`
-  width: 100%;
+  width: 80%;
   margin-top: 40px;
   @media screen and (min-width: 376px) {
     width: 60%;
+    margin-bottom: 10%;
   }
 `;
 

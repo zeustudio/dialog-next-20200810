@@ -101,8 +101,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   scroll-snap-align: start;
-  @media screen and (min-height: 813px) {
-    justify-content: space-evenly;
+  @media screen and (min-height: 700px) {
+    justify-content: center;
   }
 `;
 const ImgWrapper = styled.div`
@@ -115,6 +115,7 @@ const CaptionWrapper = styled.div`
   word-wrap: break-word;
   line-height: 2.5rem;
   margin-bottom: 40px;
+  max-height: 50%;
   overflow: scroll;
   margin: 0px 30px 40px 30px;
   @media screen and (min-width: 600px) {
