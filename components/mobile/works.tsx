@@ -108,8 +108,8 @@ const JPEN = styled.div`
   position: absolute;
   width: 80px;
   height: 40px;
-  right: 20px;
-  top: 7%;
+  right: 5%;
+  top: 3%;
   font-size: 1.6rem;
   font-weight: bold;
   line-height: 40px;
