@@ -97,6 +97,10 @@ const SmokedGlass = styled.div`
   text-align: right;
   padding: 5%;
   overflow: scroll;
+  @media screen and (min-width: 768px) {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
 `;
 const TitleWrapper = styled.div`
   display: flex;

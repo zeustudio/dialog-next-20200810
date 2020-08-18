@@ -48,6 +48,9 @@ const Wrapper = styled.div`
 `;
 const Line = styled.img`
   width: 90%;
+  @media screen and (min-width: 768px) {
+    width: 60%;
+  }
 `;
 const Title = styled.div`
   font-size: 2.4rem;
@@ -61,12 +64,22 @@ const Content = styled.div`
   line-height: 2.4rem;
   margin: 0 20px 0 20px;
   text-indent: 1em;
+  @media screen and (min-width: 768px) {
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+    margin: 0 20% 0 20%;
+  }
 `;
 const SenseiName = styled.div`
   font-size: 1.2rem;
   line-height: 2.4rem;
   margin: 50px 20px 10px 20px;
   text-align: right;
+  @media screen and (min-width: 768px) {
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+    margin: 50px 20% 10px 20%;
+  }
 `;
 const IntroductionWrapper = styled.div``;
 const JPEN = styled.div`
