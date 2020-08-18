@@ -4,7 +4,6 @@ import { useSpring, animated } from "react-spring";
 import Link from "next/link";
 import commentSubmit2 from "../../images/commentsubmit2.svg";
 import OtherComments from "./othercomments";
-import logo from "../../images/logo_white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
@@ -123,12 +122,6 @@ const Wrapper2 = animated(styled.div`
   justify-content: space-evenly;
   z-index: 3;
 `);
-const Logo = styled.img`
-  width: 39px;
-  height: 39px;
-  grid-column: 2/3;
-  justify-self: center;
-`;
 const Back = styled.div`
   width: 39px;
   height: 39px;
@@ -165,15 +158,6 @@ const CommentFormWrapper = styled.div`
   background-color: #282729;
   display: flex;
   align-items: center;
-`;
-const JPEN = styled.span`
-  font-size: 1.6rem;
-  color: white;
-  line-height: 40px;
-  text-align: center;
-  border-radius: 1.5rem;
-  grid-column: 4/5;
-  justify-self: center;
 `;
 const PreviousButton = styled.div`
   grid-column: 1/2;
