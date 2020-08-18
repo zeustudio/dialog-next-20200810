@@ -1,52 +1,56 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Link from "next/link";
+import TitleScreen from "../../components/mobile/titlescreen";
+import HowToVideo from "../../components/mobile/howtovideo";
+import globalCSS from "../../styles/global";
+import { Global } from "@emotion/core";
+
 const Mobile = () => {
+  const [width, height] = useWindowSize();
+  React.useEffect(() => {
+    window.scrollTo(0, 1);
+  }, []);
   return (
-    <Wrapper>
-      <Link href={"/mobile/works/fumin"}>Fumin</Link>
-      <br />
-      <Link href={"/mobile/works/hazuki"}>
-        <a>Hazuki</a>
-      </Link>{" "}
-      <br />
-      <Link href={"/mobile/works/heejun"}>
-        <a>Heejun</a>
-      </Link>{" "}
-      <br />
-      <Link href={"/mobile/works/kana"}>
-        <a>Kana</a>
-      </Link>{" "}
-      <br />
-      <Link href={"/mobile/works/oga"}>
-        <a>Oga</a>
-      </Link>{" "}
-      <br />
-      <Link href={"/mobile/works/oto"}>
-        <a>Oto</a>
-      </Link>{" "}
-      <br />
-      <Link href={"/mobile/works/shinogu"}>
-        <a>Shinogu</a>
-      </Link>{" "}
-      <br />
-      <Link href={"/mobile/works/takuro"}>
-        <a>Takuro</a>
-      </Link>{" "}
-      <br />
-      <Link href={"/mobile/works/uena"}>
-        <a>Uena</a>
-      </Link>{" "}
-      <br />
+    <Wrapper style={{ width: width, height: height }} id="mainPage">
+      <Global styles={globalCSS} />
+      <TitleScreen width={width} height={height} />
+      <HowToVideo width={width} height={height} />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
   @media screen and (min-width: 1025px) {
     display: none;
   }
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 `;
+
 export default Mobile;
+
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = React.useState([375, 812]);
+
+  React.useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    }
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+
+  return windowSize;
+}

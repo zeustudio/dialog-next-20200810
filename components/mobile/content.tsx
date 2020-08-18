@@ -33,6 +33,8 @@ const Content: React.FC<Props> = ({ content, isEnglish }) => {
               imgs={content.img}
               width={width}
               height={(width * 2) / 3}
+              isTouchable={true}
+              dotsOn={true}
             />
           </ImgWrapper>
           <CaptionWrapper>
@@ -49,6 +51,8 @@ const Content: React.FC<Props> = ({ content, isEnglish }) => {
               imgs={content.img}
               width={width}
               height={(width * 2) / 3}
+              isTouchable={true}
+              dotsOn={true}
             />
           </ImgWrapper>
           <CaptionWrapper>
@@ -67,6 +71,8 @@ const Content: React.FC<Props> = ({ content, isEnglish }) => {
               imgs={content.img}
               width={width}
               height={(width * 2) / 3}
+              isTouchable={true}
+              dotsOn={true}
             />
           </ImgWrapper>
           <CaptionWrapper>
@@ -83,6 +89,8 @@ const Content: React.FC<Props> = ({ content, isEnglish }) => {
               imgs={content.img}
               width={width}
               height={(width * 2) / 3}
+              isTouchable={true}
+              dotsOn={true}
             />
           </ImgWrapper>
           <CaptionWrapper>

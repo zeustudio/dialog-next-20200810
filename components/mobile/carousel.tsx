@@ -10,9 +10,17 @@ interface Props {
   imgs: string[];
   width: number;
   height: number;
+  isTouchable: boolean;
+  dotsOn: boolean;
 }
 
-const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
+const Carousel: React.FC<Props> = ({
+  imgs,
+  width,
+  height,
+  isTouchable,
+  dotsOn,
+}) => {
   const n = imgs.length;
   const [displayIndex, setDisplayIndex] = React.useState(0);
   const [autoPlayTrig, setAutoPlayTrig] = React.useState(true);
@@ -23,15 +31,17 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
     transform: `translate3d(${-displayIndexRef.current * width}px,0px,0px)`,
   }));
   const bind = useDrag(({ vxvy: [vx], last }) => {
-    if (last && vx > v) {
-      if (displayIndex > 0) {
-        setAutoPlayTrig(false);
-        setDisplayIndex(displayIndex - 1);
-      }
-    } else if (last && vx < -v) {
-      if (displayIndex < n - 1) {
-        setAutoPlayTrig(false);
-        setDisplayIndex(displayIndex + 1);
+    if (isTouchable) {
+      if (last && vx > v) {
+        if (displayIndex > 0) {
+          setAutoPlayTrig(false);
+          setDisplayIndex(displayIndex - 1);
+        }
+      } else if (last && vx < -v) {
+        if (displayIndex < n - 1) {
+          setAutoPlayTrig(false);
+          setDisplayIndex(displayIndex + 1);
+        }
       }
     }
   });
@@ -56,49 +66,102 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
       transform: `translate3d(${-displayIndex * width}px,0px,0px)`,
     });
   }, [displayIndex]);
-
-  return (
-    <>
-      <Wrapper style={{ width: `${width}px`, height: `${height}px` }}>
-        <ImgWrapper
-          {...bind()}
-          style={{
-            ...carouselAnimation,
-            width: `${width * 3}px`,
-            height: `${height}px`,
-          }}
-          onClick={() => {
-            setAutoPlayTrig(!autoPlayTrig);
-          }}
-        >
+  if (dotsOn) {
+    return (
+      <>
+        <Wrapper style={{ width: `${width}px`, height: `${height}px` }}>
+          <ImgWrapper
+            {...bind()}
+            style={{
+              ...carouselAnimation,
+              width: `${width * n}px`,
+              height: `${height}px`,
+            }}
+            onClick={() => {
+              setAutoPlayTrig(!autoPlayTrig);
+            }}
+          >
+            {imgs.map((img, index) => {
+              if (img.indexOf("https://www.youtube.com/embed/") !== -1) {
+                return (
+                  <Video
+                    key={index}
+                    src={img}
+                    allow={"fullscreen"}
+                    style={{ width: `${width}px`, height: `${height}px` }}
+                  />
+                );
+              } else {
+                return (
+                  <Img
+                    key={index}
+                    src={img}
+                    style={{ width: `${width}px`, height: `${height}px` }}
+                  />
+                );
+              }
+            })}
+          </ImgWrapper>
+        </Wrapper>
+        <DotWrapper>
           {imgs.map((img, index) => {
-            if (img.indexOf("https://www.youtube.com/embed/") !== -1) {
-              return <Video key={index} src={img} allow={"fullscreen"} />;
+            if (index === displayIndex) {
+              return (
+                <Dot key={index} className={img}>
+                  <FontAwesomeIcon icon={faCircleRegular} />
+                </Dot>
+              );
             } else {
-              return <Img key={index} src={img} />;
+              return (
+                <Dot key={index} className={img}>
+                  <FontAwesomeIcon icon={faCircleSolid} />
+                </Dot>
+              );
             }
           })}
-        </ImgWrapper>
-      </Wrapper>
-      <DotWrapper>
-        {imgs.map((img, index) => {
-          if (index === displayIndex) {
-            return (
-              <Dot key={index} className={img}>
-                <FontAwesomeIcon icon={faCircleRegular} />
-              </Dot>
-            );
-          } else {
-            return (
-              <Dot key={index} className={img}>
-                <FontAwesomeIcon icon={faCircleSolid} />
-              </Dot>
-            );
-          }
-        })}
-      </DotWrapper>
-    </>
-  );
+        </DotWrapper>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Wrapper style={{ width: `${width}px`, height: `${height}px` }}>
+          <ImgWrapper
+            {...bind()}
+            style={{
+              ...carouselAnimation,
+              width: `${width * n}px`,
+              height: `${height}px`,
+            }}
+            onClick={() => {
+              setAutoPlayTrig(!autoPlayTrig);
+            }}
+          >
+            {imgs.map((img, index) => {
+              if (img.indexOf("https://www.youtube.com/embed/") !== -1) {
+                return (
+                  <Video
+                    key={index}
+                    src={img}
+                    allow={"fullscreen"}
+                    style={{ width: `${width}px`, height: `${height}px` }}
+                  />
+                );
+              } else {
+                return (
+                  <Img
+                    key={index}
+                    src={img}
+                    style={{ width: `${width}px`, height: `${height}px` }}
+                  />
+                );
+              }
+            })}
+          </ImgWrapper>
+        </Wrapper>
+      </>
+    );
+  }
 };
 
 const Wrapper = styled.div`
@@ -118,13 +181,8 @@ const Dot = animated(styled.div`
   margin: 0 10px 0 10px;
 `);
 
-const Img = styled.img`
-  width: 100%;
-`;
-const Video = styled.iframe`
-  width: 100%;
-  height: 100%;
-`;
+const Img = styled.img``;
+const Video = styled.iframe``;
 const ImgWrapper = animated(styled.div`
   display: flex;
 `);
