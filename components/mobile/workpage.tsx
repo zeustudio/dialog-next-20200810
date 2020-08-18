@@ -38,7 +38,10 @@ const WorkPage: React.FC<Props> = ({ author }) => {
           );
         })}
       </ContentsWrapper>
-      <BottomToolBar englishTrigState={[englishTrig, setEnglishTrig]} />
+      <BottomToolBar
+        englishTrigState={[englishTrig, setEnglishTrig]}
+        author={author}
+      />
     </Wrapper>
   );
 };

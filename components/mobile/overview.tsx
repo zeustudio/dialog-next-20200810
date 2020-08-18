@@ -34,7 +34,6 @@ const Overview: React.FC<Props> = ({ author, isEnglish }) => {
           <Thumb src={overview.img} />
           <CaptionWrapper>
             <TitleJP>{overview.TitleJP}</TitleJP>
-            <TitleEN>-{overview.TitleEN}-</TitleEN>
             <CaptionJP>{overview.CaptionJP}</CaptionJP>
             <CreditJP>{overview.CreditJP}</CreditJP>
           </CaptionWrapper>
@@ -58,8 +57,7 @@ const Overview: React.FC<Props> = ({ author, isEnglish }) => {
         <Wrapper>
           <Thumb src={overview.img} />
           <CaptionWrapper>
-            <TitleJP>{overview.TitleJP}</TitleJP>
-            <TitleEN>-{overview.TitleEN}-</TitleEN>
+            <TitleJP>{overview.TitleEN}</TitleJP>
             <CaptionJP>{overview.CaptionEN}</CaptionJP>
             <CreditJP>{overview.CreditEN}</CreditJP>
           </CaptionWrapper>
@@ -99,20 +97,20 @@ const CaptionWrapper = styled.div`
 `;
 const TitleJP = styled.div`
   margin-top: 10px;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: bold;
   line-height: 4rem;
   text-align: center;
 `;
 const TitleEN = styled.div`
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: bold;
   line-height: 4rem;
   text-align: center;
 `;
 const CaptionJP = styled.div`
-  font-size: 1.6rem;
-  line-height: 3.2rem;
+  font-size: 1.2rem;
+  line-height: 2.4rem;
   font-weight: bold;
 `;
 const CreditJP = styled.div`

@@ -37,7 +37,6 @@ const Content: React.FC<Props> = ({ content, isEnglish }) => {
           </ImgWrapper>
           <CaptionWrapper>
             <TitleJP>{content.TitleJP}</TitleJP>
-            <TitleEN>-{content.TitleEN}-</TitleEN>
             <MessageJP>{content.MessageJP}</MessageJP>
           </CaptionWrapper>
         </Wrapper>
@@ -71,8 +70,7 @@ const Content: React.FC<Props> = ({ content, isEnglish }) => {
             />
           </ImgWrapper>
           <CaptionWrapper>
-            <TitleJP>{content.TitleJP}</TitleJP>
-            <TitleEN>-{content.TitleEN}-</TitleEN>
+            <TitleEN>{content.TitleEN}</TitleEN>
             <MessageJP>{content.MessageEN}</MessageJP>
           </CaptionWrapper>
         </Wrapper>
@@ -142,30 +140,3 @@ const MessageJP = styled.div`
   font-weight: bold;
 `;
 export default Content;
-
-/*<ImgWrapper id={globalID}>
-            {content.img.map((img, index) => {
-              return <Img key={uuid()} className={`${index}`} src={img} />;
-            })}
-          </ImgWrapper>
-          
-          const ImgWrapper2 = styled.div`
-  position: relative;
-  width: 100%;
-  padding-bottom: ${(100 * 2) / 3}%;
-`;
-const ImgWrapper3 = styled.div`
-  width: 100%;
-  @media screen and (min-width: 500px) {
-    width: 80%;
-  }const ImgWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  display: flex;
-`;
-`;*/

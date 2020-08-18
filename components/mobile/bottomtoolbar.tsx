@@ -7,14 +7,22 @@ import OtherComments from "./othercomments";
 import logo from "../../images/logo_white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import WorkData from "../../constants/workdata";
 interface Props {
   englishTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  author: string;
 }
+const keyArray: string[] = Array.from(WorkData.keys());
 const BottomToolBar: React.FC<Props> = ({
   englishTrigState: [englishTrig, setEnglishTrig],
+  author,
 }) => {
   const [commentOnTrig, setCommentOnTrig] = React.useState(false);
   const [expandTrig, setExpandTrig] = React.useState(false);
+  const [previousAuthor, setPreviousAuthor] = React.useState("");
+  const [nextAuthor, setNextAuthor] = React.useState("");
   const toolBarAnimation = useSpring({
     transform: commentOnTrig
       ? `translate3d(0px,40px,0px)`
@@ -25,46 +33,183 @@ const BottomToolBar: React.FC<Props> = ({
       ? `translate3d(0px,0px,0px)`
       : `translate3d(0px,40px,0px)`,
   });
-  return (
-    <>
-      <Wrapper style={toolBarAnimation}>
-        <Link href="/mobile/mobile">
-          <Logo src={logo} />
-        </Link>
-        <CommentSubmit
-          src={commentSubmit2}
-          onClick={() => {
-            setCommentOnTrig(true);
-          }}
+
+  React.useEffect(() => {
+    const i = keyArray.indexOf(author);
+    if (i > 0) {
+      setPreviousAuthor(WorkData.get(keyArray[i - 1]).overview.img);
+    }
+    if (i < keyArray.length - 1) {
+      setNextAuthor(WorkData.get(keyArray[i + 1]).overview.img);
+    }
+    console.log(previousAuthor);
+  }, []);
+  if (previousAuthor === "") {
+    return (
+      <>
+        <Wrapper style={toolBarAnimation}>
+          <Link href="/mobile/mobile">
+            <Logo src={logo} />
+          </Link>
+          <CommentSubmit
+            src={commentSubmit2}
+            onClick={() => {
+              setCommentOnTrig(true);
+            }}
+          />
+          <JPEN
+            onClick={() => {
+              setEnglishTrig(!englishTrig);
+            }}
+          >
+            JP/EN
+          </JPEN>
+          <Link
+            href={`/mobile/works/${keyArray[keyArray.indexOf(author) + 1]}`}
+          >
+            <NextButton>
+              <RoundImg src={nextAuthor} />
+              <Arrow>
+                <FontAwesomeIcon icon={faChevronRight} />
+              </Arrow>
+            </NextButton>
+          </Link>
+        </Wrapper>
+        <Wrapper2 style={commentAnimation}>
+          <Back
+            onClick={() => {
+              setCommentOnTrig(false);
+              setExpandTrig(false);
+            }}
+          >
+            <FontAwesomeIcon icon={faAngleDoubleDown} />
+          </Back>
+          <CommentFormWrapper>
+            <CommentForm />
+          </CommentFormWrapper>
+          <CommentSubmit src={commentSubmit2} />
+        </Wrapper2>
+        <OtherComments
+          commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
+          expandTrigState={[expandTrig, setExpandTrig]}
         />
-        <JPEN
-          onClick={() => {
-            setEnglishTrig(!englishTrig);
-          }}
-        >
-          JP/EN
-        </JPEN>
-      </Wrapper>
-      <Wrapper2 style={commentAnimation}>
-        <Back
-          onClick={() => {
-            setCommentOnTrig(false);
-            setExpandTrig(false);
-          }}
-        >
-          <FontAwesomeIcon icon={faAngleDoubleDown} />
-        </Back>
-        <CommentFormWrapper>
-          <CommentForm />
-        </CommentFormWrapper>
-        <CommentSubmit src={commentSubmit2} />
-      </Wrapper2>
-      <OtherComments
-        commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
-        expandTrigState={[expandTrig, setExpandTrig]}
-      />
-    </>
-  );
+      </>
+    );
+  } else if (nextAuthor === "") {
+    return (
+      <>
+        <Wrapper style={toolBarAnimation}>
+          <Link
+            href={`/mobile/works/${keyArray[keyArray.indexOf(author) - 1]}`}
+          >
+            <PreviousButton>
+              <Arrow>
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </Arrow>
+              <RoundImg src={previousAuthor} />
+            </PreviousButton>
+          </Link>
+
+          <Link href="/mobile/mobile">
+            <Logo src={logo} />
+          </Link>
+          <CommentSubmit
+            src={commentSubmit2}
+            onClick={() => {
+              setCommentOnTrig(true);
+            }}
+          />
+          <JPEN
+            onClick={() => {
+              setEnglishTrig(!englishTrig);
+            }}
+          >
+            JP/EN
+          </JPEN>
+        </Wrapper>
+        <Wrapper2 style={commentAnimation}>
+          <Back
+            onClick={() => {
+              setCommentOnTrig(false);
+              setExpandTrig(false);
+            }}
+          >
+            <FontAwesomeIcon icon={faAngleDoubleDown} />
+          </Back>
+          <CommentFormWrapper>
+            <CommentForm />
+          </CommentFormWrapper>
+          <CommentSubmit src={commentSubmit2} />
+        </Wrapper2>
+        <OtherComments
+          commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
+          expandTrigState={[expandTrig, setExpandTrig]}
+        />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Wrapper style={toolBarAnimation}>
+          <Link
+            href={`/mobile/works/${keyArray[keyArray.indexOf(author) - 1]}`}
+          >
+            <PreviousButton>
+              <Arrow>
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </Arrow>
+              <RoundImg src={previousAuthor} />
+            </PreviousButton>
+          </Link>
+
+          <Link href="/mobile/mobile">
+            <Logo src={logo} />
+          </Link>
+          <CommentSubmit
+            src={commentSubmit2}
+            onClick={() => {
+              setCommentOnTrig(true);
+            }}
+          />
+          <JPEN
+            onClick={() => {
+              setEnglishTrig(!englishTrig);
+            }}
+          >
+            JP/EN
+          </JPEN>
+          <Link
+            href={`/mobile/works/${keyArray[keyArray.indexOf(author) + 1]}`}
+          >
+            <NextButton>
+              <RoundImg src={nextAuthor} />
+              <Arrow>
+                <FontAwesomeIcon icon={faChevronRight} />
+              </Arrow>
+            </NextButton>
+          </Link>
+        </Wrapper>
+        <Wrapper2 style={commentAnimation}>
+          <Back
+            onClick={() => {
+              setCommentOnTrig(false);
+              setExpandTrig(false);
+            }}
+          >
+            <FontAwesomeIcon icon={faAngleDoubleDown} />
+          </Back>
+          <CommentFormWrapper>
+            <CommentForm />
+          </CommentFormWrapper>
+          <CommentSubmit src={commentSubmit2} />
+        </Wrapper2>
+        <OtherComments
+          commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
+          expandTrigState={[expandTrig, setExpandTrig]}
+        />
+      </>
+    );
+  }
 };
 
 const Wrapper = animated(styled.div`
@@ -74,10 +219,10 @@ const Wrapper = animated(styled.div`
   position: fixed;
   bottom: 0px;
   left: 0px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   z-index: 3;
 `);
 const Wrapper2 = animated(styled.div`
@@ -95,7 +240,7 @@ const Wrapper2 = animated(styled.div`
 const Logo = styled.img`
   width: 39px;
   height: 39px;
-  grid-column: 1/2;
+  grid-column: 2/3;
   justify-self: center;
 `;
 const Back = styled.div`
@@ -109,7 +254,7 @@ const Back = styled.div`
 const CommentSubmit = styled.img`
   width: 40px;
   height: 40px;
-  grid-column: 2/3;
+  grid-column: 3/4;
   justify-self: center;
 `;
 const CommentForm = styled.input`
@@ -135,15 +280,37 @@ const CommentFormWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-const JPEN = styled.div`
+const JPEN = styled.span`
   font-size: 1.6rem;
   color: white;
   line-height: 40px;
   text-align: center;
-  width: 60px;
-  height: 40px;
   border-radius: 1.5rem;
-  grid-column: 3/4;
+  grid-column: 4/5;
   justify-self: center;
+`;
+const PreviousButton = styled.div`
+  grid-column: 1/2;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+const NextButton = styled.div`
+  grid-column: 5/6;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+const Arrow = styled.div`
+  font-size: 1.6rem;
+  color: white;
+  line-height: 40px;
+  text-align: center;
+`;
+const RoundImg = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin: 0 10px 0 10px;
 `;
 export default BottomToolBar;

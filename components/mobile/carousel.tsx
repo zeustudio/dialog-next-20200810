@@ -64,7 +64,7 @@ const Carousel: React.FC<Props> = ({ imgs, width, height }) => {
           {...bind()}
           style={{
             ...carouselAnimation,
-            width: `${width * n}px`,
+            width: `${width * 3}px`,
             height: `${height}px`,
           }}
           onClick={() => {
@@ -129,3 +129,11 @@ const ImgWrapper = animated(styled.div`
   display: flex;
 `);
 export default Carousel;
+
+/*{imgs.map((img, index) => {
+  if (img.indexOf("https://www.youtube.com/embed/") !== -1) {
+    return <Video key={index} src={img} allow={"fullscreen"} />;
+  } else {
+    return <Img key={index} src={img} />;
+  }
+})}*/
