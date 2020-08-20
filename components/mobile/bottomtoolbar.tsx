@@ -124,8 +124,8 @@ const Wrapper = animated(styled.div`
   position: fixed;
   bottom: 0px;
   left: 0px;
-  display: flex;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-content: space-evenly;
   z-index: 3;
@@ -153,7 +153,7 @@ const Back = styled.div`
 const CommentSubmit = styled.img`
   width: 40px;
   height: 40px;
-  grid-column: 3/4;
+  grid-column: 2/3;
   justify-self: center;
 `;
 const CommentForm = styled.input`
@@ -183,13 +183,13 @@ const PreviousButton = styled.div`
   grid-column: 1/2;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 `;
 const NextButton = styled.div`
-  grid-column: 5/6;
+  grid-column: 3/4;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 `;
 const Arrow = styled.div`
   font-size: 1.6rem;

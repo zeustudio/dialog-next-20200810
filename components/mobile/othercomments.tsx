@@ -182,13 +182,12 @@ const CommentsBoxWrapper = styled.div`
 const CommentWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 0px 10px 0px 10px;
   margin: 5px 5% 5px 5%;
   overflow-wrap: break-word;
 `;
 const Comment = styled.span`
-  height: 35px;
+  height: 30px;
 `;
 
 export default OtherComments;
