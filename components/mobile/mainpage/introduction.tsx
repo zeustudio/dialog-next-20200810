@@ -1,11 +1,14 @@
+//先生挨拶
 import React from "react";
 import styled from "@emotion/styled";
-import lineUp from "../../images/lineUp.svg";
-import lineDown from "../../images/lineDown.svg";
+
+import lineUp from "../../../images/lineUp.svg"; //　・\＿＿＿＿＿＿＿の画像
+import lineDown from "../../../images/lineDown.svg"; //　-------------\.の画像
+
 interface Props {
-  width: number;
-  height: number;
-  isEnglishState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  width: number; //画面幅
+  height: number; //画面高さ
+  isEnglishState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //英語表示トリガー
 }
 
 const Introduction: React.FC<Props> = ({

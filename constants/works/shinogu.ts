@@ -107,7 +107,7 @@ const contents: content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube.com/embed/ihsDc9Mm9is"],
+    video: ["https://www.youtube-nocookie.com/embed/ihsDc9Mm9is"],
     TitleJP: `プロトタイプ映像`,
     TitleEN: `Prototype Movie`,
     MessageJP: `本作品は、「スラグ流」という現象を用いた作品です。本映像は、表現検討のために行った実験の映像になります。`,

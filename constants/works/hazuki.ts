@@ -75,7 +75,7 @@ const contents: content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube.com/embed/YLnCXKA4O_c"],
+    video: ["https://www.youtube-nocookie.com/embed/YLnCXKA4O_c"],
     TitleJP: `ワークショップの実施`,
     TitleEN: `Workshops`,
     MessageJP: `無意識のジェンダーバイアスを前提としないワークショップにより、無意識のジェンダーバイアス減少を目指しました。STEP3のジェンダースワップにより生じた解釈を、STEP4のセッションにて深掘りすることで無意識のジェンダーバイアスに気付くという仕掛けを施しました。`,

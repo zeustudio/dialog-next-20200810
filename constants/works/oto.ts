@@ -51,7 +51,7 @@ const contents: content[] = [
   {
     img: [],
     video: [
-      "https://www.youtube.com/embed/Uli5_Hvqs5A",
+      "https://www.youtube-nocookie.com/embed/Uli5_Hvqs5A",
       "https://www.youtube-nocookie.com/embed/bv-YqLtDfIw",
     ],
     TitleJP: ``,
@@ -61,7 +61,7 @@ const contents: content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube.com/embed/RInMSV2yumM"],
+    video: ["https://www.youtube-nocookie.com/embed/RInMSV2yumM"],
     TitleJP: `積読に怒る本`,
     TitleEN: `Furious to be stacked`,
     MessageJP: `本の「暇」である積ん読に抵抗して、上に本を置かれると自らが開くことで落としてしまいます。本が利便性や効率から解放されて、人や他の本との交流を始めた時にあなたは何を感じるでしょうか。`,

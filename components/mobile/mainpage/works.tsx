@@ -1,14 +1,18 @@
 import React from "react";
 import styled from "@emotion/styled";
-import lineUp from "../../images/lineUp.svg";
-import lineDown from "../../images/lineDown.svg";
-import WorkData from "../../constants/workdata";
 import Link from "next/link";
-const keyArray: string[] = Array.from(WorkData.keys());
+
+import lineUp from "../../../images/lineUp.svg"; //　・\＿＿＿＿＿＿＿の画像
+import lineDown from "../../../images/lineDown.svg"; //　-------------\.の画像
+
+import WorkData from "../../../constants/workdata";
+
+const keyArray: string[] = Array.from(WorkData.keys()); //作品作者リスト
+
 interface Props {
-  width: number;
-  height: number;
-  isEnglishState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  width: number; //画面幅
+  height: number; //画面高さ
+  isEnglishState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //英語表示トリガー
 }
 
 const Works: React.FC<Props> = ({

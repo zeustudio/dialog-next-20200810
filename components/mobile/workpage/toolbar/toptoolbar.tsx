@@ -1,6 +1,7 @@
+//このコンポーネントは使われていません。toptoolbar-animatedに代替されました。
 import React from "react";
 import styled from "@emotion/styled";
-import WorkData from "../../constants/workdata";
+import WorkData from "../../../../constants/workdata";
 const uuid = require("react-uuid");
 const keyArray: string[] = Array.from(WorkData.keys());
 const n: number = keyArray.length;

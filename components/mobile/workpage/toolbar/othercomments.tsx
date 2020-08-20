@@ -2,11 +2,13 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
+
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 
 //firebaseの設定
 const firebaseConfig = {
@@ -20,13 +22,15 @@ const firebaseConfig = {
   measurementId: "G-HKGYWJK3CB",
 };
 
-const v = 0.7;
+const v = 0.7; //上下スワイプでコメント一覧が拡張する。その時のスワイプ敏感度合
+
 interface Props {
-  commentOnTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
-  expandTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
-  thisCommentState: [string, React.Dispatch<React.SetStateAction<string>>];
-  submitTrig: boolean;
-  author: string;
+  //親であるbottomtoolbar.tsx参照
+  commentOnTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //コメント入力、コメント一覧欄表示トリガー
+  expandTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //コメント一覧拡大トリガー
+  thisCommentState: [string, React.Dispatch<React.SetStateAction<string>>]; //コメント入力欄に入力された文字列
+  submitTrig: boolean; //送信トリガー、値の変化でトリガーされるので値そのものは意味ない
+  author: string; //作者名の文字列
 }
 const OtherComments: React.FC<Props> = ({
   commentOnTrigState: [commentOnTrig, setCommentOnTrig],
@@ -35,7 +39,7 @@ const OtherComments: React.FC<Props> = ({
   submitTrig,
   author,
 }) => {
-  const commentBoxId = `commentBox${author}`;
+  const commentBoxId = `commentBox${author}`; //コメント一覧のid,document.getElementByIdメソッドを使うため設定
   const commentsBoxAnimation = useSpring({
     transform: commentOnTrig
       ? expandTrig
@@ -43,12 +47,14 @@ const OtherComments: React.FC<Props> = ({
         : `translate3d(0px,0px,0px)`
       : `translate3d(0px,100%,0px)`,
     height: commentOnTrig ? (expandTrig ? `100%` : `50%`) : `50%`,
-  });
+  }); //コメント一覧のアニメーション
 
   const [comments, setComments] = React.useState([
     { key: "", content: "", good: 0 },
-  ]);
+  ]); //コメント一覧のデータリスト
+
   const bind = useDrag(({ vxvy: [, vy], last }) => {
+    //スワイプアクションの設定
     if (commentOnTrig === true) {
       if (last && vy < -v) {
         setExpandTrig(true);
@@ -61,14 +67,16 @@ const OtherComments: React.FC<Props> = ({
       }
     }
   });
+
   React.useEffect(() => {
+    //コンポーネント初期化、firebaseよりコメント一覧を取得する
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
-    }
+    } //firebase初期化
     firebase
       .auth()
       .signInAnonymously()
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error)); //firebase 匿名認証
 
     firebase
       .database()
@@ -76,13 +84,14 @@ const OtherComments: React.FC<Props> = ({
       .once("value")
       .then((snap) => {
         let databaseRef: Object;
-        databaseRef = snap.val();
+        databaseRef = snap.val(); //該当する作者の持つデーターベースのスナップショットを取得。この時はまだデータはJSON形式
         if (databaseRef !== null) {
           let comments: [
             string,
             { content: string; good: number }
-          ][] = Object.entries(databaseRef);
+          ][] = Object.entries(databaseRef); //JSONオブジェクトをリストに変換
           setComments(
+            //comments state変数にデータを格納
             comments.map((comment) => {
               return {
                 key: comment[0],
@@ -94,12 +103,14 @@ const OtherComments: React.FC<Props> = ({
         }
       });
   }, []);
+
   React.useEffect(() => {
+    //送信ボタンが押されたらトリガーされる関数
     if (thisComment !== "" && thisComment !== "ここにコメント入力") {
       if (thisComment.length > 100) {
-        alert("コメントは100文字以内にしてください。");
+        alert("コメントは100文字以内にしてください。"); //コメントの文字数制限
       } else {
-        firebase.database().ref(author).push({ content: thisComment, good: 0 });
+        firebase.database().ref(author).push({ content: thisComment, good: 0 }); //データベースにコメントをアップロード
         firebase
           .database()
           .ref(author)
@@ -117,15 +128,18 @@ const OtherComments: React.FC<Props> = ({
                 };
               })
             );
-          });
-        setThisComment("");
+          }); //コメント一覧を更新
+        setThisComment(""); //入力欄を初期化
       }
     }
-  }, [submitTrig]);
+  }, [submitTrig]); //submitTrigが変化する度トリガーされる
+
   React.useEffect(() => {
+    //コメントが提出されたらコメント一覧のスクロールを一番下にする。送信した自分のコメントを確認できる。
     const CommentsBox = document.getElementById(commentBoxId);
     CommentsBox?.scrollTo(0, CommentsBox.scrollHeight);
   }, [comments]);
+
   return (
     <Wrapper {...bind()} style={commentsBoxAnimation}>
       <ExpandButton

@@ -2,19 +2,19 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
-import TitleScreen from "../../components/mobile/titlescreen";
-import HowToVideo from "../../components/mobile/howtovideo";
-import Introduction from "../../components/mobile/introduction";
-import Works from "../../components/mobile/works";
+import TitleScreen from "../../components/mobile/mainpage/titlescreen";
+import HowToVideo from "../../components/mobile/mainpage/howtovideo";
+import Introduction from "../../components/mobile/mainpage/introduction";
+import Works from "../../components/mobile/mainpage/works";
 
 import globalCSS from "../../styles/global";
 import { Global } from "@emotion/core";
 
 const Mobile = () => {
-  const [width, height] = useWindowSize();
-  const router = useRouter();
-  const isEnglish: boolean = router.query.isEnglish === "true";
-  const [englishTrig, setEnglishTrig] = React.useState(isEnglish);
+  const [width, height] = useWindowSize(); //画面幅・高さ
+  const router = useRouter(); //　next/linkコンポーネントからqueryを受け取るためのrouter。ページ間英語・日本語設定を引き継ぐため
+  const isEnglish: boolean = router.query.isEnglish === "true"; //queryの文字列をbooleanに変換
+  const [englishTrig, setEnglishTrig] = React.useState(isEnglish); //英語表示トリガー
 
   return (
     <Wrapper style={{ width: width, height: height }} id="mainPage">
@@ -47,6 +47,7 @@ const Wrapper = styled.div`
 export default Mobile;
 
 function useWindowSize() {
+  //現在の画面幅、高さを取得するhooks。cssで幅、高さ設定するとなんかうざかったので、直接スクリプト上で取得します。
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = React.useState([375, 812]);

@@ -1,26 +1,35 @@
+//作品ページフッター
+
 import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
 import Link from "next/link";
-import commentSubmit2 from "../../images/commentsubmit2.svg";
-import OtherComments from "./othercomments";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import WorkData from "../../constants/workdata";
+
+import commentSubmit2 from "../../../../images/commentsubmit2.svg";
+import OtherComments from "./othercomments";
+
+import WorkData from "../../../../constants/workdata";
+
 interface Props {
   author: string;
   englishTrig: boolean;
 }
-const keyArray: string[] = Array.from(WorkData.keys());
+
+const keyArray: string[] = Array.from(WorkData.keys()); //作者名のリスト
+
 const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
-  const [commentOnTrig, setCommentOnTrig] = React.useState(false);
-  const [expandTrig, setExpandTrig] = React.useState(false);
-  const [previousAuthor, setPreviousAuthor] = React.useState("");
-  const [nextAuthor, setNextAuthor] = React.useState("");
-  const [thisComment, setThisComment] = React.useState("");
-  const [submitTrig, setSubmitTrig] = React.useState(false);
+  const [commentOnTrig, setCommentOnTrig] = React.useState(false); //コメント入力、コメント一覧欄表示トリガー
+  const [expandTrig, setExpandTrig] = React.useState(false); //コメント一覧拡大トリガー
+  const [previousAuthorImg, setPreviousAuthorImg] = React.useState(""); //これより前の作者のサムネ画像
+  const [nextAuthorImg, setNextAuthorImg] = React.useState(""); //これより次の作者のサムネ画像
+  const [thisComment, setThisComment] = React.useState(""); //コメント入力欄に入力された文字列
+  const [submitTrig, setSubmitTrig] = React.useState(false); //送信トリガー、値の変化でトリガーされるので値そのものは意味ない
+
   const toolBarAnimation = useSpring({
     transform: commentOnTrig
       ? `translate3d(0px,40px,0px)`
@@ -30,24 +39,23 @@ const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
     transform: commentOnTrig
       ? `translate3d(0px,0px,0px)`
       : `translate3d(0px,40px,0px)`,
-  });
+  }); //フッターバーのアニメーション、片方が出るともう片方は引っ込む
 
   React.useEffect(() => {
     const i = keyArray.indexOf(author);
     if (i > 0) {
-      setPreviousAuthor(WorkData.get(keyArray[i - 1]).overview.img);
+      setPreviousAuthorImg(WorkData.get(keyArray[i - 1]).overview.img);
     }
     if (i < keyArray.length - 1) {
-      setNextAuthor(WorkData.get(keyArray[i + 1]).overview.img);
+      setNextAuthorImg(WorkData.get(keyArray[i + 1]).overview.img);
     }
-    console.log(previousAuthor);
     setThisComment("ここにコメント入力");
-  }, []);
+  }, []); //コンポーネント初期化、前と後の作者が存在するか確認し、画像パスを格納する。
 
   return (
     <>
       <Wrapper style={toolBarAnimation}>
-        {previousAuthor === "" ? null : (
+        {previousAuthorImg === "" ? null : (
           <Link
             href={{
               pathname: `/mobile/works/${
@@ -60,7 +68,7 @@ const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
               <Arrow>
                 <FontAwesomeIcon icon={faChevronLeft} />
               </Arrow>
-              <RoundImg src={previousAuthor} />
+              <RoundImg src={previousAuthorImg} />
             </PreviousButton>
           </Link>
         )}
@@ -71,7 +79,7 @@ const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
             setCommentOnTrig(true);
           }}
         />
-        {nextAuthor === "" ? null : (
+        {nextAuthorImg === "" ? null : (
           <Link
             href={{
               pathname: `/mobile/works/${
@@ -81,7 +89,7 @@ const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
             }}
           >
             <NextButton>
-              <RoundImg src={nextAuthor} />
+              <RoundImg src={nextAuthorImg} />
               <Arrow>
                 <FontAwesomeIcon icon={faChevronRight} />
               </Arrow>

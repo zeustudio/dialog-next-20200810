@@ -1,8 +1,9 @@
+//イントロビデオ
 import React from "react";
 import styled from "@emotion/styled";
 interface Props {
-  width: number;
-  height: number;
+  width: number; //画面幅
+  height: number; //画面高さ
 }
 
 const HowToVideo: React.FC<Props> = ({ width, height }) => {

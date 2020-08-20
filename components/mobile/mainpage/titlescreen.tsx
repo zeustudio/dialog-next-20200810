@@ -1,19 +1,23 @@
 import React from "react";
 import styled from "@emotion/styled";
-import WorkData from "../../constants/workdata";
-import Carousel from "./carousel";
-import logoWhite from "../../images/logo_white.png";
-import wideArrow from "../../images/wideArrow.svg";
 
-const keyArray: string[] = Array.from(WorkData.keys());
+import Carousel from "../carousel";
+
+import logoWhite from "../../../images/logo_white.png"; //DiaLogロゴ
+import wideArrow from "../../../images/wideArrow.svg"; //幅が広い下向き矢印画像
+
+import WorkData from "../../../constants/workdata";
+
+const keyArray: string[] = Array.from(WorkData.keys()); //作品作者リスト
+
 interface Props {
-  width: number;
-  height: number;
+  width: number; //画面幅
+  height: number; //画面高さ
 }
 
 const TitleScreen: React.FC<Props> = ({ width, height }) => {
   const imgs: string[] = keyArray.map((key) => {
-    return WorkData.get(key).overview.img;
+    return WorkData.get(key).overview.img; //作品サムネリストを取得
   });
 
   return (

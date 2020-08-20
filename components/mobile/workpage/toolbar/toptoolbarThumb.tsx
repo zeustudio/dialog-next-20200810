@@ -1,8 +1,9 @@
+//このコンポーネントは現在使われていません。もともとはtoptollbarのサムネの拡大縮小アニメーションのため作られました。
 import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
 import Link from "next/link";
-import WorkData from "../../constants/workdata";
+import WorkData from "../../../../constants/workdata";
 const keyArray: string[] = Array.from(WorkData.keys());
 const n: number = keyArray.length;
 interface Props {

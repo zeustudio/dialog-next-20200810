@@ -2,21 +2,21 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
-import globalCSS from "../../styles/global";
+import globalCSS from "../../../styles/global";
 import { Global } from "@emotion/core";
 
-import TopToolBarAnimated from "./toptoolbar-animated";
-import BottomToolBar from "./bottomtoolbar";
-
+import TopToolBarAnimated from "./toolbar/toptoolbar-animated";
+import BottomToolBar from "./toolbar/bottomtoolbar";
 import Overview from "./overview";
-import WorkData from "../../constants/workdata";
 import Content from "./content";
-const uuid = require("react-uuid");
+
+import WorkData from "../../../constants/workdata";
 
 interface Props {
-  author: string;
+  author: string; //作者
 }
 interface content {
+  //content.tsxに渡されるデータ形式
   img: string[];
   video: string[];
   TitleJP: string;
@@ -24,11 +24,12 @@ interface content {
   MessageJP: string;
   MessageEN: string;
 }
+
 const WorkPage: React.FC<Props> = ({ author }) => {
-  const contents: content[] = WorkData.get(author).contents;
-  const router = useRouter();
-  const isEnglish: boolean = router.query.isEnglish === "true";
-  const [englishTrig, setEnglishTrig] = React.useState(isEnglish);
+  const contents: content[] = WorkData.get(author).contents; //content.tsxに渡されるデータを取得
+  const router = useRouter(); //　next/linkコンポーネントからqueryを受け取るためのrouter。ページ間英語・日本語設定を引き継ぐため
+  const isEnglish: boolean = router.query.isEnglish === "true"; //queryの文字列をbooleanに変換
+  const [englishTrig, setEnglishTrig] = React.useState(isEnglish); //英語表示トリガー
 
   return (
     <Wrapper>
@@ -39,9 +40,9 @@ const WorkPage: React.FC<Props> = ({ author }) => {
       />
       <ContentsWrapper>
         <Overview author={author} isEnglish={englishTrig} />
-        {contents.map((content) => {
+        {contents.map((content, index) => {
           return (
-            <Content key={uuid()} content={content} isEnglish={englishTrig} />
+            <Content key={index} content={content} isEnglish={englishTrig} />
           );
         })}
       </ContentsWrapper>

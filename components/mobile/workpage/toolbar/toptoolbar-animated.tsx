@@ -1,14 +1,18 @@
 import React from "react";
 import styled from "@emotion/styled";
-import WorkData from "../../constants/workdata";
 import { useSpring, useSprings, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import Link from "next/link";
-import logo from "../../images/logo_white.png";
-const keyArray: string[] = Array.from(WorkData.keys());
-const n: number = keyArray.length;
+
+import logo from "../../../../images/logo_white.png";
+
+import WorkData from "../../../../constants/workdata";
+
+const keyArray: string[] = Array.from(WorkData.keys()); //作品作者リスト
+const n: number = keyArray.length; //作者数
 
 const clamp = (x: number, a: number, b: number) => {
+  //clamp関数、xをa以上b以下に抑える。サムネ画像の列がスライドするとき、一定範囲以内で動かせるため導入。
   if (x < a) {
     return a;
   } else if (x > b) {
@@ -19,23 +23,26 @@ const clamp = (x: number, a: number, b: number) => {
 };
 
 interface Props {
-  author: string;
-  englishTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  author: string; //作者名の文字列
+  englishTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //英語表示トリガー
 }
+
 const TopToolBarAnimated: React.FC<Props> = ({
   author,
   englishTrigState: [englishTrig, setEnglishTrig],
 }) => {
-  const [thumbIndex, setThumbIndex] = React.useState(keyArray.indexOf(author));
+  const [thumbIndex, setThumbIndex] = React.useState(keyArray.indexOf(author)); //現在中央に位置するサムネのインデックス
   const [carouselPos, setCarouselPos] = React.useState(
     ((n - 1 - keyArray.indexOf(author)) * 375) / (2 * n + 1)
-  );
-  const [width, setWidth] = React.useState(375 / 2);
+  ); //現在のカルーセル位置(ピクセル単位)
+  const [width, setWidth] = React.useState(375 / 2); //サムネ列の幅、画面幅の半分くらい
+
   const [props, set] = useSpring(() => ({
     transform: `translate3d(${
       ((n - 1 - keyArray.indexOf(author)) * 375) / (2 * n + 1)
     }px,0px,0px)`,
-  }));
+  })); //サムネ列の左右アニメーション
+
   const thumbAnimation = useSprings(
     n,
     keyArray.map((key, index) => ({
@@ -43,28 +50,33 @@ const TopToolBarAnimated: React.FC<Props> = ({
       height: index === n - 1 - thumbIndex ? `32px` : `16px`,
       name: key,
     }))
-  );
+  ); //サムネ画像の拡大縮小アニメーション
 
-  const [deltaWidth, setDeltaWidth] = React.useState(375 / (2 * n + 1));
+  const [deltaWidth, setDeltaWidth] = React.useState(375 / (2 * n + 1)); //各サムネが占有する幅(ピクセル)
+
   const bind = useDrag(({ down, delta: [dx] }) => {
     if (down) {
       setCarouselPos(carouselPos + dx);
     }
-  });
+  }); //サムネ列のドラッグ操作
+
   React.useEffect(() => {
+    //コンポーネント初期化、サムネ、サムネ列の幅などを計算する
     const a = 16;
     const b = 32;
     const c = (window.innerWidth / 2 - (n - 1) * a - b / 2) / n;
-    setWidth(window.innerWidth / 2 + c + b / 2);
-    setDeltaWidth(a + c);
-    setCarouselPos((n - 1 - keyArray.indexOf(author)) * (a + c));
+    setWidth(window.innerWidth / 2 + c + b / 2); //サムネ列の幅
+    setDeltaWidth(a + c); //マージンを含むサムネ幅
+    setCarouselPos((n - 1 - keyArray.indexOf(author)) * (a + c)); //カルーセルの初期位置、現在設定されている作品のサムネに合わせられる。
   }, []);
+
   React.useEffect(() => {
     setThumbIndex(clamp(Math.round(carouselPos / deltaWidth), 0, n - 1));
-  }, [carouselPos]);
+  }, [carouselPos]); //carouselPosを用いてthumbIndexを設定
+
   React.useEffect(() => {
     set({ transform: `translate3d(${thumbIndex * deltaWidth}px,0px,0px)` });
-  }, [thumbIndex]);
+  }, [thumbIndex]); //thumbIndexを用いてアニメーションを実装
 
   return (
     <Wrapper {...bind()}>
