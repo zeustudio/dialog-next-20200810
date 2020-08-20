@@ -4,7 +4,9 @@ import { useSpring, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
 
 //firebaseの設定
 const firebaseConfig = {

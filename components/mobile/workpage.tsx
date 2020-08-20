@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 import globalCSS from "../../styles/global";
 import { Global } from "@emotion/core";
@@ -25,7 +26,10 @@ interface content {
 }
 const WorkPage: React.FC<Props> = ({ author }) => {
   const contents: content[] = WorkData.get(author).contents;
-  const [englishTrig, setEnglishTrig] = React.useState(false);
+  const router = useRouter();
+  const isEnglish: boolean = router.query.isEnglish === "true";
+  const [englishTrig, setEnglishTrig] = React.useState(isEnglish);
+
   return (
     <Wrapper>
       <Global styles={globalCSS} />

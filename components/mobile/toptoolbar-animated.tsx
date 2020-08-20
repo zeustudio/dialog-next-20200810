@@ -68,7 +68,9 @@ const TopToolBarAnimated: React.FC<Props> = ({
 
   return (
     <Wrapper {...bind()}>
-      <Link href="/mobile/mobile">
+      <Link
+        href={{ pathname: "/mobile/mobile", query: { isEnglish: englishTrig } }}
+      >
         <LogoWrapper>
           <Logo src={logo} />
         </LogoWrapper>

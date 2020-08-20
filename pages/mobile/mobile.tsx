@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 import TitleScreen from "../../components/mobile/titlescreen";
 import HowToVideo from "../../components/mobile/howtovideo";
@@ -11,7 +12,10 @@ import { Global } from "@emotion/core";
 
 const Mobile = () => {
   const [width, height] = useWindowSize();
-  const [isEnglish, setIsEnglish] = useState(false);
+  const router = useRouter();
+  const isEnglish: boolean = router.query.isEnglish === "true";
+  const [englishTrig, setEnglishTrig] = React.useState(isEnglish);
+
   return (
     <Wrapper style={{ width: width, height: height }} id="mainPage">
       <Global styles={globalCSS} />
@@ -20,12 +24,12 @@ const Mobile = () => {
       <Introduction
         width={width}
         height={height}
-        isEnglishState={[isEnglish, setIsEnglish]}
+        isEnglishState={[englishTrig, setEnglishTrig]}
       />
       <Works
         width={width}
         height={height}
-        isEnglishState={[isEnglish, setIsEnglish]}
+        isEnglishState={[englishTrig, setEnglishTrig]}
       />
     </Wrapper>
   );

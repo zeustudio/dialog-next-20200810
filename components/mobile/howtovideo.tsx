@@ -8,7 +8,10 @@ interface Props {
 const HowToVideo: React.FC<Props> = ({ width, height }) => {
   return (
     <Wrapper style={{ width: width, height: height }}>
-      <Video src={`https://youtube.com/embed/zlujVqieRk4`} allow={"autoplay"} />
+      <Video
+        src={`https://www.youtube-nocookie.com/embed/zlujVqieRk4`}
+        allow={"autoplay"}
+      />
     </Wrapper>
   );
 };

@@ -34,7 +34,13 @@ const Works: React.FC<Props> = ({
       <WorksWrapper>
         {keyArray.map((key, index) => {
           return (
-            <Link href={`/mobile/works/${key}`} key={index}>
+            <Link
+              href={{
+                pathname: `/mobile/works/${key}`,
+                query: { isEnglish: isEnglish },
+              }}
+              key={index}
+            >
               <WorkWrapper>
                 <Thumb src={WorkData.get(key).overview.img} />
                 {WorkData.get(key).overview.TitleJP === ""}

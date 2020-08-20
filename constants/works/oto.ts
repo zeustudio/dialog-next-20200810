@@ -52,7 +52,7 @@ const contents: content[] = [
     img: [],
     video: [
       "https://www.youtube.com/embed/Uli5_Hvqs5A",
-      "https://youtube.com/embed/bv-YqLtDfIw",
+      "https://www.youtube-nocookie.com/embed/bv-YqLtDfIw",
     ],
     TitleJP: ``,
     TitleEN: `Amemism`,
