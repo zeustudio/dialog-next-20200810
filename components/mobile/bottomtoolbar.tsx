@@ -18,6 +18,8 @@ const BottomToolBar: React.FC<Props> = ({ author }) => {
   const [expandTrig, setExpandTrig] = React.useState(false);
   const [previousAuthor, setPreviousAuthor] = React.useState("");
   const [nextAuthor, setNextAuthor] = React.useState("");
+  const [thisComment, setThisComment] = React.useState("");
+  const [submitTrig, setSubmitTrig] = React.useState(false);
   const toolBarAnimation = useSpring({
     transform: commentOnTrig
       ? `translate3d(0px,40px,0px)`
@@ -38,6 +40,7 @@ const BottomToolBar: React.FC<Props> = ({ author }) => {
       setNextAuthor(WorkData.get(keyArray[i + 1]).overview.img);
     }
     console.log(previousAuthor);
+    setThisComment("ここにコメント入力");
   }, []);
 
   return (
@@ -85,13 +88,30 @@ const BottomToolBar: React.FC<Props> = ({ author }) => {
           <FontAwesomeIcon icon={faAngleDoubleDown} />
         </Back>
         <CommentFormWrapper>
-          <CommentForm />
+          <CommentForm
+            type="text"
+            value={thisComment}
+            onChange={(e) => {
+              setThisComment(e.target.value);
+            }}
+            onFocus={() => {
+              setThisComment("");
+            }}
+          />
         </CommentFormWrapper>
-        <CommentSubmit src={commentSubmit2} />
+        <CommentSubmit
+          src={commentSubmit2}
+          onClick={() => {
+            setSubmitTrig(!submitTrig);
+          }}
+        />
       </Wrapper2>
       <OtherComments
+        author={author}
         commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
         expandTrigState={[expandTrig, setExpandTrig]}
+        thisCommentState={[thisComment, setThisComment]}
+        submitTrig={submitTrig}
       />
     </>
   );
@@ -145,8 +165,8 @@ const CommentForm = styled.input`
   background-color: #484749;
   font-size: 2rem;
   font-weight: medium;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 10px;
+  padding-right: 10px;
   color: white;
   :focus {
     outline: none;
