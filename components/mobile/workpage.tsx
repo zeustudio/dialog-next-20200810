@@ -45,7 +45,7 @@ const WorkPage: React.FC<Props> = ({ author }) => {
           );
         })}
       </ContentsWrapper>
-      <BottomToolBar author={author} />
+      <BottomToolBar author={author} englishTrig={englishTrig} />
     </Wrapper>
   );
 };

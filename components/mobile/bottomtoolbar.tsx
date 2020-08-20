@@ -11,9 +11,10 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import WorkData from "../../constants/workdata";
 interface Props {
   author: string;
+  englishTrig: boolean;
 }
 const keyArray: string[] = Array.from(WorkData.keys());
-const BottomToolBar: React.FC<Props> = ({ author }) => {
+const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
   const [commentOnTrig, setCommentOnTrig] = React.useState(false);
   const [expandTrig, setExpandTrig] = React.useState(false);
   const [previousAuthor, setPreviousAuthor] = React.useState("");
@@ -48,7 +49,12 @@ const BottomToolBar: React.FC<Props> = ({ author }) => {
       <Wrapper style={toolBarAnimation}>
         {previousAuthor === "" ? null : (
           <Link
-            href={`/mobile/works/${keyArray[keyArray.indexOf(author) - 1]}`}
+            href={{
+              pathname: `/mobile/works/${
+                keyArray[keyArray.indexOf(author) - 1]
+              }`,
+              query: { isEnglish: englishTrig },
+            }}
           >
             <PreviousButton>
               <Arrow>
@@ -67,7 +73,12 @@ const BottomToolBar: React.FC<Props> = ({ author }) => {
         />
         {nextAuthor === "" ? null : (
           <Link
-            href={`/mobile/works/${keyArray[keyArray.indexOf(author) + 1]}`}
+            href={{
+              pathname: `/mobile/works/${
+                keyArray[keyArray.indexOf(author) + 1]
+              }`,
+              query: { isEnglish: englishTrig },
+            }}
           >
             <NextButton>
               <RoundImg src={nextAuthor} />

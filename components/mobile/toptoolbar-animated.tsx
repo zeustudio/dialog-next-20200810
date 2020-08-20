@@ -78,7 +78,13 @@ const TopToolBarAnimated: React.FC<Props> = ({
       <Wrapper2 style={{ ...props, width: `${width}px` }}>
         {thumbAnimation.map((prop, index) => {
           return (
-            <Link href={`/mobile/works/${keyArray[index]}`} key={index}>
+            <Link
+              href={{
+                pathname: `/mobile/works/${keyArray[index]}`,
+                query: { isEnglish: englishTrig },
+              }}
+              key={index}
+            >
               <Img
                 src={WorkData.get(keyArray[index]).overview.img}
                 style={prop}
