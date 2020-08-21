@@ -8,18 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp as faThumbsUpRegular } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsUp as faThumbsUpSolid } from "@fortawesome/free-solid-svg-icons";
 
-//firebaseの設定
-const firebaseConfig = {
-  apiKey: "AIzaSyDx9tzYwvDgTJOXIvkLrbqh1YAJ8XNOrys",
-  authDomain: "yamlab-3f326.firebaseapp.com",
-  databaseURL: "https://yamlab-3f326.firebaseio.com",
-  projectId: "yamlab-3f326",
-  storageBucket: "yamlab-3f326.appspot.com",
-  messagingSenderId: "382361918818",
-  appId: "1:382361918818:web:1c3f7d472b65485f86a03b",
-  measurementId: "G-HKGYWJK3CB",
-};
-
 interface Props {
   commentKey: string;
 }
@@ -28,9 +16,7 @@ const GoodButton: React.FC<Props> = ({ commentKey }) => {
   const [good, setGood] = React.useState(0);
 
   React.useEffect(() => {
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    } //firebase初期化
+    //初期データ取得
     firebase
       .database()
       .ref(`users/${firebase.auth().currentUser?.uid}`)
@@ -38,7 +24,7 @@ const GoodButton: React.FC<Props> = ({ commentKey }) => {
       .then((snap1) => {
         const snapshot = snap1.val();
         const alreadySelectedItems =
-          snapshot !== null ? Array.from(Object.values(snapshot)) : [];
+          snapshot !== null ? Array.from(Object.values(snapshot)) : []; //ユーザーが既にいいねを押したコメントのkeyを取得
         if (alreadySelectedItems.indexOf(commentKey) !== -1) {
           setisClicked(true);
           firebase
@@ -47,11 +33,12 @@ const GoodButton: React.FC<Props> = ({ commentKey }) => {
             .once("value")
             .then((snap2) => {
               setGood(snap2.val().good);
-            });
+            }); //いいね数を格納
         }
       });
   }, []);
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    //いいねボタンクリック時トリガーされる
     e.preventDefault();
     if (!isClicked) {
       firebase
@@ -61,8 +48,9 @@ const GoodButton: React.FC<Props> = ({ commentKey }) => {
         .then((snap1) => {
           const snapshot = snap1.val();
           const alreadySelectedItems =
-            snapshot !== null ? Array.from(Object.values(snapshot)) : [];
+            snapshot !== null ? Array.from(Object.values(snapshot)) : []; //ユーザーが既にいいねを押したコメントのkeyを取得
           if (alreadySelectedItems.indexOf(commentKey) === -1) {
+            //既にいいねを押したコメントに再度いいねを押すのを防ぐ
             firebase
               .database()
               .ref(commentKey)
@@ -74,12 +62,12 @@ const GoodButton: React.FC<Props> = ({ commentKey }) => {
                   .ref(commentKey)
                   .child("good")
                   .set(score + 1);
-                setGood(snap2.val().good + 1);
+                setGood(snap2.val().good + 1); //いいねを+1する
               });
             firebase
               .database()
               .ref(`users/${firebase.auth().currentUser?.uid}`)
-              .push(commentKey);
+              .push(commentKey); //いいねを押したコメントをセーブする
             setisClicked(true);
           }
         });
