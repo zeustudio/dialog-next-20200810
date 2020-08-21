@@ -32,27 +32,57 @@ const GoodButton: React.FC<Props> = ({ commentKey }) => {
       firebase.initializeApp(firebaseConfig);
     } //firebase初期化
     firebase
-      .auth()
-      .signInAnonymously()
-      .catch((error) => console.log(error)); //firebase 匿名認証
+      .database()
+      .ref(`users/${firebase.auth().currentUser?.uid}`)
+      .once("value")
+      .then((snap1) => {
+        const snapshot = snap1.val();
+        const alreadySelectedItems =
+          snapshot !== null ? Array.from(Object.values(snapshot)) : [];
+        if (alreadySelectedItems.indexOf(commentKey) !== -1) {
+          setisClicked(true);
+          firebase
+            .database()
+            .ref(commentKey)
+            .once("value")
+            .then((snap2) => {
+              setGood(snap2.val().good);
+            });
+        }
+      });
   }, []);
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (!isClicked) {
       firebase
         .database()
-        .ref(commentKey)
+        .ref(`users/${firebase.auth().currentUser?.uid}`)
         .once("value")
-        .then((snap) => {
-          const score = snap.val().good;
-          firebase
-            .database()
-            .ref(commentKey)
-            .child("good")
-            .set(score + 1);
-          setGood(snap.val().good + 1);
+        .then((snap1) => {
+          const snapshot = snap1.val();
+          const alreadySelectedItems =
+            snapshot !== null ? Array.from(Object.values(snapshot)) : [];
+          if (alreadySelectedItems.indexOf(commentKey) === -1) {
+            firebase
+              .database()
+              .ref(commentKey)
+              .once("value")
+              .then((snap2) => {
+                const score = snap2.val().good;
+                firebase
+                  .database()
+                  .ref(commentKey)
+                  .child("good")
+                  .set(score + 1);
+                setGood(snap2.val().good + 1);
+              });
+            firebase
+              .database()
+              .ref(`users/${firebase.auth().currentUser?.uid}`)
+              .push(commentKey);
+            setisClicked(true);
+          }
         });
-      setisClicked(true);
     }
   };
 

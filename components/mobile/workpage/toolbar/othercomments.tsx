@@ -42,7 +42,6 @@ const OtherComments: React.FC<Props> = ({
   author,
 }) => {
   const commentBoxId = `commentBox${author}`; //コメント一覧のid,document.getElementByIdメソッドを使うため設定
-
   const commentsBoxAnimation = useSpring({
     transform: commentOnTrig
       ? expandTrig
@@ -79,7 +78,6 @@ const OtherComments: React.FC<Props> = ({
       .auth()
       .signInAnonymously()
       .catch((error) => console.log(error)); //firebase 匿名認証
-
     firebase
       .database()
       .ref(author)
@@ -158,7 +156,9 @@ const OtherComments: React.FC<Props> = ({
               <CommentWrapper>
                 <Comment>{comment.content}</Comment>
               </CommentWrapper>
-              <GoodButton commentKey={`${author}/${comment.key}`} />
+              {comment.content !== "" ? (
+                <GoodButton commentKey={`${author}/${comment.key}`} />
+              ) : null}
             </CommentWrapper2>
           );
         })}
