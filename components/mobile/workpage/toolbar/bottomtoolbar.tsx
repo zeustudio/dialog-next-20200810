@@ -121,7 +121,9 @@ const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
         <CommentSubmit
           src={commentSubmit2}
           onClick={() => {
-            setSubmitTrig(!submitTrig);
+            if (submitTrig === false) {
+              setSubmitTrig(true);
+            }
           }}
         />
       </Wrapper2>
@@ -130,7 +132,7 @@ const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
         commentOnTrigState={[commentOnTrig, setCommentOnTrig]}
         expandTrigState={[expandTrig, setExpandTrig]}
         thisCommentState={[thisComment, setThisComment]}
-        submitTrig={submitTrig}
+        submitTrigState={[submitTrig, setSubmitTrig]}
       />
     </>
   );

@@ -1,3 +1,4 @@
+//bottomtoolbarの子コンポーネント、コメント一覧ボックス
 import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
@@ -29,30 +30,30 @@ interface Props {
   commentOnTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //コメント入力、コメント一覧欄表示トリガー
   expandTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //コメント一覧拡大トリガー
   thisCommentState: [string, React.Dispatch<React.SetStateAction<string>>]; //コメント入力欄に入力された文字列
-  submitTrig: boolean; //送信トリガー、値の変化でトリガーされるので値そのものは意味ない
+  submitTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //送信トリガー
   author: string; //作者名の文字列
 }
 const OtherComments: React.FC<Props> = ({
   commentOnTrigState: [commentOnTrig, setCommentOnTrig],
   expandTrigState: [expandTrig, setExpandTrig],
   thisCommentState: [thisComment, setThisComment],
-  submitTrig,
+  submitTrigState: [submitTrig, setSubmitTrig],
   author,
 }) => {
   const commentBoxId = `commentBox${author}`; //コメント一覧のid,document.getElementByIdメソッドを使うため設定
+
   const commentsBoxAnimation = useSpring({
     transform: commentOnTrig
       ? expandTrig
         ? `translate3d(0px,0px,0px)`
         : `translate3d(0px,0px,0px)`
       : `translate3d(0px,100%,0px)`,
-    height: commentOnTrig ? (expandTrig ? `100%` : `50%`) : `50%`,
+    height: expandTrig ? `100%` : `50%`,
   }); //コメント一覧のアニメーション
 
   const [comments, setComments] = React.useState([
     { key: "", content: "", good: 0 },
   ]); //コメント一覧のデータリスト
-
   const bind = useDrag(({ vxvy: [, vy], last }) => {
     //スワイプアクションの設定
     if (commentOnTrig === true) {
@@ -106,39 +107,39 @@ const OtherComments: React.FC<Props> = ({
 
   React.useEffect(() => {
     //送信ボタンが押されたらトリガーされる関数
-    if (thisComment !== "" && thisComment !== "ここにコメント入力") {
-      if (thisComment.length > 100) {
-        alert("コメントは100文字以内にしてください。"); //コメントの文字数制限
-      } else {
-        firebase.database().ref(author).push({ content: thisComment, good: 0 }); //データベースにコメントをアップロード
-        firebase
-          .database()
-          .ref(author)
-          .once("value")
-          .then((snap) => {
-            let databaseRef: Object;
-            databaseRef = snap.val();
-            let comments = Object.entries(databaseRef);
-            setComments(
-              comments.map((comment) => {
-                return {
-                  key: comment[0],
-                  content: comment[1].content,
-                  good: comment[1].good,
-                };
-              })
-            );
-          }); //コメント一覧を更新
-        setThisComment(""); //入力欄を初期化
+    if (submitTrig) {
+      if (thisComment !== "" && thisComment !== "ここにコメント入力") {
+        if (thisComment.length > 100) {
+          alert("コメントは100文字以内にしてください。"); //コメントの文字数制限
+        } else {
+          firebase
+            .database()
+            .ref(author)
+            .push({ content: thisComment, good: 0 }); //データベースにコメントをアップロード
+          firebase
+            .database()
+            .ref(author)
+            .once("value")
+            .then((snap) => {
+              let databaseRef: Object;
+              databaseRef = snap.val();
+              let comments = Object.entries(databaseRef);
+              setComments(
+                comments.map((comment) => {
+                  return {
+                    key: comment[0],
+                    content: comment[1].content,
+                    good: comment[1].good,
+                  };
+                })
+              );
+            }); //コメント一覧を更新
+          setThisComment(""); //入力欄を初期化
+          setSubmitTrig(false); //トリガーの初期化
+        }
       }
     }
   }, [submitTrig]); //submitTrigが変化する度トリガーされる
-
-  React.useEffect(() => {
-    //コメントが提出されたらコメント一覧のスクロールを一番下にする。送信した自分のコメントを確認できる。
-    const CommentsBox = document.getElementById(commentBoxId);
-    CommentsBox?.scrollTo(0, CommentsBox.scrollHeight);
-  }, [comments]);
 
   return (
     <Wrapper {...bind()} style={commentsBoxAnimation}>
