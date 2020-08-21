@@ -11,6 +11,8 @@ import "firebase/database";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 
+import GoodButton from "./goodbutton";
+
 //firebaseの設定
 const firebaseConfig = {
   apiKey: "AIzaSyDx9tzYwvDgTJOXIvkLrbqh1YAJ8XNOrys",
@@ -24,7 +26,6 @@ const firebaseConfig = {
 };
 
 const v = 0.7; //上下スワイプでコメント一覧が拡張する。その時のスワイプ敏感度合
-
 interface Props {
   //親であるbottomtoolbar.tsx参照
   commentOnTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //コメント入力、コメント一覧欄表示トリガー
@@ -153,9 +154,12 @@ const OtherComments: React.FC<Props> = ({
       <CommentsBoxWrapper id={commentBoxId}>
         {comments.map((comment) => {
           return (
-            <CommentWrapper key={comment.key}>
-              <Comment>{comment.content}</Comment>
-            </CommentWrapper>
+            <CommentWrapper2 key={comment.key}>
+              <CommentWrapper>
+                <Comment>{comment.content}</Comment>
+              </CommentWrapper>
+              <GoodButton commentKey={`${author}/${comment.key}`} />
+            </CommentWrapper2>
           );
         })}
       </CommentsBoxWrapper>
@@ -200,8 +204,15 @@ const CommentWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 15px;
   padding: 0px 10px 0px 10px;
-  margin: 5px 5% 5px 5%;
+  margin: 5px 0 5px 0;
+  width: 75%;
   overflow-wrap: break-word;
+`;
+const CommentWrapper2 = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 `;
 const Comment = styled.span`
   height: 30px;
