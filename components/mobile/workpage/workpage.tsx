@@ -58,6 +58,9 @@ const Wrapper = styled.div`
   top: 0px;
   left: 0px;
   background-color: #eac69a;
+  @media screen and (min-width: 1025px) {
+    display: none;
+  }
 `;
 const ContentsWrapper = styled.div`
   width: 100%;

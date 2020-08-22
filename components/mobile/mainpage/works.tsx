@@ -40,7 +40,7 @@ const Works: React.FC<Props> = ({
           return (
             <Link
               href={{
-                pathname: `/mobile/works/${key}`,
+                pathname: `/works/${key}`,
                 query: { isEnglish: isEnglish },
               }}
               key={index}

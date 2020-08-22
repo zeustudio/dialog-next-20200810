@@ -80,9 +80,7 @@ const TopToolBarAnimated: React.FC<Props> = ({
 
   return (
     <Wrapper {...bind()}>
-      <Link
-        href={{ pathname: "/mobile/mobile", query: { isEnglish: englishTrig } }}
-      >
+      <Link href={{ pathname: "/", query: { isEnglish: englishTrig } }}>
         <LogoWrapper>
           <Logo src={logo} />
         </LogoWrapper>
@@ -92,7 +90,7 @@ const TopToolBarAnimated: React.FC<Props> = ({
           return (
             <Link
               href={{
-                pathname: `/mobile/works/${keyArray[index]}`,
+                pathname: `/works/${keyArray[index]}`,
                 query: { isEnglish: englishTrig },
               }}
               key={index}

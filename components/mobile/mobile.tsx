@@ -2,10 +2,10 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
-import TitleScreen from "../../components/mobile/mainpage/titlescreen";
-import HowToVideo from "../../components/mobile/mainpage/howtovideo";
-import Introduction from "../../components/mobile/mainpage/introduction";
-import Works from "../../components/mobile/mainpage/works";
+import TitleScreen from "./mainpage/titlescreen";
+import HowToVideo from "./mainpage/howtovideo";
+import Introduction from "./mainpage/introduction";
+import Works from "./mainpage/works";
 
 import globalCSS from "../../styles/global";
 import { Global } from "@emotion/core";

@@ -58,9 +58,7 @@ const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
         {previousAuthorImg === "" ? null : (
           <Link
             href={{
-              pathname: `/mobile/works/${
-                keyArray[keyArray.indexOf(author) - 1]
-              }`,
+              pathname: `/works/${keyArray[keyArray.indexOf(author) - 1]}`,
               query: { isEnglish: englishTrig },
             }}
           >
@@ -82,9 +80,7 @@ const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
         {nextAuthorImg === "" ? null : (
           <Link
             href={{
-              pathname: `/mobile/works/${
-                keyArray[keyArray.indexOf(author) + 1]
-              }`,
+              pathname: `/works/${keyArray[keyArray.indexOf(author) + 1]}`,
               query: { isEnglish: englishTrig },
             }}
           >

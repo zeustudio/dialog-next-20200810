@@ -28,7 +28,7 @@ const Thumb: React.FC<Props> = ({ img, thisIndex, selectedIndex }) => {
   }, [selectedIndex]);
   if (n - 1 - thisIndex === selectedIndex) {
     return (
-      <Link href={`/mobile/works/${keyArray[thisIndex]}`}>
+      <Link href={`/works/${keyArray[thisIndex]}`}>
         <Img src={img} style={scale} />
       </Link>
     );
