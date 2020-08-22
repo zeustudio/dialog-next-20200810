@@ -57,7 +57,6 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
-  background-color: #eac69a;
   @media screen and (min-width: 1025px) {
     display: none;
   }
@@ -66,7 +65,6 @@ const ContentsWrapper = styled.div`
   width: 100%;
   height: 100%;
   overflow: scroll;
-  background-color: #eac69a;
   scroll-snap-type: y mandatory;
 `;
 export default WorkPage;

@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 
 import lineUp from "../../../images/lineUp.svg"; //　・\＿＿＿＿＿＿＿の画像
 import lineDown from "../../../images/lineDown.svg"; //　-------------\.の画像
+import mdf from "../../../images/mdftexture.jpg";
 
 interface Props {
   width: number; //画面幅
@@ -46,7 +47,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #eac69a;
+  background-image: url(${mdf});
   position: relative;
 `;
 const Line = styled.img`

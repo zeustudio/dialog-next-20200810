@@ -3,6 +3,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import Carousel from "../carousel";
 
+import mdf from "../../../images/mdftexture.jpg";
+
 interface content {
   img: string[]; //画像リスト
   video: string[]; //ビデオリスト(youtube埋め込みリンク)
@@ -57,6 +59,7 @@ const Content: React.FC<Props> = ({ content, isEnglish }) => {
 };
 
 const Wrapper = styled.div`
+  background-image: url(${mdf});
   width: 100%;
   height: 100vh;
   display: flex;

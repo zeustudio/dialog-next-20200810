@@ -5,6 +5,8 @@ import styled from "@emotion/styled";
 
 import WorkData from "../../../constants/workdata";
 
+import mdf from "../../../images/mdftexture.jpg";
+
 interface overview {
   //作品タイトルページデータ
   img: string; //サムネ画像
@@ -50,6 +52,7 @@ const Overview: React.FC<Props> = ({ author, isEnglish }) => {
 };
 
 const Wrapper = styled.div`
+  background-image: url(${mdf});
   width: 100%;
   height: 100%;
   display: flex;

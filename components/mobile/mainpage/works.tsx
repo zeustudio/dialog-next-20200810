@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import lineUp from "../../../images/lineUp.svg"; //　・\＿＿＿＿＿＿＿の画像
 import lineDown from "../../../images/lineDown.svg"; //　-------------\.の画像
+import mdf from "../../../images/mdftexture.jpg";
 
 import WorkData from "../../../constants/workdata";
 
@@ -70,7 +71,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #eac69a;
+  background-image: url(${mdf});
   position: relative;
 `;
 const Line = styled.img`
