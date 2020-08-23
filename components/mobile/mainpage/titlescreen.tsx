@@ -1,14 +1,24 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Lottie from "react-lottie";
 
 import Carousel from "../carousel";
 
-import logoWhite from "../../../images/logo_white.png"; //DiaLogロゴ
+import animationData from "../../../images/online_motion_logo_subtitle_white.json";
 import wideArrow from "../../../images/wideArrow.svg"; //幅が広い下向き矢印画像
 
 import WorkData from "../../../constants/workdata";
 
 const keyArray: string[] = Array.from(WorkData.keys()); //作品作者リスト
+
+const logoOptions = {
+  loop: false,
+  autoplay: true,
+  animationData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 interface Props {
   width: number; //画面幅
@@ -32,7 +42,9 @@ const TitleScreen: React.FC<Props> = ({ width, height }) => {
         />
       </CarouselWrapper>
       <SmokeGlass>
-        <Logo src={logoWhite} />
+        <Logo>
+          <Lottie options={logoOptions} />
+        </Logo>
         <WhoWeAreWrapper>
           <WhoWeAre>東京大学　山中俊治研究室</WhoWeAre>
           <WhoWeAre>UTokyo Prototyping & Design Laboratory</WhoWeAre>
@@ -64,9 +76,8 @@ const SmokeGlass = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const Logo = styled.img`
-  position: absolute;
-  width: 70%;
+const Logo = styled.div`
+  width: 90%;
   grid-row: 2/3;
   align-self: center;
   justify-self: center;
