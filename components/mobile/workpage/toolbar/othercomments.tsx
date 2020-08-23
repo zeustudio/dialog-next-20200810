@@ -77,34 +77,33 @@ const OtherComments: React.FC<Props> = ({
     firebase
       .auth()
       .signInAnonymously()
+      .then(() => {
+        firebase
+          .database()
+          .ref(author)
+          .once("value")
+          .then((snap) => {
+            let databaseRef: Object;
+            databaseRef = snap.val(); //該当する作者の持つデーターベースのスナップショットを取得。この時はまだデータはJSON形式
+            if (databaseRef !== null) {
+              let comments: [
+                string,
+                { content: string; good: number }
+              ][] = Object.entries(databaseRef); //JSONオブジェクトをリストに変換
+              setComments(
+                //comments state変数にデータを格納
+                comments.map((comment) => {
+                  return {
+                    key: comment[0],
+                    content: comment[1].content,
+                    good: comment[1].good,
+                  };
+                })
+              );
+            }
+          });
+      })
       .catch((error) => console.log(error)); //firebase 匿名認証
-    setTimeout(() => {
-      //firebaseサーバー上で認証されるまでの時間を稼ぐため、3秒待つ。
-      firebase
-        .database()
-        .ref(author)
-        .once("value")
-        .then((snap) => {
-          let databaseRef: Object;
-          databaseRef = snap.val(); //該当する作者の持つデーターベースのスナップショットを取得。この時はまだデータはJSON形式
-          if (databaseRef !== null) {
-            let comments: [
-              string,
-              { content: string; good: number }
-            ][] = Object.entries(databaseRef); //JSONオブジェクトをリストに変換
-            setComments(
-              //comments state変数にデータを格納
-              comments.map((comment) => {
-                return {
-                  key: comment[0],
-                  content: comment[1].content,
-                  good: comment[1].good,
-                };
-              })
-            );
-          }
-        });
-    }, 3000);
   }, []);
 
   React.useEffect(() => {
