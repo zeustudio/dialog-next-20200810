@@ -9,11 +9,13 @@ const globalCSS = css`
   ${dom.css()}
   html {
     width: 100%;
-    font-size: 62.5%;
+    height: 100%;
+    font-size: 10px;
   }
 
   body {
     width: 100%;
+    height: 100%;
     color: ${Color.FONT_COLOR};
     font-size: 1.4rem;
     font-family: "Jost", "YuGothic", "Yu Gothic", "游ゴシック", "Meiryo",

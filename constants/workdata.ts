@@ -8,7 +8,7 @@ import ShinoguData from "./works/shinogu";
 import TakuroData from "./works/takuro";
 import UenaData from "./works/uena";
 
-const WorkData = new Map();
+const WorkData = new Map(); //WorkDataはMapオブジェクトとして定義されます。作者名をキーにデータを検索することができます。
 
 WorkData.set("fumin", FuminData);
 WorkData.set("hazuki", HazukiData);

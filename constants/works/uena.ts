@@ -42,7 +42,7 @@ const overview: overview = {
 const contents: content[] = [
   {
     img: [],
-    video: ["https://www.youtube.com/embed/uV4uMk2rvJg"],
+    video: ["https://www.youtube-nocookie.com/embed/uV4uMk2rvJg"],
     TitleJP: `着地動作に着目`,
     TitleEN: `Landing process`,
     MessageJP: `受動的かつしなやかに力を受け流す着地は、生き物らしさがよく現れている挙動であると考えました。`,
@@ -51,9 +51,9 @@ const contents: content[] = [
   {
     img: [],
     video: [
-      "https://www.youtube.com/embed/KQlnPpaEH1c",
-      "https://www.youtube.com/embed/VYwwWftebRo",
-      "https://www.youtube.com/embed/o7o0t-S7_MA",
+      "https://www.youtube-nocookie.com/embed/KQlnPpaEH1c",
+      "https://www.youtube-nocookie.com/embed/VYwwWftebRo",
+      "https://www.youtube-nocookie.com/embed/o7o0t-S7_MA",
     ],
     TitleJP: `着地する足の構造`,
     TitleEN: `Leg structure`,
@@ -63,8 +63,8 @@ const contents: content[] = [
   {
     img: [uena0301, uena0302],
     video: [
-      "https://www.youtube.com/embed/TL-H9QozGec",
-      "https://www.youtube.com/embed/2TuRATVRZc4",
+      "https://www.youtube-nocookie.com/embed/TL-H9QozGec",
+      "https://www.youtube-nocookie.com/embed/2TuRATVRZc4",
     ],
     TitleJP: `ゆらゆら`,
     TitleEN: `solid swing`,

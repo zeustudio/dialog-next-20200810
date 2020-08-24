@@ -76,10 +76,10 @@ const contents: content[] = [
   {
     img: [oga0301, oga0302, oga0303, oga0304, oga0305, oga0306, oga0307],
     video: [
-      "https://www.youtube.com/embed/xEYkd0KqGNo",
-      "https://www.youtube.com/embed/HkHoCw7BWyw",
-      "https://www.youtube.com/embed/Lhi__BrFwqk",
-      "https://www.youtube.com/embed/zCjqANIKhXE",
+      "https://www.youtube-nocookie.com/embed/xEYkd0KqGNo",
+      "https://www.youtube-nocookie.com/embed/HkHoCw7BWyw",
+      "https://www.youtube-nocookie.com/embed/Lhi__BrFwqk",
+      "https://www.youtube-nocookie.com/embed/zCjqANIKhXE",
     ],
     TitleJP: ``,
     TitleEN: `Scalable hand (Ver.2.0)`,

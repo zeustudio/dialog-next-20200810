@@ -1,5 +1,5 @@
-import Desktop from "./desktop/desktop";
-import Mobile from "./mobile/mobile";
+import Desktop from "../components/desktop/desktop";
+import Mobile from "../components/mobile/mobile";
 const IndexPage = () => {
   return (
     <>

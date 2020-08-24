@@ -51,7 +51,7 @@ const overview: overview = {
 const contents: content[] = [
   {
     img: [],
-    video: ["https://www.youtube.com/embed/7WoG9bZwbu0"],
+    video: ["https://www.youtube-nocookie.com/embed/7WoG9bZwbu0"],
     TitleJP: `考察と発想`,
     TitleEN: `Insights and ideas`,
     MessageJP: `研究を進めるにあたり不安定なモノについて考察したことや、実現にあたり描いたアイデアスケッチです。`,
@@ -59,7 +59,7 @@ const contents: content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube.com/embed/9u5XmdjM_XE"],
+    video: ["https://www.youtube-nocookie.com/embed/9u5XmdjM_XE"],
     TitleJP: `ビデオプロトタイプ`,
     TitleEN: `Video prototype`,
     MessageJP: `アイデアスケッチを元に、形状と動き方を簡易的なアニメーションで検討しました。`,
@@ -83,7 +83,7 @@ const contents: content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube.com/embed/XI--qCDvohc"],
+    video: ["https://www.youtube-nocookie.com/embed/XI--qCDvohc"],
     TitleJP: `強化学習の過程`,
     TitleEN: `Reinforcement learning process`,
     MessageJP: `腕の振り方を強化学習させることで、現実には起こりにくい不安定な動きの表現を試みました。`,

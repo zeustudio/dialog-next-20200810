@@ -4,7 +4,7 @@ const Desktop = () => {
 };
 
 const Wrapper = styled.div`
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1025px) {
     display: none;
   }
 `;

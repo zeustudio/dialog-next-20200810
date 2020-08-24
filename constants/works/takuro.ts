@@ -77,7 +77,7 @@ const contents: content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube.com/embed/2c_vL9pehdA"],
+    video: ["https://www.youtube-nocookie.com/embed/2c_vL9pehdA"],
     TitleJP: `荷重負荷試験の様子`,
     TitleEN: `Load test`,
     MessageJP: `被験者の安全確保のため、走行試験に入る前に義足ソケットの強度試験を行いました。走行時の負荷を想定した荷重を義足ソケットに加え、その変形量および耐荷重を測定しました。`,
