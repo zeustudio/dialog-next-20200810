@@ -24,16 +24,6 @@ interface Props {
 }
 
 const Content: React.FC<Props> = ({ content, isEnglish }) => {
-  const [width, setWidth] = React.useState(0); //カルーセルのピクセル幅、cssを用いない幅データが欲しかったのでこっちで値を渡す。
-
-  React.useEffect(() => {
-    if (window.innerWidth > 500) {
-      setWidth(window.innerWidth * 0.8);
-    } else {
-      setWidth(window.innerWidth);
-    }
-  }, []); //widthの設定
-
   return (
     <Wrapper>
       <ImgWrapper>
@@ -74,6 +64,9 @@ const ImgWrapper = styled.div`
   margin-top: 40px;
   margin-bottom: 30px;
   align-self: center;
+  @media screen and (min-width: 500px) {
+    width: 80%;
+  }
 `;
 
 const CaptionWrapper = styled.div`
