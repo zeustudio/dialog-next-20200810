@@ -1,7 +1,12 @@
 //作品ページのコンテンツ
 import React from "react";
 import styled from "@emotion/styled";
-import Carousel from "../carousel";
+//import Carousel from "../carousel";
+//import dynamic from "next/dynamic";
+/*const ReactSlickCarousel = dynamic(() => import("../reactslickcarousel"), {
+  ssr: false,
+});*/
+import ReactSlickCarousel from "../reactslickcarousel";
 
 import mdf from "../../../images/mdftexture.jpg";
 
@@ -32,13 +37,7 @@ const Content: React.FC<Props> = ({ content, isEnglish }) => {
   return (
     <Wrapper>
       <ImgWrapper>
-        <Carousel
-          imgs={content.img}
-          width={width}
-          height={(width * 2) / 3}
-          isTouchable={true}
-          dotsOn={true}
-        />
+        <ReactSlickCarousel imgs={content.img} />
       </ImgWrapper>
       <CaptionWrapper>
         {isEnglish ? (
@@ -71,7 +70,9 @@ const Wrapper = styled.div`
   }
 `;
 const ImgWrapper = styled.div`
+  width: 100%;
   margin-top: 40px;
+  margin-bottom: 30px;
   align-self: center;
 `;
 
