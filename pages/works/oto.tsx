@@ -1,8 +1,9 @@
-//import OtoDesktop from "../../components/desktop/works/oto"
+import OtoDesktop from "../../components/desktop/works/oto";
 import OtoMobile from "../../components/mobile/works/oto";
 const Oto = () => {
   return (
     <>
+      <OtoDesktop />
       <OtoMobile />
     </>
   );

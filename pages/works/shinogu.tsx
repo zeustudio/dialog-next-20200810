@@ -1,8 +1,9 @@
-//import ShinoguDesktop from "../../components/desktop/works/shinogu"
+import ShinoguDesktop from "../../components/desktop/works/shinogu";
 import ShinoguMobile from "../../components/mobile/works/shinogu";
 const Shinogu = () => {
   return (
     <>
+      <ShinoguDesktop />
       <ShinoguMobile />
     </>
   );
