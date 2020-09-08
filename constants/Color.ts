@@ -8,4 +8,6 @@ export enum Color {
   FONT_ACCENT_COLOR2 = "",
   CAPTION_COLOR = "black",
   CAPTION_FONT_COLOR = "white",
+  CAPTION_SUB_FONT_COLOR = "#424242",
+  CAPTION_SUB_FONT_COLOR2 = "silver",
 }
