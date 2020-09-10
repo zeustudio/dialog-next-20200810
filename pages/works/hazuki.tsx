@@ -1,8 +1,9 @@
-//import HazukiDesktop from "../../components/desktop/works/hazuki"
+import HazukiDesktop from "../../components/desktop/works/hazuki";
 import HazukiMobile from "../../components/mobile/works/hazuki";
 const Hazuki = () => {
   return (
     <>
+      <HazukiDesktop />
       <HazukiMobile />
     </>
   );

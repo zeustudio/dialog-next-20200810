@@ -1,0 +1,182 @@
+import React from "react";
+import styled from "@emotion/styled";
+import css from "@emotion/css";
+import { Color } from "../../constants/Color";
+import Slider from "react-slick";
+
+interface Props {
+  captionImages: string[];
+  captionTitleJP: string;
+  captionTitleEN: string;
+  captionMessageJP: string;
+  captionMessageEN: string;
+  isEnglish: Boolean;
+}
+
+const StyledDots = styled.ul`
+  background-color: black;
+`;
+
+const appendDots = (dots: any) => (
+  <div>
+    <StyledDots> {dots} </StyledDots>
+  </div>
+);
+
+const WorkCaptionCarousel: React.FC<Props> = ({
+  captionImages,
+  captionTitleJP,
+  captionTitleEN,
+  captionMessageJP,
+  captionMessageEN,
+  isEnglish,
+}) => {
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+  const customPaging = (i: number) => (
+    <StyledPaging css={i === currentSlide ? CssPaging : null}>●</StyledPaging>
+  );
+  const settings = {
+    class: "center",
+    slidesToShow: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 6000,
+    pauseOnHover: false,
+    cssEase: "ease",
+    speed: 1000,
+    fade: true,
+    dots: true,
+    initialSlide: 0,
+    infinite: true,
+    beforeChange: (_: any, next: number) => {
+      setTimeout(() => setCurrentSlide(next), 30);
+    },
+    appendDots: appendDots,
+    customPaging: customPaging,
+  };
+  if (captionTitleJP === "") {
+    return (
+      <CaptionWrapperDiv>
+        <Slider {...settings} css={CssSlider}>
+          {captionImages.map((captionImage, index) => (
+            <StyledImg
+              key={index}
+              src={captionImage}
+              width="600"
+              height="400"
+            />
+          ))}
+        </Slider>
+        <CaptionMessageDiv>
+          <CaptionENOnly>{captionTitleEN}</CaptionENOnly>
+          {isEnglish ? (
+            <CaptionMessageEN>{captionMessageEN}</CaptionMessageEN>
+          ) : (
+            <CaptionMessageJP>{captionMessageJP}</CaptionMessageJP>
+          )}
+        </CaptionMessageDiv>
+      </CaptionWrapperDiv>
+    );
+  } else {
+    return (
+      <CaptionWrapperDiv>
+        <Slider {...settings} css={CssSlider}>
+          {captionImages.map((captionImage, index) => (
+            <StyledImg
+              key={index}
+              src={captionImage}
+              width="600"
+              height="400"
+            />
+          ))}
+        </Slider>
+        <CaptionMessageDiv>
+          <CaptionTitleJP>{captionTitleJP}</CaptionTitleJP>
+          <CaptionTitleEN>- {captionTitleEN} -</CaptionTitleEN>
+          {isEnglish ? (
+            <CaptionMessageEN>{captionMessageEN}</CaptionMessageEN>
+          ) : (
+            <CaptionMessageJP>{captionMessageJP}</CaptionMessageJP>
+          )}
+        </CaptionMessageDiv>
+      </CaptionWrapperDiv>
+    );
+  }
+};
+
+export default WorkCaptionCarousel;
+
+const CaptionWrapperDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: ${Color.CAPTION_COLOR};
+`;
+
+const CaptionMessageDiv = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 232px;
+  padding: 40px 0 0;
+  margin: 0;
+  color: ${Color.CAPTION_FONT_COLOR};
+  overflow: scroll;
+  /* スクロールバーの削除 */
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const CaptionTitleJP = styled.h3`
+  width: 90%;
+  margin-top: 3.2rem;
+  margin: 0 auto;
+`;
+const CaptionTitleEN = styled.h3`
+  width: 90%;
+  margin: 0 auto 1.6rem;
+`;
+const CaptionENOnly = styled.h3`
+  width: 90%;
+  margin: 0 auto 1.6rem;
+`;
+
+const CaptionMessageJP = styled.p`
+  width: 90%;
+  text-align: justify;
+  margin: 0 auto;
+`;
+const CaptionMessageEN = styled.p`
+  width: 90%;
+  text-align: justify;
+  margin: 0 auto;
+`;
+
+//slider関係
+const CssSlider = css`
+  width: 100%;
+  height: auto;
+`;
+
+const StyledImg = styled.img`
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+`;
+
+// slider dots関係
+const StyledPaging = styled.div`
+  width: 30px;
+  color: ${Color.CAPTION_SUB_FONT_COLOR};
+  &:hover {
+    color: ${Color.CAPTION_SUB_FONT_COLOR2};
+  }
+  &:focus {
+    color: ${Color.CAPTION_SUB_FONT_COLOR2};
+  }
+`;
+
+const CssPaging = css`
+  color: ${Color.CAPTION_FONT_COLOR} !important;
+`;

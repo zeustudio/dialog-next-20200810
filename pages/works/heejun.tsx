@@ -1,8 +1,9 @@
-//import HeejunDesktop from "../../components/desktop/works/heejun"
+import HeejunDesktop from "../../components/desktop/works/heejun";
 import HeejunMobile from "../../components/mobile/works/heejun";
 const Heejun = () => {
   return (
     <>
+      <HeejunDesktop />
       <HeejunMobile />
     </>
   );

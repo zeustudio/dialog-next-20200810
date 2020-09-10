@@ -1,8 +1,9 @@
-//import UenaDesktop from "../../components/desktop/works/uena"
+import UenaDesktop from "../../components/desktop/works/uena";
 import UenaMobile from "../../components/mobile/works/uena";
 const Uena = () => {
   return (
     <>
+      <UenaDesktop />
       <UenaMobile />
     </>
   );

@@ -1,8 +1,9 @@
-//import FuminDesktop from "../../components/desktop/works/fumin"
+import FuminDesktop from "../../components/desktop/works/fumin";
 import FuminMobile from "../../components/mobile/works/fumin";
 const Fumin = () => {
   return (
     <>
+      <FuminDesktop />
       <FuminMobile />
     </>
   );

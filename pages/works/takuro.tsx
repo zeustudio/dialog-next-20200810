@@ -1,8 +1,9 @@
-//import TakuroDesktop from "../../components/desktop/works/takuro"
+import TakuroDesktop from "../../components/desktop/works/takuro";
 import TakuroMobile from "../../components/mobile/works/takuro";
 const Takuro = () => {
   return (
     <>
+      <TakuroDesktop />
       <TakuroMobile />
     </>
   );

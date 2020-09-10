@@ -1,8 +1,9 @@
-//import OgaDesktop from "../../components/desktop/works/oga"
+import OgaDesktop from "../../components/desktop/works/oga";
 import OgaMobile from "../../components/mobile/works/oga";
 const Oga = () => {
   return (
     <>
+      <OgaDesktop />
       <OgaMobile />
     </>
   );

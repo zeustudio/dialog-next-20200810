@@ -1,8 +1,9 @@
-//import KanaDesktop from "../../components/desktop/works/kana"
+import KanaDesktop from "../../components/desktop/works/kana";
 import KanaMobile from "../../components/mobile/works/kana";
 const Kana = () => {
   return (
     <>
+      <KanaDesktop />
       <KanaMobile />
     </>
   );
