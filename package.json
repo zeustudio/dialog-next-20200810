@@ -14,9 +14,6 @@
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
-    "@types/react-lottie": "^1.2.5",
-    "@types/react-slick": "^0.23.4",
-    "@types/smoothscroll-polyfill": "^0.3.1",
     "emotion-reset": "^2.0.7",
     "firebase": "^7.18.0",
     "next": "latest",
@@ -32,9 +29,14 @@
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
+    "@emotion/babel-preset-css-prop": "^10.0.27",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
+    "@types/react-lottie": "^1.2.5",
+    "@types/react-slick": "^0.23.4",
+    "@types/smoothscroll-polyfill": "^0.3.1",
+    "babel-plugin-emotion": "^10.0.33",
     "typescript": "3.7.3"
   },
   "license": "ISC"
