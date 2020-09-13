@@ -6,10 +6,10 @@ import styled from "@emotion/styled";
 import WorkData from "../../../constants/workdata";
 
 import mdf from "../../../images/mdftexture.jpg";
-import { Overview, Authors } from "../../../constants/Types";
+import { Overview, Author } from "../../../constants/Types";
 
 interface Props {
-  author: Authors; //作者
+  author: Author; //作者
   isEnglish: boolean; //英語表示トリガー
 }
 

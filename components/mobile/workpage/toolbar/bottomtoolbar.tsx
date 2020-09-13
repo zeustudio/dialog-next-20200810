@@ -14,13 +14,14 @@ import commentSubmit2 from "../../../../images/commentsubmit2.svg";
 import OtherComments from "./othercomments";
 
 import WorkData from "../../../../constants/workdata";
+import { Author } from "../../../../constants/Types";
 
 interface Props {
-  author: string;
+  author: Author;
   englishTrig: boolean;
 }
 
-const keyArray: string[] = Array.from(WorkData.keys()); //作者名のリスト
+const keyArray: Author[] = Array.from(WorkData.keys()); //作者名のリスト
 
 const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
   const [commentOnTrig, setCommentOnTrig] = React.useState(false); //コメント入力、コメント一覧欄表示トリガー
@@ -44,10 +45,12 @@ const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
   React.useEffect(() => {
     const i = keyArray.indexOf(author);
     if (i > 0) {
-      setPreviousAuthorImg(WorkData.get(keyArray[i - 1]).overview.img);
+      setPreviousAuthorImg(
+        WorkData.get(keyArray[i - 1])?.overview.img as string
+      );
     }
     if (i < keyArray.length - 1) {
-      setNextAuthorImg(WorkData.get(keyArray[i + 1]).overview.img);
+      setNextAuthorImg(WorkData.get(keyArray[i + 1])?.overview.img as string);
     }
     setThisComment("ここにコメント入力");
   }, []); //コンポーネント初期化、前と後の作者が存在するか確認し、画像パスを格納する。

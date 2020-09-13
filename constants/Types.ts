@@ -24,7 +24,7 @@ export interface WorkData {
   OGPImage: string;
 }
 
-export type Authors =
+export type Author =
   | "fumin"
   | "hazuki"
   | "heejun"

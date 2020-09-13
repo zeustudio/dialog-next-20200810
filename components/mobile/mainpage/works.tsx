@@ -7,8 +7,9 @@ import lineDown from "../../../images/lineDown.svg"; //　-------------\.の画�
 import mdf from "../../../images/mdftexture.jpg";
 
 import WorkData from "../../../constants/workdata";
+import { Author } from "../../../constants/Types";
 
-const keyArray: string[] = Array.from(WorkData.keys()); //作品作者リスト
+const keyArray: Author[] = Array.from(WorkData.keys()); //作品作者リスト
 
 interface Props {
   width: number; //画面幅
@@ -47,14 +48,14 @@ const Works: React.FC<Props> = ({
               key={index}
             >
               <WorkWrapper>
-                <Thumb src={WorkData.get(key).overview.img} />
-                {WorkData.get(key).overview.TitleJP === ""}
+                <Thumb src={WorkData.get(key)?.overview.img} />
+                {WorkData.get(key)?.overview.TitleJP === ""}
                 <SmokedGlass>
-                  {WorkData.get(key).overview.TitleJP === ""
-                    ? WorkData.get(key).overview.TitleEN
+                  {WorkData.get(key)?.overview.TitleJP === ""
+                    ? WorkData.get(key)?.overview.TitleEN
                     : isEnglish
-                    ? WorkData.get(key).overview.TitleEN
-                    : WorkData.get(key).overview.TitleJP}
+                    ? WorkData.get(key)?.overview.TitleEN
+                    : WorkData.get(key)?.overview.TitleJP}
                 </SmokedGlass>
               </WorkWrapper>
             </Link>

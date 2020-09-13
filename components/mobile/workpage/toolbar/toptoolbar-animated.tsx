@@ -7,8 +7,9 @@ import Link from "next/link";
 import logo from "../../../../images/logo_white.png";
 
 import WorkData from "../../../../constants/workdata";
+import { Author } from "../../../../constants/Types";
 
-const keyArray: string[] = Array.from(WorkData.keys()); //作品作者リスト
+const keyArray: Author[] = Array.from(WorkData.keys()); //作品作者リスト
 const n: number = keyArray.length; //作者数
 
 const clamp = (x: number, a: number, b: number) => {
@@ -23,7 +24,7 @@ const clamp = (x: number, a: number, b: number) => {
 };
 
 interface Props {
-  author: string; //作者名の文字列
+  author: Author; //作者名の文字列
   englishTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]; //英語表示トリガー
 }
 
@@ -96,7 +97,7 @@ const TopToolBarAnimated: React.FC<Props> = ({
               key={index}
             >
               <Img
-                src={WorkData.get(keyArray[index]).overview.img}
+                src={WorkData.get(keyArray[index])?.overview.img}
                 style={prop}
               />
             </Link>

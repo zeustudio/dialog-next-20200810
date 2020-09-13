@@ -8,9 +8,9 @@ import animationData from "../../../images/online_motion_logo_subtitle_white.jso
 import wideArrow from "../../../images/wideArrow.svg"; //幅が広い下向き矢印画像
 
 import WorkData from "../../../constants/workdata";
-import { Authors } from "../../../constants/Types";
+import { Author } from "../../../constants/Types";
 
-const keyArray: Authors[] = Array.from(WorkData.keys()); //作品作者リスト
+const keyArray: Author[] = Array.from(WorkData.keys()); //作品作者リスト
 
 const logoOptions = {
   loop: false,

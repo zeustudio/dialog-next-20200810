@@ -2,12 +2,13 @@
 import React from "react";
 import styled from "@emotion/styled";
 import WorkData from "../../../../constants/workdata";
+import { Author } from "../../../../constants/Types";
 const uuid = require("react-uuid");
-const keyArray: string[] = Array.from(WorkData.keys());
+const keyArray: Author[] = Array.from(WorkData.keys());
 const n: number = keyArray.length;
 
 interface Props {
-  author: string;
+  author: Author;
 }
 
 const TopToolBar: React.FC<Props> = ({ author }) => {
@@ -20,7 +21,9 @@ const TopToolBar: React.FC<Props> = ({ author }) => {
       if (newIndex < 0 || newIndex > n - 1) {
         thumbArrayBuffer.push("");
       } else {
-        thumbArrayBuffer.push(WorkData.get(keyArray[newIndex]).overview.img);
+        thumbArrayBuffer.push(
+          WorkData.get(keyArray[newIndex])?.overview.img as string
+        );
       }
     }
     setThumbArray(thumbArrayBuffer);

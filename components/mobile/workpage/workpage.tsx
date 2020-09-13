@@ -11,10 +11,10 @@ import OverviewComp from "./overview";
 import ContentComp from "./content";
 
 import workDataMap from "../../../constants/workdata";
-import { Content, Authors } from "../../../constants/Types";
+import { Content, Author } from "../../../constants/Types";
 
 interface Props {
-  author: Authors; //作者
+  author: Author; //作者
 }
 
 const WorkPage: React.FC<Props> = ({ author }) => {
