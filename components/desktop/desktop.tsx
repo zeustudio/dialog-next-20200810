@@ -308,8 +308,3 @@ const MaskDescription = styled.p`
   width: 60%;
   text-align: center;
 `;
-
-const Footer = styled.footer`
-  padding: 160px 0 0;
-  background-color: black;
-`;
