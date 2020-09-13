@@ -15,32 +15,9 @@ import takuro0503 from "../../images/works/Takuro/07-05-03.png";
 import HandWritingImage from "../../images/works/Takuro/takuro_handwriting.png";
 import OGPImage from "../../images/works/Takuro/takuro_ogp.png";
 import ThumbnailImage from "../../images/works/Takuro/takuro_small.png";
-interface overview {
-  img: string;
-  TitleJP: string;
-  TitleEN: string;
-  CaptionJP: string;
-  CaptionEN: string;
-  CreditJP: string;
-  CreditEN: string;
-}
+import { Overview, Content, WorkData } from "../Types";
 
-interface content {
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
-}
-interface workdata {
-  overview: overview;
-  contents: content[];
-  handwritingImage: string;
-  OGPImage: string;
-}
-
-const overview: overview = {
+const overview: Overview = {
   img: ThumbnailImage,
   TitleJP: "",
   TitleEN: "Rami S",
@@ -50,7 +27,7 @@ const overview: overview = {
   CreditEN: `Designer: Shunji Yamanaka, Shin Sakamoto, Takuro Sugimoto\n Collaborator: Tetsudo Kousaikai Foundation Prosthetic and Orthotic Care Center, Toru Suzuki, Imasen Engineering Corporation, Mizuno Corporation`,
 };
 
-const contents: content[] = [
+const contents: Content[] = [
   {
     img: [takuro0101, takuro0103, takuro0104],
     video: [],
@@ -93,7 +70,7 @@ const contents: content[] = [
   },
 ];
 
-const TakuroData: workdata = {
+const TakuroData: WorkData = {
   overview: overview,
   contents: contents,
   handwritingImage: HandWritingImage,

@@ -1,14 +1,15 @@
-interface Overview {
-  img: string;
-  TitleJP: string;
+export interface Overview {
+  //作品タイトルページデータ
+  img: string; //サムネ画像
+  TitleJP: string; //タイトル
   TitleEN: string;
-  CaptionJP: string;
+  CaptionJP: string; //キャプション
   CaptionEN: string;
-  CreditJP: string;
+  CreditJP: string; //クレジット
   CreditEN: string;
 }
 
-interface Content {
+export interface Content {
   img: string[];
   video: string[];
   TitleJP: string;
@@ -22,3 +23,14 @@ export interface WorkData {
   handwritingImage: string;
   OGPImage: string;
 }
+
+export type Authors =
+  | "fumin"
+  | "hazuki"
+  | "heejun"
+  | "kana"
+  | "oga"
+  | "oto"
+  | "shinogu"
+  | "takuro"
+  | "uena";

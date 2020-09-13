@@ -3,33 +3,9 @@ import Image1_2 from "../../images/works/Oto/08-01-02.png";
 import HandWritingImage from "../../images/works/Oto/oto_handwriting.png";
 import OGPImage from "../../images/works/Oto/oto_ogp.png";
 import ThumbnailImage from "../../images/works/Oto/oto_small.png";
+import { Overview, Content, WorkData } from "../Types";
 
-interface overview {
-  img: string;
-  TitleJP: string;
-  TitleEN: string;
-  CaptionJP: string;
-  CaptionEN: string;
-  CreditJP: string;
-  CreditEN: string;
-}
-
-interface content {
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
-}
-interface workdata {
-  overview: overview;
-  contents: content[];
-  handwritingImage: string;
-  OGPImage: string;
-}
-
-const overview: overview = {
+const overview: Overview = {
   img: ThumbnailImage,
   TitleJP: "道具の暇",
   TitleEN: "Tool's Leisure Time",
@@ -39,7 +15,7 @@ const overview: overview = {
   CreditEN: `Designer: Oto Kawamata\n Director: Shunji Yamanaka\n Assistant: Naoki Ueoka, Akihiro Hasegawa,\n Kaito Akimoto, Ryuzo Yanagisawa`,
 };
 
-const contents: content[] = [
+const contents: Content[] = [
   {
     img: [Image1_1, Image1_2],
     video: [],
@@ -69,7 +45,7 @@ const contents: content[] = [
   },
 ];
 
-const OtoData: workdata = {
+const OtoData: WorkData = {
   overview: overview,
   contents: contents,
   handwritingImage: HandWritingImage,

@@ -6,24 +6,15 @@ import styled from "@emotion/styled";
 import WorkData from "../../../constants/workdata";
 
 import mdf from "../../../images/mdftexture.jpg";
+import { Overview, Authors } from "../../../constants/Types";
 
-interface overview {
-  //作品タイトルページデータ
-  img: string; //サムネ画像
-  TitleJP: string; //タイトル
-  TitleEN: string;
-  CaptionJP: string; //キャプション
-  CaptionEN: string;
-  CreditJP: string; //クレジット
-  CreditEN: string;
-}
 interface Props {
-  author: string; //作者
+  author: Authors; //作者
   isEnglish: boolean; //英語表示トリガー
 }
 
-const Overview: React.FC<Props> = ({ author, isEnglish }) => {
-  const overview: overview = WorkData.get(author).overview; //作者より作品データ取得
+const OverviewComp: React.FC<Props> = ({ author, isEnglish }) => {
+  const overview = WorkData.get(author)?.overview as Overview; //作者より作品データ取得
 
   return (
     <Wrapper>
@@ -106,4 +97,4 @@ const Credit = styled.div`
   margin-top: 10px;
   white-space: pre-line;
 `;
-export default Overview;
+export default OverviewComp;

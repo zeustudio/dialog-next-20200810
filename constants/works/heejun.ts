@@ -13,33 +13,9 @@ import heejun0703 from "../../images/works/Heejun/09-07-03.png";
 import HandWritingImage from "../../images/works/Heejun/heejun_handwriting.png";
 import OGPImage from "../../images/works/Heejun/heejun_ogp.png";
 import ThumbnailImage from "../../images/works/Heejun/heejun_small.png";
+import { Overview, Content, WorkData } from "../Types";
 
-interface overview {
-  img: string;
-  TitleJP: string;
-  TitleEN: string;
-  CaptionJP: string;
-  CaptionEN: string;
-  CreditJP: string;
-  CreditEN: string;
-}
-
-interface content {
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
-}
-interface workdata {
-  overview: overview;
-  contents: content[];
-  handwritingImage: string;
-  OGPImage: string;
-}
-
-const overview: overview = {
+const overview: Overview = {
   img: ThumbnailImage,
   TitleJP: "チタンの家具",
   TitleEN: "Titanium Furniture",
@@ -49,7 +25,7 @@ const overview: overview = {
   CreditEN: `Designer: Heejun Lee\n Director: Shunji Yamanaka\n Collaborator: Okabe Lab,\n Institute of Industrial Science, the University of Tokyo`,
 };
 
-const contents: content[] = [
+const contents: Content[] = [
   {
     img: [heejun0101, heejun0102],
     video: [],
@@ -108,7 +84,7 @@ const contents: content[] = [
   },
 ];
 
-const HeejunData: workdata = {
+const HeejunData: WorkData = {
   overview: overview,
   contents: contents,
   handwritingImage: HandWritingImage,
