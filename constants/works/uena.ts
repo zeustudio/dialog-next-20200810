@@ -4,32 +4,9 @@ import uena0302 from "../../images/works/Uena/04-03-02.png";
 import HandWritingImage from "../../images/works/Uena/uena_handwriting.png";
 import OGPImage from "../../images/works/Uena/uena_ogp.png";
 import ThumbnailImage from "../../images/works/Uena/uena_small.png";
-interface overview {
-  img: string;
-  TitleJP: string;
-  TitleEN: string;
-  CaptionJP: string;
-  CaptionEN: string;
-  CreditJP: string;
-  CreditEN: string;
-}
+import { Overview, Content, WorkData } from "../Types";
 
-interface content {
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
-}
-interface workdata {
-  overview: overview;
-  contents: content[];
-  handwritingImage: string;
-  OGPImage: string;
-}
-
-const overview: overview = {
+const overview: Overview = {
   img: ThumbnailImage,
   TitleJP: "ゆらゆら",
   TitleEN: "solid swing",
@@ -39,7 +16,7 @@ const overview: overview = {
   CreditEN: `Designer: Naoki Ueoka\n Director: Shunji Yamanaka`,
 };
 
-const contents: content[] = [
+const contents: Content[] = [
   {
     img: [],
     video: ["https://www.youtube-nocookie.com/embed/uV4uMk2rvJg"],
@@ -73,7 +50,7 @@ const contents: content[] = [
   },
 ];
 
-const UenaData: workdata = {
+const UenaData: WorkData = {
   overview: overview,
   contents: contents,
   handwritingImage: HandWritingImage,

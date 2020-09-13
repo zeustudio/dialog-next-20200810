@@ -20,33 +20,9 @@ import oga0403 from "../../images/works/Oga/01-04-03.png";
 import OGPImage from "../../images/works/Oga/oga_ogp.png";
 import HandWritingImage from "../../images/works/Oga/oga_handwriting.png";
 import ThumbnailImage from "../../images/works/Oga/oga_small.png";
+import { Overview, Content, WorkData } from "../Types";
 
-interface overview {
-  img: string;
-  TitleJP: string;
-  TitleEN: string;
-  CaptionJP: string;
-  CaptionEN: string;
-  CreditJP: string;
-  CreditEN: string;
-}
-
-interface content {
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
-}
-interface workdata {
-  overview: overview;
-  contents: content[];
-  handwritingImage: string;
-  OGPImage: string;
-}
-
-const overview: overview = {
+const overview: Overview = {
   img: ThumbnailImage,
   TitleJP: "",
   TitleEN: "Scalable hand",
@@ -56,7 +32,7 @@ const overview: overview = {
   CreditEN: `Designer: Yuki Ogasawara\n Director: Shunji Yamanaka`,
 };
 
-const contents: content[] = [
+const contents: Content[] = [
   {
     img: [oga0101, oga0102, oga0103, oga0104],
     video: [],
@@ -96,7 +72,7 @@ const contents: content[] = [
   },
 ];
 
-const OgaData: workdata = {
+const OgaData: WorkData = {
   overview: overview,
   contents: contents,
   handwritingImage: HandWritingImage,

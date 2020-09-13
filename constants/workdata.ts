@@ -7,17 +7,18 @@ import OtoData from "./works/oto";
 import ShinoguData from "./works/shinogu";
 import TakuroData from "./works/takuro";
 import UenaData from "./works/uena";
+import { WorkData, Author } from "./Types";
 
-const WorkData = new Map(); //WorkDataはMapオブジェクトとして定義されます。作者名をキーにデータを検索することができます。
+const workDataMap = new Map<Author, WorkData>([
+  ["fumin", FuminData],
+  ["hazuki", HazukiData],
+  ["heejun", HeejunData],
+  ["kana", KanaData],
+  ["oga", OgaData],
+  ["oto", OtoData],
+  ["shinogu", ShinoguData],
+  ["takuro", TakuroData],
+  ["uena", UenaData],
+]); //WorkDataはMapオブジェクトとして定義されます。作者名をキーにデータを検索することができます。
 
-WorkData.set("fumin", FuminData);
-WorkData.set("hazuki", HazukiData);
-WorkData.set("heejun", HeejunData);
-WorkData.set("kana", KanaData);
-WorkData.set("oga", OgaData);
-WorkData.set("oto", OtoData);
-WorkData.set("shinogu", ShinoguData);
-WorkData.set("takuro", TakuroData);
-WorkData.set("uena", UenaData);
-
-export default WorkData;
+export default workDataMap;

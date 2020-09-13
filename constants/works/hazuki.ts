@@ -11,33 +11,9 @@ import hazuki_9 from "../../images/works/Hazuki/hazuki_9.png";
 import HandWritingImage from "../../images/works/Hazuki/hazuki_handwriting.png";
 import OGPImage from "../../images/works/Hazuki/hazuki_ogp.png";
 import ThumbnailImage from "../../images/works/Hazuki/hazuki_small.png";
+import { Overview, Content, WorkData } from "../Types";
 
-interface overview {
-  img: string;
-  TitleJP: string;
-  TitleEN: string;
-  CaptionJP: string;
-  CaptionEN: string;
-  CreditJP: string;
-  CreditEN: string;
-}
-
-interface content {
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
-}
-interface workdata {
-  overview: overview;
-  contents: content[];
-  handwritingImage: string;
-  OGPImage: string;
-}
-
-const overview: overview = {
+const overview: Overview = {
   img: ThumbnailImage,
   TitleJP: "",
   TitleEN:
@@ -48,7 +24,7 @@ const overview: overview = {
   CreditEN: `Designer: Hazuki Miyoshi\n Director: Shunji Yamanaka`,
 };
 
-const contents: content[] = [
+const contents: Content[] = [
   {
     img: [hazuki_1_1, hazuki_1_2],
     video: [],
@@ -123,7 +99,7 @@ const contents: content[] = [
   },
 ];
 
-const HazukiData: workdata = {
+const HazukiData: WorkData = {
   overview: overview,
   contents: contents,
   handwritingImage: HandWritingImage,

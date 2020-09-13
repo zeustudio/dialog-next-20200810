@@ -21,32 +21,9 @@ import shinogu0604 from "../../images/works/Shinogu/02-06-04.png";
 import HandWritingImage from "../../images/works/Shinogu/shinogood_handwriting.png";
 import ThumbnailImage from "../../images/works/Shinogu/shinogu_small.png";
 import OGPImage from "../../images/works/Shinogu/shinogu_ogp.png";
-interface overview {
-  img: string;
-  TitleJP: string;
-  TitleEN: string;
-  CaptionJP: string;
-  CaptionEN: string;
-  CreditJP: string;
-  CreditEN: string;
-}
+import { Overview, Content, WorkData } from "../Types";
 
-interface content {
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
-}
-interface workdata {
-  overview: overview;
-  contents: content[];
-  handwritingImage: string;
-  OGPImage: string;
-}
-
-const overview: overview = {
+const overview: Overview = {
   img: ThumbnailImage,
   TitleJP: "流点",
   TitleEN: "Ruten",
@@ -56,7 +33,7 @@ const overview: overview = {
   CreditEN: `Designer: Shinogu Yamamoto\n Director: Shunji Yamanaka\n Collaborator: Haruyuki Kinoshita, Toru Misawa`,
 };
 
-const contents: content[] = [
+const contents: Content[] = [
   {
     img: [shinogu0101, shinogu0102],
     video: [],
@@ -115,7 +92,7 @@ const contents: content[] = [
   },
 ];
 
-const ShinoguData: workdata = {
+const ShinoguData: WorkData = {
   overview: overview,
   contents: contents,
   handwritingImage: HandWritingImage,

@@ -7,26 +7,18 @@ import { Global } from "@emotion/core";
 
 import TopToolBarAnimated from "./toolbar/toptoolbar-animated";
 import BottomToolBar from "./toolbar/bottomtoolbar";
-import Overview from "./overview";
-import Content from "./content";
+import OverviewComp from "./overview";
+import ContentComp from "./content";
 
-import WorkData from "../../../constants/workdata";
+import workDataMap from "../../../constants/workdata";
+import { Content, Author } from "../../../constants/Types";
 
 interface Props {
-  author: string; //作者
-}
-interface content {
-  //content.tsxに渡されるデータ形式
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
+  author: Author; //作者
 }
 
 const WorkPage: React.FC<Props> = ({ author }) => {
-  const contents: content[] = WorkData.get(author).contents; //content.tsxに渡されるデータを取得
+  const contents = workDataMap.get(author)?.contents as Content[]; //content.tsxに渡されるデータを取得
   const router = useRouter(); //　next/linkコンポーネントからqueryを受け取るためのrouter。ページ間英語・日本語設定を引き継ぐため
   const isEnglish: boolean = router.query.isEnglish === "true"; //queryの文字列をbooleanに変換
   const [englishTrig, setEnglishTrig] = React.useState(isEnglish); //英語表示トリガー
@@ -39,10 +31,14 @@ const WorkPage: React.FC<Props> = ({ author }) => {
         englishTrigState={[englishTrig, setEnglishTrig]}
       />
       <ContentsWrapper>
-        <Overview author={author} isEnglish={englishTrig} />
+        <OverviewComp author={author} isEnglish={englishTrig} />
         {contents.map((content, index) => {
           return (
-            <Content key={index} content={content} isEnglish={englishTrig} />
+            <ContentComp
+              key={index}
+              content={content}
+              isEnglish={englishTrig}
+            />
           );
         })}
       </ContentsWrapper>

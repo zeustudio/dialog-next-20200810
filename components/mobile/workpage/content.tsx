@@ -10,20 +10,14 @@ import ReactSlickCarousel from "../reactslickcarousel";
 
 import mdf from "../../../images/mdftexture.jpg";
 
-interface content {
-  img: string[]; //画像リスト
-  video: string[]; //ビデオリスト(youtube埋め込みリンク)
-  TitleJP: string; //キャプションタイトル
-  TitleEN: string; //キャプションタイトル
-  MessageJP: string; //キャプション本文
-  MessageEN: string; //キャプション本文
-}
+import { Content } from "../../../constants/Types";
+
 interface Props {
-  content: content; //真上のinterface content参考
+  content: Content; //真上のinterface content参考
   isEnglish: boolean; //英語表示のトリガー
 }
 
-const Content: React.FC<Props> = ({ content, isEnglish }) => {
+const ContentComp: React.FC<Props> = ({ content, isEnglish }) => {
   return (
     <Wrapper>
       <ImgWrapper>
@@ -100,4 +94,4 @@ const MessageJP = styled.div`
   font-weight: bold;
   text-indent: 1em;
 `;
-export default Content;
+export default ContentComp;

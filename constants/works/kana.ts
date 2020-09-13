@@ -12,33 +12,9 @@ import kana0603 from "../../images/works/Kana/05-06-03.png";
 import HandWritingImage from "../../images/works/Kana/kana-munya_handwriting.png";
 import OGPImage from "../../images/works/Kana/kana-munya_ogp.png";
 import ThumbnailImage from "../../images/works/Kana/kana-munya_small.png";
+import { Overview, Content, WorkData } from "../Types";
 
-interface overview {
-  img: string;
-  TitleJP: string;
-  TitleEN: string;
-  CaptionJP: string;
-  CaptionEN: string;
-  CreditJP: string;
-  CreditEN: string;
-}
-
-interface content {
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
-}
-interface workdata {
-  overview: overview;
-  contents: content[];
-  handwritingImage: string;
-  OGPImage: string;
-}
-
-const overview: overview = {
+const overview: Overview = {
   img: ThumbnailImage,
   TitleJP: "OTT: OTTOTTO",
   TitleEN: "Oops Robot",
@@ -48,7 +24,7 @@ const overview: overview = {
   CreditEN: `Designer: Masaki Kanayama, Yuya Munakata\n Director: Shunji Yamanaka`,
 };
 
-const contents: content[] = [
+const contents: Content[] = [
   {
     img: [],
     video: ["https://www.youtube-nocookie.com/embed/7WoG9bZwbu0"],
@@ -99,7 +75,7 @@ const contents: content[] = [
   },
 ];
 
-const KanaData: workdata = {
+const KanaData: WorkData = {
   overview: overview,
   contents: contents,
   handwritingImage: HandWritingImage,

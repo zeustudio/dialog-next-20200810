@@ -21,33 +21,9 @@ import fumin0604 from "../../images/works/Fu-min/06-06-04.png";
 import HandWritingImage from "../../images/works/Fu-min/fu-min_handwriting.png";
 import OGPImage from "../../images/works/Fu-min/fu-min_ogp.png";
 import ThumbnailImage from "../../images/works/Fu-min/fu-min_small.png";
+import { Overview, Content, WorkData } from "../Types";
 
-interface overview {
-  img: string;
-  TitleJP: string;
-  TitleEN: string;
-  CaptionJP: string;
-  CaptionEN: string;
-  CreditJP: string;
-  CreditEN: string;
-}
-
-interface content {
-  img: string[];
-  video: string[];
-  TitleJP: string;
-  TitleEN: string;
-  MessageJP: string;
-  MessageEN: string;
-}
-interface workdata {
-  overview: overview;
-  contents: content[];
-  handwritingImage: string;
-  OGPImage: string;
-}
-
-const overview: overview = {
+const overview: Overview = {
   img: ThumbnailImage,
   TitleJP: "ヴァイオリン用\n顎・肩当て",
   TitleEN: "Chin & Shoulder Rest",
@@ -57,7 +33,7 @@ const overview: overview = {
   CreditEN: `Designer: Fumi Takata\n Director: Takashi Ashitomi, Shunji Yamanaka`,
 };
 
-const contents: content[] = [
+const contents: Content[] = [
   {
     img: [fumin0101, fumin0102, fumin0103, fumin0104],
     video: [],
@@ -108,7 +84,7 @@ const contents: content[] = [
   },
 ];
 
-const FuminData: workdata = {
+const FuminData: WorkData = {
   overview: overview,
   contents: contents,
   handwritingImage: HandWritingImage,
