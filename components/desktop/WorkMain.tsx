@@ -198,7 +198,7 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
         item ? (
           <Header style={props} key={key}>
             <Link href="/">
-              <HeaderLogoDiv
+              <HeaderLogoImg
                 src={HeaderLogo}
                 alt="Dia Log"
                 height="800"
@@ -373,10 +373,11 @@ const Header = styled(animated.header)`
   z-index: 15;
 `;
 
-const HeaderLogoDiv = styled.img`
+const HeaderLogoImg = styled.img`
   width: 104px;
   height: auto;
   margin-top: 8px;
+  cursor: pointer;
 `;
 
 const JPENButton = styled.button`

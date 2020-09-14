@@ -41,7 +41,10 @@ const Desktop: React.FC = () => {
         </WrapperLogo>
         <WrapperWhoWeAre>
           <WhoWeAre>東京大学　山中俊治研究室</WhoWeAre>
-          <WhoWeAre>UTokyo Prototyping & Design Laboratory</WhoWeAre>
+          <WhoWeAre>
+            UTokyo
+            <br /> Prototyping & Design Laboratory
+          </WhoWeAre>
           <WideArrowImg src={WideArrow} />
         </WrapperWhoWeAre>
       </TitleSection>
@@ -133,7 +136,9 @@ const Desktop: React.FC = () => {
           ))}
         </WrapperWorks>
       </SectionDiv>
-      <Credits />
+      <SectionDiv>
+        <Credits />
+      </SectionDiv>
     </Wrapper>
   );
 };
@@ -196,7 +201,7 @@ const WideArrowImg = styled.img`
 `;
 
 const SectionDiv = styled.div`
-  padding: 160px 0 0;
+  padding: 240px 0 0;
 `;
 
 const SectionTitle = styled.h2`
