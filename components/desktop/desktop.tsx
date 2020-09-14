@@ -124,7 +124,7 @@ const Desktop: React.FC = () => {
         <SectionTitle>WORKS</SectionTitle>
         <WrapperWorks>
           {authors.map((author) => (
-            <Link href={`works/${author}`}>
+            <Link href={`works/${author}`} key={author}>
               <WrapperWorkImg>
                 <WorkImg src={workDataMap.get(author)?.overview.img} />
                 <MaskWorkImgDiv>
