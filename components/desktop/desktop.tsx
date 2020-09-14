@@ -43,7 +43,8 @@ const Desktop: React.FC = () => {
           <WhoWeAre>東京大学　山中俊治研究室</WhoWeAre>
           <WhoWeAre>
             UTokyo
-            <br /> Prototyping & Design Laboratory
+            <br />
+            Prototyping & Design Laboratory
           </WhoWeAre>
           <WideArrowImg src={WideArrow} />
         </WrapperWhoWeAre>
