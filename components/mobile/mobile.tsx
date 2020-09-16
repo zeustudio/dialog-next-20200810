@@ -17,7 +17,7 @@ const Mobile = () => {
   const [englishTrig, setEnglishTrig] = React.useState(isEnglish); //英語表示トリガー
 
   return (
-    <Wrapper style={{ width: width, height: height }} id="mainPage">
+    <Wrapper style={{ height: height }} id="mainPage">
       <Global styles={globalCSS} />
       <TitleScreen width={width} height={height} />
       <HowToVideo width={width} height={height} />

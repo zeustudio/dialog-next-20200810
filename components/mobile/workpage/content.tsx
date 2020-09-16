@@ -69,7 +69,10 @@ const CaptionWrapper = styled.div`
   line-height: 2.5rem;
   margin-bottom: 40px;
   max-height: 50%;
-  overflow: scroll;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   margin: 0px 30px 40px 30px;
   @media screen and (min-width: 600px) {
     width: 600px;

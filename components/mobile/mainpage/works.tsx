@@ -92,6 +92,7 @@ const WorksWrapper = styled.div`
 `;
 const WorkWrapper = styled.div`
   width: 30%;
+  height: 30%;
   position: relative;
   margin: 1%;
 `;
@@ -108,7 +109,11 @@ const SmokedGlass = styled.div`
   color: white;
   text-align: right;
   padding: 5%;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   @media screen and (min-width: 768px) {
     font-size: 1.6rem;
     line-height: 2.4rem;
