@@ -2,11 +2,12 @@ import React from "react";
 import styled from "@emotion/styled";
 import { css, keyframes } from "@emotion/core";
 import smoothscroll from "smoothscroll-polyfill";
-import { useTransition, animated } from "react-spring";
+import { useTransition, animated, useSpring } from "react-spring";
 import Link from "next/link";
 
 import MDFTexture from "../../images/mdftexture.jpg";
 import HeaderLogo from "../../images/logo_white.png";
+import WideArrow from "../../images/wideArrow.svg";
 import dynamic from "next/dynamic";
 const WorkCaptionCarousel = dynamic(import("./WorkCaptionCarousel"), {
   ssr: false,
@@ -162,6 +163,7 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   });
+  // overviewの説明分が消えていくためのtransition
   const transitionsCaption = useTransition(selectedSection < 2, null, {
     initial: { opacity: 1 },
     from: { opacity: 0 },
@@ -177,6 +179,14 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
     from: { opacity: 0 },
     enter: { opacity: 0.8 },
     leave: { opacity: 0 },
+  });
+  // overviewが終了したあとにコンテンツを表示する用
+  const springCaption = useSpring({
+    opacity: selectedSection >= 2 ? 1 : 0,
+  });
+  // consoleのみスクロールの関係で隠しておく
+  const springConsoleVisible = useSpring({
+    visibility: selectedSection >= 2 ? "visible" : "hidden",
   });
   // headerのfadein fadeout用
   const transitinsHeader = useTransition(selectedSection >= 1, null, {
@@ -198,7 +208,7 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
         item ? (
           <Header style={props} key={key}>
             <Link href="/">
-              <HeaderLogoDiv
+              <HeaderLogoImg
                 src={HeaderLogo}
                 alt="Dia Log"
                 height="800"
@@ -234,15 +244,7 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
           item ? <CoverDiv style={props} key={key} /> : null
         )}
         {transitinsUnderButton.map(({ item, key, props }) =>
-          item ? (
-            <UnderArrowButton
-              onClick={() => handleLink(selectedSection + 1)}
-              style={props}
-              key={key}
-            >
-              ▼
-            </UnderArrowButton>
-          ) : null
+          item ? <UnderArrow style={props} key={key} src={WideArrow} /> : null
         )}
         <SectionDiv ref={targets.current[0]} id={`${0}`} key={0}>
           <OverviewDummyDiv></OverviewDummyDiv>
@@ -288,7 +290,7 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
             id={`${index + 2}`}
             key={index + 2}
           >
-            <LimitDiv>
+            <LimitDiv style={springCaption}>
               <WrapCCArea>
                 <CaptionArea ref={consoleAreaRef}>
                   <WorkCaptionCarousel
@@ -301,7 +303,7 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
                   />
                 </CaptionArea>
                 {index === 0 ? (
-                  <ConsoleArea>
+                  <ConsoleArea style={springConsoleVisible}>
                     <ConsoleDiv width={consoleWidth} height={consoleHeight}>
                       <PageArea>
                         {sections.map((section, index) =>
@@ -373,10 +375,11 @@ const Header = styled(animated.header)`
   z-index: 15;
 `;
 
-const HeaderLogoDiv = styled.img`
+const HeaderLogoImg = styled.img`
   width: 104px;
   height: auto;
   margin-top: 8px;
+  cursor: pointer;
 `;
 
 const JPENButton = styled.button`
@@ -397,26 +400,20 @@ const OverviewDummyDiv = styled.div`
 `;
 
 const bounce = keyframes`
-  from, 10%, 18%, 26%, to{
+  from, 10%, 22%, 34%, to{
     transform: translateY(0);
   }
-  14%, 22%{
+  16%, 28%{
     transform: translateY(-30px);
   }
 `;
 
-const UnderArrowButton = styled(animated.button)`
+const UnderArrow = styled(animated.img)`
   position: fixed;
   left: 50%;
   bottom: 24px;
-  width: 64px;
-  height: 64px;
-  color: white;
-  background-color: black;
-  border: solid 2px white;
-  border-radius: 50%;
   animation: ${bounce} 5s ease-out infinite;
-  z-index: 20;
+  z-index: 15;
 `;
 
 const OverviewDiv = styled.div`
@@ -459,7 +456,7 @@ const OverviewImg = styled(animated.img)`
   height: 100vh;
   object-fit: cover;
   object-position: left top;
-  z-index: 10;
+  /* z-index: 10; */
 `;
 
 const CoverDiv = styled(animated.div)`
@@ -467,7 +464,7 @@ const CoverDiv = styled(animated.div)`
   width: 100vw;
   height: 100vh;
   background-color: black;
-  z-index: 10;
+  /* z-index: 10; */
 `;
 
 const MainDiv = styled.div`
@@ -484,7 +481,7 @@ const SectionDiv = styled.div`
   scroll-snap-align: start;
 `;
 
-const LimitDiv = styled.div`
+const LimitDiv = styled(animated.div)`
   display: flex;
   align-items: center;
   width: 100%;
@@ -503,7 +500,7 @@ const CaptionArea = styled.div`
   width: 64%;
 `;
 
-const ConsoleArea = styled.div`
+const ConsoleArea = styled(animated.div)`
   position: relative;
   width: 32%;
 `;
@@ -558,12 +555,13 @@ const CommentArea = styled.div`
   padding: 24px 24px 0;
   background-color: black;
   color: white;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   /* スクロールバーの削除 */
-  -ms-overflow-style: none;
+  /* -ms-overflow-style: none;
   &::-webkit-scrollbar {
     display: none;
-  }
+  } */
 `;
 
 const CommentDiv = styled.div`
@@ -584,6 +582,7 @@ const StyledForm = styled.form`
   display: flex;
   align-items: flex-end;
   padding: 36px 24px 16px;
+  margin-top: -4px;
   background-color: black;
   height: 8rem;
 `;
