@@ -154,7 +154,7 @@ const Wrapper = styled.div`
 `;
 
 const TitleSection = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -163,7 +163,7 @@ const TitleSection = styled.div`
 
 const TitleImg = styled.img`
   position: absolute;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   object-fit: cover;
   object-position: left top;
@@ -171,7 +171,7 @@ const TitleImg = styled.img`
 
 const TitleCover = styled.div`
   position: absolute;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: black;
   opacity: 0.4;
