@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import MDFTexture from "../../images/mdftexture.jpg";
 import HeaderLogo from "../../images/logo_white.png";
+import WideArrow from "../../images/wideArrow.svg";
 import dynamic from "next/dynamic";
 const WorkCaptionCarousel = dynamic(import("./WorkCaptionCarousel"), {
   ssr: false,
@@ -243,15 +244,7 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
           item ? <CoverDiv style={props} key={key} /> : null
         )}
         {transitinsUnderButton.map(({ item, key, props }) =>
-          item ? (
-            <UnderArrowButton
-              onClick={() => handleLink(selectedSection + 1)}
-              style={props}
-              key={key}
-            >
-              ▼
-            </UnderArrowButton>
-          ) : null
+          item ? <UnderArrow style={props} key={key} src={WideArrow} /> : null
         )}
         <SectionDiv ref={targets.current[0]} id={`${0}`} key={0}>
           <OverviewDummyDiv></OverviewDummyDiv>
@@ -407,24 +400,18 @@ const OverviewDummyDiv = styled.div`
 `;
 
 const bounce = keyframes`
-  from, 10%, 18%, 26%, to{
+  from, 10%, 22%, 34%, to{
     transform: translateY(0);
   }
-  14%, 22%{
+  16%, 28%{
     transform: translateY(-30px);
   }
 `;
 
-const UnderArrowButton = styled(animated.button)`
+const UnderArrow = styled(animated.img)`
   position: fixed;
   left: 50%;
   bottom: 24px;
-  width: 64px;
-  height: 64px;
-  color: white;
-  background-color: black;
-  border: solid 2px white;
-  border-radius: 50%;
   animation: ${bounce} 5s ease-out infinite;
   z-index: 15;
 `;
