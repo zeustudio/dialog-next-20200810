@@ -1,6 +1,8 @@
 //イントロビデオ
 import React from "react";
 import styled from "@emotion/styled";
+import ReactPlayer from "react-player";
+const videourl = require("../../../images/TitleVideo.mp4");
 interface Props {
   width: number; //画面幅
   height: number; //画面高さ
@@ -9,9 +11,11 @@ interface Props {
 const HowToVideo: React.FC<Props> = ({ width, height }) => {
   return (
     <Wrapper style={{ width: width, height: height }}>
-      <Video
-        src={`https://www.youtube-nocookie.com/embed/zlujVqieRk4`}
-        allow={"autoplay"}
+      <ReactPlayer
+        url={videourl}
+        width={width}
+        height={height}
+        controls={true}
       />
     </Wrapper>
   );
@@ -24,8 +28,9 @@ const Wrapper = styled.div`
   justify-content: center;
   background-color: #eac69a;
 `;
-const Video = styled.iframe`
-  width: 100%;
-  height: 100%;
-`;
 export default HowToVideo;
+
+/*<Video
+        src={`https://www.youtube-nocookie.com/embed/zlujVqieRk4`}
+        allow={"autoplay"}
+      /> */
