@@ -114,8 +114,7 @@ const Desktop: React.FC = () => {
               東京大学生産技靴研究所S棟1階ギャラリー
             </OfflineDate>
             <OfflineDescription>
-              作品製作者と来場者との対話が生まれる場所をコンセプトに、学生が主体となって展示会『DiaLog
-              きく、はなす、すすむ』を企画しました。しかしCOVID-19の影響により、開催を目前に一般公開を延期という判断を致しました。
+              作品製作者と来場者との対話が生まれる場所をコンセプトに、学生が主体となって展示会『DiaLog きく、はなす、すすむ』を企画しました。しかしCOVID-19の影響により、開催を目前に一般公開を延期という判断を致しました。
             </OfflineDescription>
           </OfflineCaption>
         </WrapperOffline>
