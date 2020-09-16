@@ -67,7 +67,8 @@ const CaptionWrapper = styled.div`
   margin: 0px 15px 0px 15px;
   word-wrap: break-word;
   margin-bottom: 40px;
-  overflow: scroll;
+  overflow-y: scroll;
+
   @media screen and (min-width: 600px) {
     width: 600px;
   }
