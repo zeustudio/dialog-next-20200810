@@ -4,6 +4,9 @@ import css from "@emotion/css";
 import { Color } from "../../constants/Color";
 import Slider from "react-slick";
 
+import ReactPlayer from "react-player";
+import videourl from "../../images/TitleVideo.mp4";
+
 interface Props {
   captionImages: string[];
   captionTitleJP: string;
@@ -54,54 +57,31 @@ const WorkCaptionCarousel: React.FC<Props> = ({
     appendDots: appendDots,
     customPaging: customPaging,
   };
-  if (captionTitleJP === "") {
-    return (
-      <CaptionWrapperDiv>
-        <Slider {...settings} css={CssSlider}>
-          {captionImages.map((captionImage, index) => (
-            <StyledImg
-              key={index}
-              src={captionImage}
-              width="600"
-              height="400"
-            />
-          ))}
-        </Slider>
-        <CaptionMessageDiv>
+  return (
+    <CaptionWrapperDiv>
+      <Slider {...settings} css={CssSlider}>
+        {captionImages.map((captionImage, index) => (
+          <StyledImg key={index} src={captionImage} width="600" height="400" />
+        ))}
+        <ReactPlayer width={"100%"} url={videourl} controls={true} />
+      </Slider>
+      <CaptionMessageDiv>
+        {captionTitleJP === "" ? (
           <CaptionENOnly>{captionTitleEN}</CaptionENOnly>
-          {isEnglish ? (
-            <CaptionMessageEN>{captionMessageEN}</CaptionMessageEN>
-          ) : (
-            <CaptionMessageJP>{captionMessageJP}</CaptionMessageJP>
-          )}
-        </CaptionMessageDiv>
-      </CaptionWrapperDiv>
-    );
-  } else {
-    return (
-      <CaptionWrapperDiv>
-        <Slider {...settings} css={CssSlider}>
-          {captionImages.map((captionImage, index) => (
-            <StyledImg
-              key={index}
-              src={captionImage}
-              width="600"
-              height="400"
-            />
-          ))}
-        </Slider>
-        <CaptionMessageDiv>
-          <CaptionTitleJP>{captionTitleJP}</CaptionTitleJP>
-          <CaptionTitleEN>- {captionTitleEN} -</CaptionTitleEN>
-          {isEnglish ? (
-            <CaptionMessageEN>{captionMessageEN}</CaptionMessageEN>
-          ) : (
-            <CaptionMessageJP>{captionMessageJP}</CaptionMessageJP>
-          )}
-        </CaptionMessageDiv>
-      </CaptionWrapperDiv>
-    );
-  }
+        ) : (
+          <>
+            <CaptionTitleJP>{captionTitleJP}</CaptionTitleJP>
+            <CaptionTitleEN>- {captionTitleEN} -</CaptionTitleEN>
+          </>
+        )}
+        {isEnglish ? (
+          <CaptionMessageEN>{captionMessageEN}</CaptionMessageEN>
+        ) : (
+          <CaptionMessageJP>{captionMessageJP}</CaptionMessageJP>
+        )}
+      </CaptionMessageDiv>
+    </CaptionWrapperDiv>
+  );
 };
 
 export default WorkCaptionCarousel;
