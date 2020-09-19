@@ -76,7 +76,7 @@ const WorkCaptionCarousel: React.FC<Props> = ({
     slidesToShow: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 6000,
     pauseOnHover: false,
     cssEase: "ease",
     speed: 1000,
@@ -99,8 +99,7 @@ const WorkCaptionCarousel: React.FC<Props> = ({
         <ReactPlayer
           width={"100%"}
           url={videourl}
-          controls={false}
-          playing={true}
+          controls={true}
           loop={true}
         />
       </Slider>
