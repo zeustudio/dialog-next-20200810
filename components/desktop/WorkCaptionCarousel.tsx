@@ -3,9 +3,11 @@ import styled from "@emotion/styled";
 import css from "@emotion/css";
 import { Color } from "../../constants/Color";
 import Slider from "react-slick";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import ReactPlayer from "react-player";
 import videourl from "../../images/TitleVideo.mp4";
+import { faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   captionImages: string[];
@@ -20,11 +22,15 @@ const StyledDots = styled.ul`
   background-color: black;
 `;
 
-const appendDots = (dots: any) => (
-  <div>
-    <StyledDots> {dots} </StyledDots>
-  </div>
-);
+const StyledPlayButton = styled.button`
+  display: inline-block;
+  color: ${Color.CAPTION_SUB_FONT_COLOR};
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  &:hover {
+    color: ${Color.CAPTION_FONT_COLOR};
+  }
+`;
 
 const WorkCaptionCarousel: React.FC<Props> = ({
   captionImages,
@@ -35,6 +41,33 @@ const WorkCaptionCarousel: React.FC<Props> = ({
   isEnglish,
 }) => {
   const [currentSlide, setCurrentSlide] = React.useState(0);
+  const [flagAuto, setFlagAuto] = React.useState(true);
+  const sliderRef = React.useRef<Slider>(null);
+  const sliderAutoStopOrPlay = () => {
+    const slider = sliderRef.current as Slider;
+    if (flagAuto) {
+      slider.slickPause();
+      setFlagAuto(false);
+    } else {
+      slider.slickNext();
+      slider.slickPlay();
+      setFlagAuto(true);
+    }
+  };
+  const appendDots = (dots: any) => (
+    <div>
+      <StyledDots>
+        {dots}
+        <StyledPlayButton onClick={sliderAutoStopOrPlay}>
+          {flagAuto ? (
+            <FontAwesomeIcon icon={faStop} />
+          ) : (
+            <FontAwesomeIcon icon={faPlay} />
+          )}
+        </StyledPlayButton>
+      </StyledDots>
+    </div>
+  );
   const customPaging = (i: number) => (
     <StyledPaging css={i === currentSlide ? CssPaging : null}>●</StyledPaging>
   );
@@ -43,7 +76,7 @@ const WorkCaptionCarousel: React.FC<Props> = ({
     slidesToShow: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 4000,
     pauseOnHover: false,
     cssEase: "ease",
     speed: 1000,
@@ -59,11 +92,17 @@ const WorkCaptionCarousel: React.FC<Props> = ({
   };
   return (
     <CaptionWrapperDiv>
-      <Slider {...settings} css={CssSlider}>
+      <Slider {...settings} css={CssSlider} ref={sliderRef}>
         {captionImages.map((captionImage, index) => (
           <StyledImg key={index} src={captionImage} width="600" height="400" />
         ))}
-        <ReactPlayer width={"100%"} url={videourl} controls={true} />
+        <ReactPlayer
+          width={"100%"}
+          url={videourl}
+          controls={false}
+          playing={true}
+          loop={true}
+        />
       </Slider>
       <CaptionMessageDiv>
         {captionTitleJP === "" ? (
