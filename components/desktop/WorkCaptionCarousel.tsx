@@ -100,7 +100,14 @@ const WorkCaptionCarousel: React.FC<Props> = ({
           width={"100%"}
           url={videourl}
           controls={true}
-          loop={true}
+          config={{
+            file: {
+              attributes: {
+                controlsList: "nodownload",
+                disablepictureinpicture: "true",
+              },
+            },
+          }}
         />
       </Slider>
       <CaptionMessageDiv>
