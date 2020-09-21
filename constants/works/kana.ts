@@ -1,3 +1,5 @@
+import kana0101 from "../../images/works/Kana/05-01-01.mp4";
+import kana0201 from "../../images/works/Kana/05-02-01.mp4";
 import kana0301 from "../../images/works/Kana/05-03-01.png";
 import kana0302 from "../../images/works/Kana/05-03-02.png";
 import kana0303 from "../../images/works/Kana/05-03-03.png";
@@ -5,6 +7,7 @@ import kana0304 from "../../images/works/Kana/05-03-04.png";
 import kana0401 from "../../images/works/Kana/05-04-01.png";
 import kana0402 from "../../images/works/Kana/05-04-02.png";
 import kana0403 from "../../images/works/Kana/05-04-03.png";
+import kana0501 from "../../images/works/Kana/05-05-01.mp4";
 import kana0601 from "../../images/works/Kana/05-06-01.png";
 import kana0602 from "../../images/works/Kana/05-06-02.png";
 import kana0603 from "../../images/works/Kana/05-06-03.png";
@@ -27,7 +30,7 @@ const overview: Overview = {
 const contents: Content[] = [
   {
     img: [],
-    video: ["https://www.youtube-nocookie.com/embed/7WoG9bZwbu0"],
+    video: [kana0101],
     TitleJP: `考察と発想`,
     TitleEN: `Insights and ideas`,
     MessageJP: `研究を進めるにあたり不安定なモノについて考察したことや、実現にあたり描いたアイデアスケッチです。`,
@@ -35,7 +38,7 @@ const contents: Content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube-nocookie.com/embed/9u5XmdjM_XE"],
+    video: [kana0201],
     TitleJP: `ビデオプロトタイプ`,
     TitleEN: `Video prototype`,
     MessageJP: `アイデアスケッチを元に、形状と動き方を簡易的なアニメーションで検討しました。`,
@@ -59,7 +62,7 @@ const contents: Content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube-nocookie.com/embed/XI--qCDvohc"],
+    video: [kana0501],
     TitleJP: `強化学習の過程`,
     TitleEN: `Reinforcement learning process`,
     MessageJP: `腕の振り方を強化学習させることで、現実には起こりにくい不安定な動きの表現を試みました。`,

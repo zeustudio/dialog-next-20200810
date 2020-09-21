@@ -3,6 +3,7 @@ import hazuki_1_2 from "../../images/works/Hazuki/hazuki_1-2.png";
 import hazuki_2 from "../../images/works/Hazuki/hazuki_2.png";
 import hazuki_3_1 from "../../images/works/Hazuki/hazuki_3-1.png";
 import hazuki_3_2 from "../../images/works/Hazuki/hazuki_3-2.png";
+import hazuki_4 from "../../images/works/Hazuki/hazuki_4.mp4";
 import hazuki_5 from "../../images/works/Hazuki/hazuki_5.png";
 import hazuki_6 from "../../images/works/Hazuki/hazuki_6.png";
 import hazuki_7 from "../../images/works/Hazuki/hazuki_7.png";
@@ -51,7 +52,7 @@ const contents: Content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube-nocookie.com/embed/YLnCXKA4O_c"],
+    video: [hazuki_4],
     TitleJP: `ワークショップの実施`,
     TitleEN: `Workshops`,
     MessageJP: `無意識のジェンダーバイアスを前提としないワークショップにより、無意識のジェンダーバイアス減少を目指しました。STEP3のジェンダースワップにより生じた解釈を、STEP4のセッションにて深掘りすることで無意識のジェンダーバイアスに気付くという仕掛けを施しました。`,

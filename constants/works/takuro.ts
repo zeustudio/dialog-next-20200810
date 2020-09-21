@@ -8,6 +8,7 @@ import takuro0302 from "../../images/works/Takuro/07-03-02.png";
 import takuro0303 from "../../images/works/Takuro/07-03-03.png";
 import takuro0304 from "../../images/works/Takuro/07-03-04.png";
 import takuro0305 from "../../images/works/Takuro/07-03-05.png";
+import takuro0401 from "../../images/works/Takuro/07-04-01.mp4";
 import takuro0501 from "../../images/works/Takuro/07-05-01.png";
 import takuro0502 from "../../images/works/Takuro/07-05-02.png";
 import takuro0503 from "../../images/works/Takuro/07-05-03.png";
@@ -54,7 +55,7 @@ const contents: Content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube-nocookie.com/embed/2c_vL9pehdA"],
+    video: [takuro0401],
     TitleJP: `荷重負荷試験の様子`,
     TitleEN: `Load test`,
     MessageJP: `被験者の安全確保のため、走行試験に入る前に義足ソケットの強度試験を行いました。走行時の負荷を想定した荷重を義足ソケットに加え、その変形量および耐荷重を測定しました。`,

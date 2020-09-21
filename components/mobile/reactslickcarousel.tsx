@@ -2,9 +2,11 @@ import React from "react";
 import styled from "@emotion/styled";
 import css from "@emotion/css";
 import Slider from "react-slick";
+import ReactPlayer from "react-player";
 
 interface Props {
   imgs: string[];
+  videos: string[];
 }
 
 const appendDots = (dots: string) => (
@@ -13,8 +15,9 @@ const appendDots = (dots: string) => (
   </div>
 );
 
-const ReactSlickCarousel: React.FC<Props> = ({ imgs }) => {
+const ReactSlickCarousel: React.FC<Props> = ({ imgs, videos }) => {
   const [currentSlide, setCurrentSlide] = React.useState(0);
+  const sliderRef = React.useRef<Slider>(null);
   const customPaging = (i: number) => (
     <StyledPaging style={{ color: i === currentSlide ? "white" : "gray" }}>
       ●
@@ -24,7 +27,7 @@ const ReactSlickCarousel: React.FC<Props> = ({ imgs }) => {
     class: "center",
     slidesToShow: 1,
     slidesToScroll: 1,
-    fade: true,
+    fade: false,
     speed: 1000,
     dots: true,
     swipeToSlide: true,
@@ -41,13 +44,40 @@ const ReactSlickCarousel: React.FC<Props> = ({ imgs }) => {
   };
 
   return (
-    <CaptionWrapperDiv>
-      <Slider {...settings} css={CssSlider}>
+    <CaptionWrapperDiv
+      onClick={() => {
+        const slider = sliderRef.current as Slider;
+        slider.slickPause();
+      }}
+    >
+      <Slider {...settings} css={CssSlider} ref={sliderRef}>
         {imgs.map((img, index) => (
           <div key={index}>
             <StyledContents>
               <StyledImgDiv>
                 <StyledImg src={img} />
+              </StyledImgDiv>
+            </StyledContents>
+          </div>
+        ))}
+        {videos.map((video, index) => (
+          <div key={index}>
+            <StyledContents>
+              <StyledImgDiv>
+                <ReactPlayer
+                  width={"100%"}
+                  height={"100%"}
+                  url={video}
+                  controls={true}
+                  config={{
+                    file: {
+                      attributes: {
+                        controlsList: "nodownload",
+                        disablePictureInPicture: true,
+                      },
+                    },
+                  }}
+                />
               </StyledImgDiv>
             </StyledContents>
           </div>

@@ -104,7 +104,7 @@ const WorkCaptionCarousel: React.FC<Props> = ({
             file: {
               attributes: {
                 controlsList: "nodownload",
-                disablepictureinpicture: "true",
+                disablePictureInPicture: true,
               },
             },
           }}

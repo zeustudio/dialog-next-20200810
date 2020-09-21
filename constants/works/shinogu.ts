@@ -7,6 +7,7 @@ import shinogu0301 from "../../images/works/Shinogu/02-03-01.png";
 import shinogu0302 from "../../images/works/Shinogu/02-03-02.png";
 import shinogu0303 from "../../images/works/Shinogu/02-03-03.png";
 import shinogu0304 from "../../images/works/Shinogu/02-03-04.png";
+import shinogu0305 from "../../images/works/Shinogu/02-03-05.mp4";
 import shinogu0401 from "../../images/works/Shinogu/02-04-01.png";
 import shinogu0402 from "../../images/works/Shinogu/02-04-02.png";
 import shinogu0403 from "../../images/works/Shinogu/02-04-03.png";
@@ -52,7 +53,7 @@ const contents: Content[] = [
   },
   {
     img: [shinogu0301, shinogu0302, shinogu0303, shinogu0304],
-    video: [],
+    video: [shinogu0305],
     TitleJP: `アクリル流路の検討2`,
     TitleEN: `Trial: Acrylic flow channel 2`,
     MessageJP: `流路の合流形状の変更により、比較的安定したスラグ流の形成が確認できました。`,

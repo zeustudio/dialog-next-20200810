@@ -21,7 +21,7 @@ const ContentComp: React.FC<Props> = ({ content, isEnglish }) => {
   return (
     <Wrapper>
       <ImgWrapper>
-        <ReactSlickCarousel imgs={content.img} />
+        <ReactSlickCarousel imgs={content.img} videos={content.video} />
       </ImgWrapper>
       <CaptionWrapper>
         {isEnglish ? (
