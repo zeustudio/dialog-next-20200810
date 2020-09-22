@@ -19,15 +19,16 @@ const Introduction: React.FC<Props> = ({
 }) => {
   return (
     <Wrapper style={{ width: width, height: height }}>
-      <JPEN
-        onClick={() => {
-          setIsEnglish(!isEnglish);
-        }}
-      >
-        JP/EN
-      </JPEN>
-      <Line src={lineUp} />
       <IntroductionWrapper>
+        <JPEN
+          onClick={() => {
+            setIsEnglish(!isEnglish);
+          }}
+        >
+          JP/EN
+        </JPEN>
+        <Line src={lineUp} />
+
         <Title>{isEnglish ? `-Introduction-` : `開催にあたり`}</Title>
         <Content>
           {isEnglish
@@ -35,8 +36,9 @@ const Introduction: React.FC<Props> = ({
             : "言葉を交えると新しい発見があります。話すことによってイメージの輪郭が急にはっきりすることもあります。アイデアは、人との関わりの中で少しずつ、時には劇的に進展します。山中研究室においても、会話や議論はプロジェクト進行の中核になります。常に、より広い視野、客観的な意見、新たなビジョンを求めて繰り返される会話。重要なのは話者の多様性です。今回の展示では、来場いただいた皆さんと、研究メンバーが会話することを目指しました。展示されたプロトタイプには、私たちのビジョンや価値観が込められています。気になることがあったら、そこにいるメンバーに遠慮なく問いかけてください。そして、あなたが思ったこと、感じたこと、考えたことを聞かせてください。限られた時間ではありますが、一緒に未来をドライブできれば幸いです。"}
         </Content>
         <SenseiName>山中　俊治</SenseiName>
+
+        <Line src={lineDown} />
       </IntroductionWrapper>
-      <Line src={lineDown} />
     </Wrapper>
   );
 };
@@ -48,7 +50,6 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   background-image: url(${mdf});
-  position: relative;
 `;
 const Line = styled.img`
   width: 90%;
@@ -77,24 +78,36 @@ const Content = styled.div`
 const SenseiName = styled.div`
   font-size: 1.2rem;
   line-height: 2.4rem;
-  margin: 50px 20px 10px 20px;
+  margin: 10px 20px 10px 20px;
+  align-self: flex-end;
   text-align: right;
   @media screen and (min-width: 768px) {
     font-size: 1.6rem;
     line-height: 3.2rem;
-    margin: 50px 20% 10px 20%;
+    margin: 10px 20% 10px 20%;
   }
 `;
-const IntroductionWrapper = styled.div``;
+const IntroductionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`;
 const JPEN = styled.div`
   position: absolute;
   width: 80px;
   height: 40px;
-  right: 5%;
-  top: 3%;
+  right: 0;
+  top: -20px;
   font-size: 1.6rem;
   font-weight: bold;
   line-height: 40px;
   text-align: center;
+  @media screen and (min-width: 768px) {
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+    margin: 10px 20% 10px 20%;
+  }
 `;
 export default Introduction;
