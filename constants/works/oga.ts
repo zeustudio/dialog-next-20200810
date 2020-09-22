@@ -13,6 +13,10 @@ import oga0304 from "../../images/works/Oga/01-03-04.png";
 import oga0305 from "../../images/works/Oga/01-03-05.png";
 import oga0306 from "../../images/works/Oga/01-03-06.png";
 import oga0307 from "../../images/works/Oga/01-03-07.png";
+import oga0308 from "../../images/works/Oga/01-03-08.mp4";
+import oga0309 from "../../images/works/Oga/01-03-09.mp4";
+import oga0310 from "../../images/works/Oga/01-03-10.mp4";
+import oga0311 from "../../images/works/Oga/01-03-11.mp4";
 import oga0401 from "../../images/works/Oga/01-04-01.png";
 import oga0402 from "../../images/works/Oga/01-04-02.png";
 import oga0403 from "../../images/works/Oga/01-04-03.png";
@@ -51,12 +55,7 @@ const contents: Content[] = [
   },
   {
     img: [oga0301, oga0302, oga0303, oga0304, oga0305, oga0306, oga0307],
-    video: [
-      "https://www.youtube-nocookie.com/embed/xEYkd0KqGNo",
-      "https://www.youtube-nocookie.com/embed/HkHoCw7BWyw",
-      "https://www.youtube-nocookie.com/embed/Lhi__BrFwqk",
-      "https://www.youtube-nocookie.com/embed/zCjqANIKhXE",
-    ],
+    video: [oga0308, oga0309, oga0310, oga0311],
     TitleJP: ``,
     TitleEN: `Scalable hand (Ver.2.0)`,
     MessageJP: `取手を引くだけで物体を包み込むように掴んでくれる構造を採用した初期モデルです。指の腹に弾性構造を付与することで、柔らかい指先を再現しました。このモデルでは、輪ゴムで指関節の復元力を与えています。`,

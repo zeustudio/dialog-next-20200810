@@ -1,5 +1,8 @@
 import Image1_1 from "../../images/works/Oto/08-01-01.png";
 import Image1_2 from "../../images/works/Oto/08-01-02.png";
+import Image2_1 from "../../images/works/Oto/08-02-01.mp4";
+import Image2_2 from "../../images/works/Oto/08-02-02.mp4";
+import Image3_1 from "../../images/works/Oto/08-03-01.mp4";
 import HandWritingImage from "../../images/works/Oto/oto_handwriting.png";
 import OGPImage from "../../images/works/Oto/oto_ogp.png";
 import ThumbnailImage from "../../images/works/Oto/oto_small.png";
@@ -26,10 +29,7 @@ const contents: Content[] = [
   },
   {
     img: [],
-    video: [
-      "https://www.youtube-nocookie.com/embed/Uli5_Hvqs5A",
-      "https://www.youtube-nocookie.com/embed/bv-YqLtDfIw",
-    ],
+    video: [Image2_1, Image2_2],
     TitleJP: ``,
     TitleEN: `Amemism`,
     MessageJP: `傘の「暇」に注目し、傘に命を与えました。普段何気なく使っている傘が人や他の傘と交流を始めた時、あなたは何を感じるでしょうか。`,
@@ -37,7 +37,7 @@ const contents: Content[] = [
   },
   {
     img: [],
-    video: ["https://www.youtube-nocookie.com/embed/RInMSV2yumM"],
+    video: [Image3_1],
     TitleJP: `積読に怒る本`,
     TitleEN: `Furious to be stacked`,
     MessageJP: `本の「暇」である積ん読に抵抗して、上に本を置かれると自らが開くことで落としてしまいます。本が利便性や効率から解放されて、人や他の本との交流を始めた時にあなたは何を感じるでしょうか。`,

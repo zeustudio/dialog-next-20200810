@@ -2,4 +2,12 @@
 const withImages = require("next-images");
 const withVideos = require("next-videos");
 
-module.exports = withVideos(withImages({}));
+module.exports = withVideos(
+  withImages({
+    exportPathMap: async function (defaultPathMap) {
+      return {
+        "/": { page: "/" },
+      };
+    },
+  })
+);

@@ -1,5 +1,11 @@
+import uena0101 from "../../images/works/Uena/04-01-01.mp4";
+import uena0201 from "../../images/works/Uena/04-02-01.mp4";
+import uena0202 from "../../images/works/Uena/04-02-02.mp4";
+import uena0203 from "../../images/works/Uena/04-02-03.mp4";
 import uena0301 from "../../images/works/Uena/04-03-01.png";
 import uena0302 from "../../images/works/Uena/04-03-02.png";
+import uena0303 from "../../images/works/Uena/04-03-03.mp4";
+import uena0304 from "../../images/works/Uena/04-03-04.mp4";
 
 import HandWritingImage from "../../images/works/Uena/uena_handwriting.png";
 import OGPImage from "../../images/works/Uena/uena_ogp.png";
@@ -19,7 +25,7 @@ const overview: Overview = {
 const contents: Content[] = [
   {
     img: [],
-    video: ["https://www.youtube-nocookie.com/embed/uV4uMk2rvJg"],
+    video: [uena0101],
     TitleJP: `着地動作に着目`,
     TitleEN: `Landing process`,
     MessageJP: `受動的かつしなやかに力を受け流す着地は、生き物らしさがよく現れている挙動であると考えました。`,
@@ -27,11 +33,7 @@ const contents: Content[] = [
   },
   {
     img: [],
-    video: [
-      "https://www.youtube-nocookie.com/embed/KQlnPpaEH1c",
-      "https://www.youtube-nocookie.com/embed/VYwwWftebRo",
-      "https://www.youtube-nocookie.com/embed/o7o0t-S7_MA",
-    ],
+    video: [uena0201, uena0202, uena0203],
     TitleJP: `着地する足の構造`,
     TitleEN: `Leg structure`,
     MessageJP: `着地時の屈伸運動のみで生き物らしさを表現するため、その他の部分では生き物らしさを除きました。最も安定する三本足かつ一ヶ所のダンパーのみで全体の屈伸を制御できる構造です。`,
@@ -39,10 +41,7 @@ const contents: Content[] = [
   },
   {
     img: [uena0301, uena0302],
-    video: [
-      "https://www.youtube-nocookie.com/embed/TL-H9QozGec",
-      "https://www.youtube-nocookie.com/embed/2TuRATVRZc4",
-    ],
+    video: [uena0303, uena0304],
     TitleJP: `ゆらゆら`,
     TitleEN: `solid swing`,
     MessageJP: `着地というしなやかな動きを、生物の模倣とは異なるアプローチで再現しようとしました。素材の柔らかさを用いず、新しい機構のダンパーを試作していた過程で生まれたものがこの機構になります。`,

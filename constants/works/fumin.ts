@@ -7,6 +7,7 @@ import fumin0202 from "../../images/works/Fu-min/06-02-02.png";
 import fumin0203 from "../../images/works/Fu-min/06-02-03.png";
 import fumin0301 from "../../images/works/Fu-min/06-03-01.png";
 import fumin0302 from "../../images/works/Fu-min/06-03-02.png";
+import fumin0303 from "../../images/works/Fu-min/06-03-03.mp4";
 import fumin0401 from "../../images/works/Fu-min/06-04-01.png";
 import fumin0402 from "../../images/works/Fu-min/06-04-02.png";
 import fumin0403 from "../../images/works/Fu-min/06-04-03.png";
@@ -52,7 +53,7 @@ const contents: Content[] = [
   },
   {
     img: [fumin0301, fumin0302],
-    video: [],
+    video: [fumin0303],
     TitleJP: `構造の試作1`,
     TitleEN: `Trial: structure 1`,
     MessageJP: `構造を工夫して弾性素材を3Dプリントすることで、顎当ての痛みを減らす形状を模索しました。`,

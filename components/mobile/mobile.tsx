@@ -6,6 +6,7 @@ import TitleScreen from "./mainpage/titlescreen";
 import HowToVideo from "./mainpage/howtovideo";
 import Introduction from "./mainpage/introduction";
 import Works from "./mainpage/works";
+import Credits from "./mainpage/credits";
 
 import globalCSS from "../../styles/global";
 import { Global } from "@emotion/core";
@@ -31,6 +32,7 @@ const Mobile = () => {
         height={height}
         isEnglishState={[englishTrig, setEnglishTrig]}
       />
+      <Credits />
     </Wrapper>
   );
 };
