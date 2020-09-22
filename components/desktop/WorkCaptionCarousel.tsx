@@ -6,11 +6,11 @@ import Slider from "react-slick";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import ReactPlayer from "react-player";
-import videourl from "../../images/TitleVideo.mp4";
 import { faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   captionImages: string[];
+  captionVideos: string[];
   captionTitleJP: string;
   captionTitleEN: string;
   captionMessageJP: string;
@@ -34,6 +34,7 @@ const StyledPlayButton = styled.button`
 
 const WorkCaptionCarousel: React.FC<Props> = ({
   captionImages,
+  captionVideos,
   captionTitleJP,
   captionTitleEN,
   captionMessageJP,
@@ -43,22 +44,22 @@ const WorkCaptionCarousel: React.FC<Props> = ({
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [flagAuto, setFlagAuto] = React.useState(true);
   const sliderRef = React.useRef<Slider>(null);
-  const sliderAutoStopOrPlay = () => {
-    const slider = sliderRef.current as Slider;
-    if (flagAuto) {
-      slider.slickPause();
-      setFlagAuto(false);
-    } else {
-      slider.slickNext();
-      slider.slickPlay();
-      setFlagAuto(true);
-    }
-  };
   const appendDots = (dots: any) => (
     <div>
       <StyledDots>
         {dots}
-        <StyledPlayButton onClick={sliderAutoStopOrPlay}>
+        <StyledPlayButton
+          onClick={() => {
+            const slider = sliderRef.current as Slider;
+            if (flagAuto) {
+              slider.slickPause();
+              setFlagAuto(false);
+            } else {
+              slider.slickPlay();
+              setFlagAuto(true);
+            }
+          }}
+        >
           {flagAuto ? (
             <FontAwesomeIcon icon={faStop} />
           ) : (
@@ -80,7 +81,7 @@ const WorkCaptionCarousel: React.FC<Props> = ({
     pauseOnHover: false,
     cssEase: "ease",
     speed: 1000,
-    fade: true,
+    fade: false,
     dots: true,
     initialSlide: 0,
     infinite: true,
@@ -94,21 +95,47 @@ const WorkCaptionCarousel: React.FC<Props> = ({
     <CaptionWrapperDiv>
       <Slider {...settings} css={CssSlider} ref={sliderRef}>
         {captionImages.map((captionImage, index) => (
-          <StyledImg key={index} src={captionImage} width="600" height="400" />
+          <StyledImg
+            key={index}
+            src={captionImage}
+            width="600"
+            height="400"
+            onClick={() => {
+              const slider = sliderRef.current as Slider;
+              slider.slickPause();
+              setFlagAuto(false);
+            }}
+          />
         ))}
-        <ReactPlayer
-          width={"100%"}
-          url={videourl}
-          controls={true}
-          config={{
-            file: {
-              attributes: {
-                controlsList: "nodownload",
-                disablePictureInPicture: true,
+        {captionVideos.map((captionVideo, index) => (
+          <ReactPlayer
+            key={index}
+            width={"100%"}
+            height={"100%"}
+            url={captionVideo}
+            controls={true}
+            volume={0.5}
+            muted={true}
+            config={{
+              file: {
+                attributes: {
+                  controlsList: "nodownload",
+                  disablePictureInPicture: true,
+                },
               },
-            },
-          }}
-        />
+            }}
+            onPlay={() => {
+              const slider = sliderRef.current as Slider;
+              slider.slickPause();
+              setFlagAuto(false);
+            }}
+            onEnded={() => {
+              const slider = sliderRef.current as Slider;
+              slider.slickPlay();
+              setFlagAuto(true);
+            }}
+          />
+        ))}
       </Slider>
       <CaptionMessageDiv>
         {captionTitleJP === "" ? (
