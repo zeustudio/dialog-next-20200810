@@ -3,25 +3,25 @@ import styled from "@emotion/styled";
 import css from "@emotion/css";
 import Slider from "react-slick";
 import ReactPlayer from "react-player";
+import { Color } from "../../constants/Color";
 
 interface Props {
   imgs: string[];
   videos: string[];
 }
 
-const appendDots = (dots: string) => (
-  <div style={{ width: "100%", position: "absolute", bottom: "-30px" }}>
-    <StyledDots> {dots} </StyledDots>
-  </div>
-);
-
 const ReactSlickCarousel: React.FC<Props> = ({ imgs, videos }) => {
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const sliderRef = React.useRef<Slider>(null);
+
+  const appendDots = (dots: any) => (
+    <div>
+      <StyledDots>{dots}</StyledDots>
+    </div>
+  );
+
   const customPaging = (i: number) => (
-    <StyledPaging style={{ color: i === currentSlide ? "white" : "gray" }}>
-      ●
-    </StyledPaging>
+    <StyledPaging css={i === currentSlide ? CssPaging : null}>●</StyledPaging>
   );
   const settings = {
     class: "center",
@@ -44,18 +44,19 @@ const ReactSlickCarousel: React.FC<Props> = ({ imgs, videos }) => {
   };
 
   return (
-    <CaptionWrapperDiv
-      onClick={() => {
-        const slider = sliderRef.current as Slider;
-        slider.slickPause();
-      }}
-    >
+    <CaptionWrapperDiv>
       <Slider {...settings} css={CssSlider} ref={sliderRef}>
         {imgs.map((img, index) => (
           <div key={index}>
             <StyledContents>
               <StyledImgDiv>
-                <StyledImg src={img} />
+                <StyledImg
+                  src={img}
+                  onClick={() => {
+                    const slider = sliderRef.current as Slider;
+                    slider.slickPause();
+                  }}
+                />
               </StyledImgDiv>
             </StyledContents>
           </div>
@@ -69,6 +70,8 @@ const ReactSlickCarousel: React.FC<Props> = ({ imgs, videos }) => {
                   height={"100%"}
                   url={video}
                   controls={true}
+                  volume={0.5}
+                  muted={true}
                   config={{
                     file: {
                       attributes: {
@@ -76,6 +79,14 @@ const ReactSlickCarousel: React.FC<Props> = ({ imgs, videos }) => {
                         disablePictureInPicture: true,
                       },
                     },
+                  }}
+                  onPlay={() => {
+                    const slider = sliderRef.current as Slider;
+                    slider.slickPause();
+                  }}
+                  onEnded={() => {
+                    const slider = sliderRef.current as Slider;
+                    slider.slickPlay();
                   }}
                 />
               </StyledImgDiv>
@@ -128,7 +139,7 @@ const StyledImg = styled.img`
 
 // slider dots関係
 const StyledPaging = styled.div`
-  width: 30px;
+  width: 100%;
   color: gray;
   &:hover {
     color: white;
@@ -139,4 +150,11 @@ const StyledPaging = styled.div`
 `;
 const StyledDots = styled.ul`
   padding-top: 7px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const CssPaging = css`
+  color: ${Color.CAPTION_FONT_COLOR} !important;
 `;

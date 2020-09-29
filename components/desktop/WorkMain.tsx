@@ -295,6 +295,7 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
                 <CaptionArea ref={consoleAreaRef}>
                   <WorkCaptionCarousel
                     captionImages={content.img}
+                    captionVideos={content.video}
                     captionTitleJP={content.TitleJP}
                     captionTitleEN={content.TitleEN}
                     captionMessageJP={content.MessageJP}
