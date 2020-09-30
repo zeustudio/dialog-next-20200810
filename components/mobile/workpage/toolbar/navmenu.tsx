@@ -22,7 +22,7 @@ interface Props {
 const NavMenu: React.FC<Props> = ({
   author,
   englishTrig,
-  navBarExpandTrigState: [navBarExpandTrig, setNavBarExpandTrig],
+  navBarExpandTrigState: [navBarExpandTrig],
 }) => {
   const navBarAnimation = useSpring({
     transform: navBarExpandTrig
