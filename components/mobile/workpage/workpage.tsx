@@ -5,8 +5,7 @@ import { useRouter } from "next/router";
 import globalCSS from "../../../styles/global";
 import { Global } from "@emotion/core";
 
-import TopToolBarAnimated from "./toolbar/toptoolbar-animated";
-import BottomToolBar from "./toolbar/bottomtoolbar";
+import BottomToolBar from "./toolbar/bottomtoolbar_v2";
 import OverviewComp from "./overview";
 import ContentComp from "./content";
 
@@ -22,16 +21,19 @@ const WorkPage: React.FC<Props> = ({ author }) => {
   const router = useRouter(); //　next/linkコンポーネントからqueryを受け取るためのrouter。ページ間英語・日本語設定を引き継ぐため
   const isEnglish: boolean = router.query.isEnglish === "true"; //queryの文字列をbooleanに変換
   const [englishTrig, setEnglishTrig] = React.useState(isEnglish); //英語表示トリガー
+  const [scrollTrig, setScrollTrig] = React.useState(false);
 
   return (
     <Wrapper>
       <Global styles={globalCSS} />
-      <TopToolBarAnimated
-        author={author}
-        englishTrigState={[englishTrig, setEnglishTrig]}
-      />
-      <ContentsWrapper>
-        <OverviewComp author={author} isEnglish={englishTrig} />
+      <ContentsWrapper
+        style={scrollTrig ? { overflow: "scroll" } : { overflow: "hidden" }}
+      >
+        <OverviewComp
+          author={author}
+          isEnglish={englishTrig}
+          scrollTrigState={[scrollTrig, setScrollTrig]}
+        />
         {contents.map((content, index) => {
           return (
             <ContentComp
@@ -42,7 +44,10 @@ const WorkPage: React.FC<Props> = ({ author }) => {
           );
         })}
       </ContentsWrapper>
-      <BottomToolBar author={author} englishTrig={englishTrig} />
+      <BottomToolBar
+        author={author}
+        englishTrigState={[englishTrig, setEnglishTrig]}
+      />
     </Wrapper>
   );
 };
