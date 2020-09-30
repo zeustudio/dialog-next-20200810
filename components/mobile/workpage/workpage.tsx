@@ -58,6 +58,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
+  overflow-x: hidden;
   @media screen and (min-width: 1025px) {
     display: none;
   }

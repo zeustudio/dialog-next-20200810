@@ -28,6 +28,7 @@ const ReactSlickCarousel: React.FC<Props> = ({ imgs, videos }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: false,
+    arrows: true,
     speed: 1000,
     dots: true,
     swipeToSlide: true,
@@ -35,7 +36,14 @@ const ReactSlickCarousel: React.FC<Props> = ({ imgs, videos }) => {
     infinite: true,
     autoplay: true,
     autoplaySpeed: 5000,
-    responsive: [],
+    responsive: [
+      {
+        breakpoint: 500,
+        settings: {
+          arrows: false,
+        },
+      },
+    ],
     beforeChange: (_: any, next: number) => {
       setTimeout(() => setCurrentSlide(next), 30);
     },
