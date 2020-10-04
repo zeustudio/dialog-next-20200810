@@ -6,7 +6,7 @@ import KanaData from "../../../constants/works/kana";
 const KanaDesktop = () => {
   return (
     <Wrapper>
-      <WorkMain AuthorData={KanaData} />
+      <WorkMain AuthorData={KanaData} author={"kana"} />
     </Wrapper>
   );
 };

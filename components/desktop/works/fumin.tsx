@@ -6,7 +6,7 @@ import FuminData from "../../../constants/works/fumin";
 const FuminDesktop = () => {
   return (
     <Wrapper>
-      <WorkMain AuthorData={FuminData} />
+      <WorkMain AuthorData={FuminData} author={"fumin"} />
     </Wrapper>
   );
 };

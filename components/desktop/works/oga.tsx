@@ -6,7 +6,7 @@ import OgaData from "../../../constants/works/oga";
 const OgaDesktop = () => {
   return (
     <Wrapper>
-      <WorkMain AuthorData={OgaData} />
+      <WorkMain AuthorData={OgaData} author={"oga"} />
     </Wrapper>
   );
 };

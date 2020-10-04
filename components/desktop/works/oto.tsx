@@ -6,7 +6,7 @@ import OtoData from "../../../constants/works/oto";
 const OtoDesktop = () => {
   return (
     <Wrapper>
-      <WorkMain AuthorData={OtoData} />
+      <WorkMain AuthorData={OtoData} author={"oto"} />
     </Wrapper>
   );
 };

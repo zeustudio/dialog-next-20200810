@@ -6,7 +6,7 @@ import TakuroData from "../../../constants/works/takuro";
 const TakuroDesktop = () => {
   return (
     <Wrapper>
-      <WorkMain AuthorData={TakuroData} />
+      <WorkMain AuthorData={TakuroData} author={"takuro"} />
     </Wrapper>
   );
 };

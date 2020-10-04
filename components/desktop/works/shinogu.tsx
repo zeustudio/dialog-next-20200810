@@ -6,7 +6,7 @@ import ShinoguData from "../../../constants/works/shinogu";
 const ShinoguDesktop = () => {
   return (
     <Wrapper>
-      <WorkMain AuthorData={ShinoguData} />
+      <WorkMain AuthorData={ShinoguData} author={"shinogu"} />
     </Wrapper>
   );
 };
