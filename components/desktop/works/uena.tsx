@@ -6,7 +6,7 @@ import UenaData from "../../../constants/works/uena";
 const UenaDesktop = () => {
   return (
     <Wrapper>
-      <WorkMain AuthorData={UenaData} />
+      <WorkMain AuthorData={UenaData} author={"uena"} />
     </Wrapper>
   );
 };

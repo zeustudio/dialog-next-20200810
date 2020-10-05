@@ -6,7 +6,7 @@ import HeejunData from "../../../constants/works/heejun";
 const HeejunDesktop = () => {
   return (
     <Wrapper>
-      <WorkMain AuthorData={HeejunData} />
+      <WorkMain AuthorData={HeejunData} author={"heejun"} />
     </Wrapper>
   );
 };

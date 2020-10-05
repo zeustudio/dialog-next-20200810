@@ -6,7 +6,7 @@ import HazukiData from "../../../constants/works/hazuki";
 const HazukiDesktop = () => {
   return (
     <Wrapper>
-      <WorkMain AuthorData={HazukiData} />
+      <WorkMain AuthorData={HazukiData} author={"hazuki"} />
     </Wrapper>
   );
 };

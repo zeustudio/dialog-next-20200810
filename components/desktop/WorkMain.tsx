@@ -5,6 +5,8 @@ import smoothscroll from "smoothscroll-polyfill";
 import { useTransition, animated, useSpring } from "react-spring";
 import Link from "next/link";
 
+import { WorkCommentArea } from "./WorkCommentArea";
+
 import MDFTexture from "../../images/mdftexture.jpg";
 import HeaderLogo from "../../images/logo_white.png";
 import WideArrow from "../../images/wideArrow.svg";
@@ -13,26 +15,14 @@ const WorkCaptionCarousel = dynamic(import("./WorkCaptionCarousel"), {
   ssr: false,
 });
 
-import { WorkData } from "../../constants/Types";
-
-const comments = [
-  "hoge",
-  "fuga",
-  "hfff",
-  "afsda",
-  "fdsafds afdsafdsaf dsafdsafdsafdsa fdsafdsafdsa",
-  "hoge",
-  "fuga",
-  "hfff",
-  "afsda",
-  "fdsafds afdsafdsaf dsafdsafdsafdsa fdsafdsafdsa",
-];
+import { WorkData, Author } from "../../constants/Types";
 
 interface WorkMainProps {
+  author: Author;
   AuthorData: WorkData;
 }
 
-export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
+export const WorkMain: React.FC<WorkMainProps> = ({ author, AuthorData }) => {
   const contents = AuthorData.contents.filter((content) => {
     return content.img.length !== 0;
   });
@@ -52,8 +42,6 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
 
   // scrollのwrapperの範囲へのref
   const observerRootRef = React.useRef<HTMLDivElement>(null);
-  // comment部分へのref
-  const commentDivRef = React.useRef<HTMLDivElement>(null);
   // targets.current[id].currentにHTMLDivElementが格納される
   // refを一度にたくさん作成している
   const targets = React.useRef<{
@@ -78,11 +66,6 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
 
   // 交差の検知の設定
   React.useEffect(() => {
-    //wheelの伝播の防止
-    const commentDiv = commentDivRef.current as HTMLDivElement;
-    commentDiv.addEventListener("wheel", (e) => {
-      e.stopPropagation();
-    });
     // smoothのpolyfill
     smoothscroll.polyfill();
     const observerRoot = observerRootRef.current as HTMLDivElement;
@@ -325,26 +308,7 @@ export const WorkMain: React.FC<WorkMainProps> = ({ AuthorData }) => {
                           )
                         )}
                       </PageArea>
-                      <CommentArea>
-                        <CommentDiv ref={commentDivRef}>
-                          {comments.map((comment, index) => (
-                            <CommentP key={index}>
-                              {index}. {comment}
-                            </CommentP>
-                          ))}
-                        </CommentDiv>
-                      </CommentArea>
-                      <StyledForm
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                        }}
-                      >
-                        <StyledInput
-                          type="text"
-                          placeholder="コメントをどうぞ"
-                        />
-                        <StyledButton>▶︎</StyledButton>
-                      </StyledForm>
+                      <WorkCommentArea author={author} />
                     </ConsoleDiv>
                   </ConsoleArea>
                 ) : (
@@ -547,61 +511,4 @@ const ActivatedLink = css`
   &:hover {
     color: black;
   }
-`;
-
-const CommentArea = styled.div`
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  padding: 24px 24px 0;
-  background-color: black;
-  color: white;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  /* スクロールバーの削除 */
-  /* -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  } */
-`;
-
-const CommentDiv = styled.div`
-  margin-bottom: 16px;
-`;
-
-const CommentP = styled.p`
-  width: 100%;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
-  line-height: 1.5em;
-  border-bottom: 1px solid white;
-  word-break: normal;
-`;
-
-const StyledForm = styled.form`
-  box-sizing: border-box;
-  display: flex;
-  align-items: flex-end;
-  padding: 36px 24px 16px;
-  margin-top: -4px;
-  background-color: black;
-  height: 8rem;
-`;
-
-const StyledInput = styled.input`
-  width: 90%;
-  height: 2.5rem;
-  color: white;
-  background: none;
-  border: none;
-  border-bottom: 1px solid white;
-  &:focus {
-    outline: none;
-  }
-`;
-
-const StyledButton = styled.button`
-  height: 2.5rem;
-  margin-left: 1rem;
-  color: white;
 `;
