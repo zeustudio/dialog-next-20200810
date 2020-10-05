@@ -18,12 +18,15 @@ import { Author } from "../../../../constants/Types";
 
 interface Props {
   author: Author;
-  englishTrig: boolean;
+  englishTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
 const keyArray: Author[] = Array.from(WorkData.keys()); //作者名のリスト
 
-const BottomToolBar: React.FC<Props> = ({ author, englishTrig }) => {
+const BottomToolBar: React.FC<Props> = ({
+  author,
+  englishTrigState: [englishTrig],
+}) => {
   const [commentOnTrig, setCommentOnTrig] = React.useState(false); //コメント入力、コメント一覧欄表示トリガー
   const [expandTrig, setExpandTrig] = React.useState(false); //コメント一覧拡大トリガー
   const [previousAuthorImg, setPreviousAuthorImg] = React.useState(""); //これより前の作者のサムネ画像

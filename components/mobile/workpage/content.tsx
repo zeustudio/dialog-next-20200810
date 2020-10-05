@@ -49,13 +49,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   scroll-snap-align: start;
-  @media screen and (min-height: 700px) {
-    justify-content: center;
-  }
 `;
 const ImgWrapper = styled.div`
   width: 100%;
-  margin-top: 40px;
   margin-bottom: 30px;
   align-self: center;
   @media screen and (min-width: 500px) {
