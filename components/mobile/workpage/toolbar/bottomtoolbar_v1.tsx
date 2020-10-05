@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import commentSubmit2 from "../../../../images/commentsubmit2.svg";
 import OtherComments from "./othercomments";
@@ -26,7 +25,7 @@ const keyArray: Author[] = Array.from(WorkData.keys()); //作者名のリスト
 
 const BottomToolBar: React.FC<Props> = ({
   author,
-  englishTrigState: [englishTrig, setEnglishTrig],
+  englishTrigState: [englishTrig],
 }) => {
   const [commentOnTrig, setCommentOnTrig] = React.useState(false); //コメント入力、コメント一覧欄表示トリガー
   const [expandTrig, setExpandTrig] = React.useState(false); //コメント一覧拡大トリガー
