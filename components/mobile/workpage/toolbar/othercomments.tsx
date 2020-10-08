@@ -10,6 +10,7 @@ import "firebase/database";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import GoodButton from "./goodbutton";
 
@@ -144,13 +145,25 @@ const OtherComments: React.FC<Props> = ({
 
   return (
     <Wrapper {...bind()} style={commentsBoxAnimation}>
-      <ExpandButton
-        onClick={() => {
-          setExpandTrig(!expandTrig);
-        }}
-      >
-        <FontAwesomeIcon icon={faAngleDoubleUp} />
-      </ExpandButton>
+      <TopButton>
+        <ExpandButton
+          onClick={() => {
+            setExpandTrig(!expandTrig);
+          }}
+        >
+          <FontAwesomeIcon icon={faAngleDoubleUp} />
+        </ExpandButton>
+
+        <Back
+          onClick={(e) => {
+            e.stopPropagation;
+            setCommentOnTrig(false);
+            setExpandTrig(false);
+          }}
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </Back>
+      </TopButton>
       <CommentsBoxWrapper id={commentBoxId}>
         {comments.map((comment) => {
           return (
@@ -182,7 +195,7 @@ const Wrapper = animated(styled.div`
   justify-content: top;
   z-index: 0;
 `);
-const ExpandButton = styled.div`
+const TopButton = styled.div`
   background-color: rgba(28, 27, 29, 0.9);
   width: 100%;
   height: 40px;
@@ -190,7 +203,14 @@ const ExpandButton = styled.div`
   color: white;
   font-size: 3rem;
   text-align: center;
-  line-height: 39px;
+  line-height: 40px;
+  display: grid;
+  grid-template-rows: 1fr 40px;
+`;
+const ExpandButton = styled.div`
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
 `;
 const CommentsBoxWrapper = styled.div`
   background-color: rgba(28, 27, 29, 0.9);
@@ -218,6 +238,18 @@ const CommentWrapper2 = styled.div`
 `;
 const Comment = styled.span`
   height: 30px;
+`;
+const Back = styled.div`
+  background-color: rgba(48, 47, 49, 0.9);
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+  line-height: 40px;
+  position: absolute;
+  right: 0px;
+  top: 40px;
 `;
 
 export default OtherComments;

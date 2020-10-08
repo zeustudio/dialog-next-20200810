@@ -5,7 +5,6 @@ import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import commentSubmit2 from "../../../../images/commentsubmit2.svg";
@@ -67,14 +66,6 @@ const BottomToolBar: React.FC<Props> = ({
         </JPEN>
       </Wrapper>
       <Wrapper2 style={commentAnimation}>
-        <Back
-          onClick={() => {
-            setCommentOnTrig(false);
-            setExpandTrig(false);
-          }}
-        >
-          <FontAwesomeIcon icon={faAngleDoubleDown} />
-        </Back>
         <CommentFormWrapper>
           <CommentForm
             type="text"
@@ -138,14 +129,6 @@ const Wrapper2 = animated(styled.div`
   justify-content: space-evenly;
   z-index: 3;
 `);
-const Back = styled.div`
-  width: 39px;
-  height: 39px;
-  color: white;
-  font-size: 3rem;
-  text-align: center;
-  line-height: 39px;
-`;
 const CommentSubmit = styled.img`
   width: 40px;
   height: 40px;
