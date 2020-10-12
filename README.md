@@ -1,11 +1,12 @@
-# imagesフォルダーについて
+# images フォルダーについて
 
-imagesフォルダーは大容量のため、gitで扱えません。
-imagesフォルダーは以下から直接ダウンロードし、ダウンロードしたフォルダーはルートにコピーしてください。
+images フォルダーは大容量のため、git で扱えません。
+images フォルダーは以下から直接ダウンロードし、ダウンロードしたフォルダーはルートにコピーしてください。
 お手数ですが、何か更新がありましたらその都度ドライブ上のフォルダーも更新してください。
 
 https://drive.google.com/drive/u/2/folders/15BFQl8DWnZdF0pVWwl5lCeRjAwgWqoOJ
 
+これにより、vercel の自動デプロイが使えなくなりました。成果物を皆と共有するときは、firebase に直接デプロイしてください。
 
 # TypeScript Next.js example
 
@@ -69,5 +70,3 @@ When we run `next dev` the next time, Next.js will start looking for any `.ts` o
 Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
 
 A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
-
-
