@@ -8,6 +8,7 @@ import { Global } from "@emotion/core";
 import BottomToolBar from "./toolbar/bottomtoolbar_v2";
 import OverviewComp from "./overview";
 import ContentComp from "./content";
+import Tegaki from "./tegaki";
 
 import workDataMap from "../../../constants/workdata";
 import { Content, Author } from "../../../constants/Types";
@@ -43,6 +44,7 @@ const WorkPage: React.FC<Props> = ({ author }) => {
             />
           );
         })}
+        <Tegaki author={author} />
       </ContentsWrapper>
       <BottomToolBar
         author={author}
