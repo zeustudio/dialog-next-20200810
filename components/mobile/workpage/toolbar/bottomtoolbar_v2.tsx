@@ -4,13 +4,12 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
 
-
 import commentSubmit2 from "../../../../images/commentsubmit2.svg";
 import OtherComments from "./othercomments";
 import NavMenu from "./navmenu";
 
 import { Author } from "../../../../constants/Types";
-import WorkData from "../../../../constants/workdata"
+import WorkData from "../../../../constants/workdata";
 
 interface Props {
   author: Author;
