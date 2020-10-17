@@ -4,20 +4,19 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import commentSubmit2 from "../../../../images/commentsubmit2.svg";
 import OtherComments from "./othercomments";
 import NavMenu from "./navmenu";
 
 import { Author } from "../../../../constants/Types";
+import WorkData from "../../../../constants/workdata"
 
 interface Props {
   author: Author;
   englishTrigState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
-
+const keyArray: Author[] = Array.from(WorkData.keys()); //作者名のリスト
 const BottomToolBar: React.FC<Props> = ({
   author,
   englishTrigState: [englishTrig, setEnglishTrig],
@@ -27,7 +26,8 @@ const BottomToolBar: React.FC<Props> = ({
   const [thisComment, setThisComment] = React.useState(""); //コメント入力欄に入力された文字列
   const [submitTrig, setSubmitTrig] = React.useState(false); //送信トリガー、値の変化でトリガーされるので値そのものは意味ない
   const [navBarExpandTrig, setNavBarExpandTrig] = React.useState(false);
-
+  const [previousAuthorImg, setPreviousAuthorImg] = React.useState(""); //これより前の作者のサムネ画像
+  const [nextAuthorImg, setNextAuthorImg] = React.useState(""); //これより次の作者のサムネ画像
   const toolBarAnimation = useSpring({
     transform: commentOnTrig
       ? `translate3d(0px,40px,0px)`
@@ -39,24 +39,22 @@ const BottomToolBar: React.FC<Props> = ({
       : `translate3d(0px,40px,0px)`,
   }); //フッターバーのアニメーション、片方が出るともう片方は引っ込む
 
+  React.useEffect(() => {
+    const i = keyArray.indexOf(author);
+    if (i > 0) {
+      setPreviousAuthorImg(
+        WorkData.get(keyArray[i - 1])?.overview.img as string
+      );
+    }
+    if (i < keyArray.length - 1) {
+      setNextAuthorImg(WorkData.get(keyArray[i + 1])?.overview.img as string);
+    }
+    setThisComment("ここにコメント入力");
+  }, []); //コンポーネント初期化、前と後の作者が存在するか確認し、画像パスを格納する。
+
   return (
     <>
       <Wrapper style={toolBarAnimation}>
-        <PreviousButton
-          onClick={() => {
-            setNavBarExpandTrig(!navBarExpandTrig);
-          }}
-        >
-          <FontAwesomeIcon icon={faBars} />
-        </PreviousButton>
-        <CommentSubmit
-          src={commentSubmit2}
-          onClick={() => {
-            setCommentOnTrig(true);
-            setNavBarExpandTrig(false);
-          }}
-        />
-
         <JPEN
           onClick={() => {
             setEnglishTrig(!englishTrig);
@@ -64,6 +62,27 @@ const BottomToolBar: React.FC<Props> = ({
         >
           JP/EN
         </JPEN>
+        
+        <CommentSubmit
+          src={commentSubmit2}
+          onClick={() => {
+            setCommentOnTrig(true);
+            setNavBarExpandTrig(false);
+          }}
+        />
+        <MenuButton
+          onClick={() => {
+            setNavBarExpandTrig(!navBarExpandTrig);
+          }}
+        >
+          
+          <MainIcon src={WorkData.get(author)?.overview.img}/>
+          {previousAuthorImg!==""?<PrevIcon src={previousAuthorImg}/>:null}
+          {nextAuthorImg!==""?<NextIcon src={nextAuthorImg}/>:null}
+          
+        </MenuButton>
+
+        
       </Wrapper>
       <Wrapper2 style={commentAnimation}>
         <CommentFormWrapper>
@@ -113,7 +132,7 @@ const Wrapper = animated(styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   z-index: 3;
   color: white;
 `);
@@ -158,15 +177,18 @@ const CommentFormWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-const PreviousButton = styled.div`
-  grid-column: 1/2;
+const MenuButton = styled.div`
+  grid-column: 3/4;
+  width:60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-self:center;
   font-size: 3rem;
+  position:relative;
 `;
 const JPEN = styled.div`
-  grid-column: 3/4;
+  grid-column: 1/2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,5 +196,26 @@ const JPEN = styled.div`
   color: white;
   line-height: 40px;
   text-align: center;
+`;
+const MainIcon=styled.img`
+width:3rem;
+height:3rem;
+border-radius:1.5rem;
+`;
+const PrevIcon=styled.img`
+width:2rem;
+height:2rem;
+border-radius:1rem;
+position:absolute;
+left:0px;
+z-index:-1;
+`;
+const NextIcon=styled.img`
+width:2rem;
+height:2rem;
+border-radius:1rem;
+position:absolute;
+right:0px;
+z-index:-1;
 `;
 export default BottomToolBar;
