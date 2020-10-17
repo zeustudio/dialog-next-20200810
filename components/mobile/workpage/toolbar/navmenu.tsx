@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "react-spring";
+import { useDrag } from "react-use-gesture";
 import Link from "next/link";
 
 import logo from "../../../../images/logo_white.png";
@@ -9,6 +10,7 @@ import WorkData from "../../../../constants/workdata";
 import { Author } from "../../../../constants/Types";
 
 const keyArray: Author[] = Array.from(WorkData.keys()); //作品作者リスト
+const v = 0.7; //上下スワイプでコメント一覧が拡張する。その時のスワイプ敏感度合
 
 interface Props {
   author: Author;
@@ -22,15 +24,24 @@ interface Props {
 const NavMenu: React.FC<Props> = ({
   author,
   englishTrig,
-  navBarExpandTrigState: [navBarExpandTrig],
+  navBarExpandTrigState: [navBarExpandTrig,setNavBarExpandTrig],
 }) => {
   const navBarAnimation = useSpring({
     transform: navBarExpandTrig
       ? `translate3d(0px,0px,0px)`
       : `translate3d(0px,120%,0px)`,
   });
+
+  const bind = useDrag(({ vxvy: [, vy], last }) => {
+    //スワイプアクションの設定
+ 
+ if (last && vy > v) {
+  setNavBarExpandTrig(false);
+      }
+  });
+
   return (
-    <Wrapper style={navBarAnimation}>
+    <Wrapper {...bind()}style={navBarAnimation}>
       <Link href={{ pathname: "/", query: { isEnglish: englishTrig } }}>
         <ItemWrapper>
           <Logo src={logo} />
