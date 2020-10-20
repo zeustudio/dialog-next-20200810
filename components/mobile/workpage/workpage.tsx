@@ -12,6 +12,8 @@ import ContentComp from "./content";
 import workDataMap from "../../../constants/workdata";
 import { Content, Author } from "../../../constants/Types";
 
+import Tegaki from "./tegaki"
+
 interface Props {
   author: Author; //作者
 }
@@ -43,6 +45,7 @@ const WorkPage: React.FC<Props> = ({ author }) => {
             />
           );
         })}
+        <Tegaki author={author}/>
       </ContentsWrapper>
       <BottomToolBar
         author={author}
